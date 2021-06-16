@@ -5,14 +5,10 @@ namespace Visual_Studio_Projects.Data
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions options) : base(options)
-        {
+        public AppDbContext(DbContextOptions options) : base(options) { }
 
-        }
         public DbSet<Project> Projects { get; set; }
-
         public DbSet<Comment> Comments { get; set; }
-
         public DbSet<Student> Students { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
