@@ -11,11 +11,11 @@ namespace Visual_Studio_Projects.GraphQL.Projects
     {
         protected override void Configure(IObjectTypeDescriptor<Project> descriptor)
         {
-            descriptor.Field(p => p.Id).Type<StringType>();
+            descriptor.Field(p => p.Id).Type<IdType>();
             descriptor.Field(p => p.Name).Type<StringType>();
             descriptor.Field(p => p.Description).Type<StringType>();
             descriptor.Field(p => p.Link).Type<StringType>();
-            descriptor.Field(p => p.Year).Type<StringType>();
+            descriptor.Field(p => p.Year).Type<YearType>();
 
             descriptor
                 .Field(p => p.Student)

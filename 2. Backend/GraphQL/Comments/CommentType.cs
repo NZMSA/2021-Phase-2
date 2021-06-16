@@ -12,7 +12,7 @@ namespace Visual_Studio_Projects.GraphQL.Comments
     {
         protected override void Configure(IObjectTypeDescriptor<Comment> descriptor)
         {
-            descriptor.Field(s => s.Id).Type<StringType>();
+            descriptor.Field(s => s.Id).Type<IdType>();
             descriptor.Field(s => s.Content).Type<StringType>();
 
             descriptor

@@ -19,7 +19,7 @@ namespace Visual_Studio_Projects
             services
                 .AddGraphQLServer()
                 .AddQueryType<Query>()
-                //.AddMutationType<Mutation>()
+                .AddMutationType<Mutation>()
                 .AddType<ProjectType>()
                 .AddType<StudentType>()
                 .AddType<CommentType>()

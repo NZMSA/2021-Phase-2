@@ -1,5 +1,3 @@
-
-
 using System.Linq;
 using Visual_Studio_Projects.Data;
 using Visual_Studio_Projects.Models;
