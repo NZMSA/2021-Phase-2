@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Visual_Studio_Projects.Models
 {
 
-    public enum YearEnum
+    public enum Year
     {
         YEAR_2021
     }
@@ -25,7 +25,7 @@ namespace Visual_Studio_Projects.Models
         public string Link { get; set; }
 
         [Required]
-        public YearEnum Year { get; set; }
+        public Year Year { get; set; }
 
         [Required]
         public int StudentId { get; set; }

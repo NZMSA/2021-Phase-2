@@ -12,7 +12,7 @@ namespace Visual_Studio_Projects.GraphQL.Students
     {
         protected override void Configure(IObjectTypeDescriptor<Student> descriptor)
         {
-            descriptor.Field(s => s.Id).Type<StringType>();
+            descriptor.Field(s => s.Id).Type<IdType>();
             descriptor.Field(s => s.Name).Type<StringType>();
             descriptor.Field(s => s.GitHub).Type<StringType>();
             descriptor.Field(s => s.ImageURI).Type<StringType>();
