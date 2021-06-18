@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using HotChocolate;
+using Microsoft.EntityFrameworkCore;
+using Visual_Studio_Projects.Data;
 using Visual_Studio_Projects.GraphQL;
 using Visual_Studio_Projects.GraphQL.Projects;
 using Visual_Studio_Projects.GraphQL.Students;
@@ -16,6 +18,7 @@ namespace Visual_Studio_Projects
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddPooledDbContextFactory<AppDbContext>(options => options.UseSqlite("Data Source=conferences.db"));
             services
                 .AddGraphQLServer()
                 .AddQueryType<Query>()
