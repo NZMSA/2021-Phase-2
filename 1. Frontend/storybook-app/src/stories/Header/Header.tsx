@@ -137,7 +137,9 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
             :
             <div className={classes.userInformation}>
               <Avatar alt="user-avatar" src={`${user.image}`} />
-              <Button color="inherit">{`${user.firstName} ${user.lastName}`}</Button>
+              <Hidden smDown>
+                <Button color="inherit">{`${user.firstName} ${user.lastName}`}</Button>
+              </Hidden>
             </div>
           }
         </Toolbar>
@@ -147,6 +149,7 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
 }
 
 Header.defaultProps = {
+  // Just testing these
   user: {
     firstName: "John",
     lastName: "Doe",
