@@ -1,0 +1,68 @@
+/**
+ * @license
+ *
+ * Segoe UI (version 5.320)
+ * © 2015 Microsoft Corporation. All Rights Reserved.
+ *
+ * Segoe is a trademark of the Microsoft group of companies.
+*/
+
+@font-face {
+	font-family: 'MSA Segoe';
+    src: 
+        url("msa-segoe-200.eot"),
+        url("msa-segoe-200.eot?#iefix") format("embedded-opentype"),
+        url("msa-segoe-200.woff2") format("woff2"),
+        url("msa-segoe-200.woff") format("woff"),
+        url("msa-segoe-200.ttf") format("truetype"),
+        url("msa-segoe-200.svg#web") format("svg");
+	font-weight: 200; /* light */
+}
+
+@font-face {
+	font-family: 'MSA Segoe';
+    src: 
+        url("msa-segoe-300.eot"),
+        url("msa-segoe-300.eot?#iefix") format("embedded-opentype"),
+        url("msa-segoe-300.woff2") format("woff2"),
+        url("msa-segoe-300.woff") format("woff"),
+        url("msa-segoe-300.ttf") format("truetype"),
+        url("msa-segoe-300.svg#web") format("svg");
+	font-weight: 300; /* semilight */
+}
+
+@font-face {
+	font-family: 'MSA Segoe';
+    src: 
+        url("msa-segoe-400.eot"),
+        url("msa-segoe-400.eot?#iefix") format("embedded-opentype"),
+        url("msa-segoe-400.woff2") format("woff"),
+        url("msa-segoe-400.woff") format("woff"),
+        url("msa-segoe-400.ttf") format("truetype"),
+        url("msa-segoe-400.svg#web") format("svg");
+	font-weight: 400; /* regular */
+}
+
+@font-face {
+	font-family: 'MSA Segoe';
+    src: 
+        url("msa-segoe-600.eot"),
+        url("msa-segoe-600.eot?#iefix") format("embedded-opentype"),
+        url("msa-segoe-600.woff2") format("woff"),
+        url("msa-segoe-600.woff") format("woff"),
+        url("msa-segoe-600.ttf") format("truetype"),
+        url("msa-segoe-600.svg#web") format("svg");
+	font-weight: 600; /* semibold */
+}
+
+@font-face {
+	font-family: 'MSA Segoe';
+    src: 
+        url("msa-segoe-700.eot"),
+        url("msa-segoe-700.eot?#iefix") format("embedded-opentype"),
+        url("msa-segoe-700.woff2") format("woff"),
+        url("msa-segoe-700.woff") format("woff"),
+        url("msa-segoe-700.ttf") format("truetype"),
+        url("msa-segoe-700.svg#web") format("svg");
+	font-weight: 700; /* bold */
+}
