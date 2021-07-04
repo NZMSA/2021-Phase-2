@@ -1,47 +1,155 @@
 import React from 'react';
-import { Button } from '../Button/Button';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { AppBar, Avatar, fade, Grid, Hidden, IconButton, Toolbar, Typography } from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
+import InputBase from '@material-ui/core/InputBase';
+import SearchIcon from '@material-ui/icons/Search';
+import Button from '@material-ui/core/Button';
+import logo from "../assets/logos/msa_full_neg.svg"
 
 import './header.css';
+// Not sure if we are going to demonstrate both importing a css file and in component styling.
+// Maybe leave both options? We can explain both.
 
+// Header needs to know what user is logged in to render their name. If needed renders the image of their github.
+// Here I have assumed that the image will be a URL.
 export interface HeaderProps {
-  user?: {};
-  onLogin: () => void;
-  onLogout: () => void;
-  onCreateAccount: () => void;
+  user?: {
+    firstName: String,
+    lastName: String,
+    image: String
+  };
+  onLogin?: () => void;
+  onLogout?: () => void;
+  onCreateAccount?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ user, onLogin, onLogout, onCreateAccount }) => (
-  <header>
-    <div className="wrapper">
-      <div>
-        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-          <g fill="none" fillRule="evenodd">
-            <path
-              d="M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z"
-              fill="#FFF"
-            />
-            <path
-              d="M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z"
-              fill="#555AB9"
-            />
-            <path
-              d="M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z"
-              fill="#91BAF8"
-            />
-          </g>
-        </svg>
-        <h1>Acme</h1>
-      </div>
-      <div>
-        {user ? (
-          <Button size="small" onClick={onLogout} label="Log out" />
-        ) : (
-          <>
-            <Button size="small" onClick={onLogin} label="Log in" />
-            <Button primary size="small" onClick={onCreateAccount} label="Sign up" />
-          </>
-        )}
-      </div>
-    </div>
-  </header>
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+    },
+    appBar: {
+      backgroundColor: "#5c2d91",
+      minHeight: "65px"
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+    title: {
+      flexGrow: 1,
+      display: 'none',
+      [theme.breakpoints.up('sm')]: {
+        display: 'block'
+      }
+    },
+    inputRoot: {
+      color: 'inherit',
+    },
+    inputInput: {
+      padding: theme.spacing(1, 1, 1, 0),
+      // vertical padding + font size from searchIcon
+      paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+      transition: theme.transitions.create('width'),
+      width: '100%',
+      [theme.breakpoints.up('sm')]: {
+        width: '12ch',
+        '&:focus': {
+          width: '20ch',
+        },
+      },
+    },
+    search: {
+      position: 'relative',
+      borderRadius: theme.shape.borderRadius,
+      backgroundColor: fade(theme.palette.common.white, 0.15),
+      '&:hover': {
+        backgroundColor: fade(theme.palette.common.white, 0.25),
+      },
+      marginLeft: 0,
+      width: '100%',
+      [theme.breakpoints.up('sm')]: {
+        marginLeft: theme.spacing(1),
+        width: 'auto',
+      },
+    },
+    searchIcon: {
+      padding: theme.spacing(0, 2),
+      height: '100%',
+      position: 'absolute',
+      pointerEvents: 'none',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    userInformation: {
+      display: 'flex',
+      marginLeft: '20px'
+    },
+    flexEnd: {
+      justifyContent: 'flex-end',
+      alignItems: 'center',
+      display: 'flex',
+    }
+  }),
 );
+
+export const Header: React.FC<HeaderProps> = ({ user }) => {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.root}>
+      <AppBar className={classes.appBar} position="static">
+        <Toolbar>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="open drawer"
+          >
+            <MenuIcon />
+          </IconButton>
+          <IconButton>
+            <img src={logo} id="logo" width="200px" alt="MSA Logo" />
+          </IconButton>
+          <Typography className={classes.title} variant="h5" noWrap>
+            Microsoft Student Accelerator Project Submissions
+          </Typography>
+          <Hidden smDown>
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <InputBase
+                placeholder="Search…"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ 'aria-label': 'search' }}
+              />
+            </div>
+          </Hidden>
+          {user == null ?
+            <Button color="inherit">
+              Login
+              </Button>
+            :
+            <div className={classes.userInformation}>
+              <Avatar alt="user-avatar" src={`${user.image}`} />
+              <Button color="inherit">{`${user.firstName} ${user.lastName}`}</Button>
+            </div>
+          }
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
+}
+
+Header.defaultProps = {
+  user: {
+    firstName: "John",
+    lastName: "Doe",
+    image: "https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+  },
+}

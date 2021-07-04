@@ -11,8 +11,13 @@ const Template: Story<HeaderProps> = (args) => <Header {...args} />;
 
 export const LoggedIn = Template.bind({});
 LoggedIn.args = {
-  user: {},
+  user: {
+    firstName: "John",
+    lastName: "Doe",
+    image: "https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+  },
 };
 
 export const LoggedOut = Template.bind({});
-LoggedOut.args = {};
+LoggedOut.args = {
+};
