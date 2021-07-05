@@ -36,12 +36,12 @@ namespace Visual_Studio_Projects.GraphQL.Comments
         {
             public Project GetProject(Comment Comment, [ScopedService] AppDbContext context)
             {
-                return context.Projects.FirstOrDefault(p => p.Id == Comment.ProjectId);
+                return context.Projects.Find(Comment.ProjectId);
             }
 
             public Student GetStudent(Comment Comment, [ScopedService] AppDbContext context)
             {
-                return context.Students.FirstOrDefault(s => s.Id == Comment.StudentId);
+                return context.Students.Find(Comment.StudentId);
             }
         }
 
