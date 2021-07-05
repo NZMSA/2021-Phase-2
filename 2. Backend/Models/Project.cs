@@ -16,13 +16,13 @@ namespace Visual_Studio_Projects.Models
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
         [Required]
-        public string Description { get; set; }
+        public string Description { get; set; } = null!;
 
         [Required]
-        public string Link { get; set; }
+        public string Link { get; set; } = null!;
 
         [Required]
         public Year Year { get; set; }
@@ -30,7 +30,7 @@ namespace Visual_Studio_Projects.Models
         [Required]
         public int StudentId { get; set; }
 
-        public Student Student { get; set; }
+        public Student Student { get; set; } = null!;
 
         public DateTime Modified { get; set; }
 
