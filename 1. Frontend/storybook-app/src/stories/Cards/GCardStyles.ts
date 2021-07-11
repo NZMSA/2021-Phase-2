@@ -18,4 +18,15 @@ const makeGCardStyles = makeStyles(createStyles({
     }
 }));
 
+export const makeDialogStyles = makeStyles(createStyles({
+    buttonGroup: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end'
+    },
+    button: {
+        margin: '10px'
+    }
+}));
+
 export default makeGCardStyles;
