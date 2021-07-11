@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using HotChocolate;
 using HotChocolate.Types;
-
 using Visual_Studio_Projects.Models;
 using Visual_Studio_Projects.Data;
+using Visual_Studio_Projects.Extensions;
 
 namespace Visual_Studio_Projects.GraphQL.Comments
 {

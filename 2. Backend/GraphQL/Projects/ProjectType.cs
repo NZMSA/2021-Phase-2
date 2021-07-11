@@ -32,7 +32,7 @@ namespace Visual_Studio_Projects.GraphQL.Projects
         {
             public Student GetStudent(Project project, [ScopedService] AppDbContext context)
             {
-                return context.Students.FirstOrDefault(s => s.Id == project.StudentId);
+                return context.Students.Find(project.StudentId);
             }
         }
 

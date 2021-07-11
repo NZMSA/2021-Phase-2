@@ -3,7 +3,7 @@ using Visual_Studio_Projects.Data;
 using HotChocolate.Types;
 using HotChocolate.Types.Descriptors;
 
-namespace Visual_Studio_Projects.GraphQL
+namespace Visual_Studio_Projects.Extensions
 {
     public class UseAppDbContextAttribute : ObjectFieldDescriptorAttribute
     {

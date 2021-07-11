@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Configuration;
 using HotChocolate;
 using Microsoft.EntityFrameworkCore;
 using Visual_Studio_Projects.Data;
@@ -15,11 +16,26 @@ namespace Visual_Studio_Projects
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddPooledDbContextFactory<AppDbContext>(options => options.UseSqlite("Data Source=conferences.db"));
+
+            services
+                .AddCors(o =>
+                    o.AddDefaultPolicy(b =>
+                        b.AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .AllowAnyOrigin()));
+
+            services.AddPooledDbContextFactory<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SQLDatabase")));
             services
                 .AddGraphQLServer()
                 .AddQueryType(d => d.Name("Query"))
