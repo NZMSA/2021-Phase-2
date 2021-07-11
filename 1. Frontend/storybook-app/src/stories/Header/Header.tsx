@@ -109,7 +109,7 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
           >
             <MenuIcon />
           </IconButton>
-          <IconButton>
+          <IconButton href="https://nzmsa.netlify.app/">
             <img src={logo} id="logo" width="200px" alt="MSA Logo" />
           </IconButton>
           <Typography className={classes.title} variant="h5" noWrap>
@@ -146,13 +146,4 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
       </AppBar>
     </div>
   );
-}
-
-Header.defaultProps = {
-  // Just testing these
-  user: {
-    firstName: "John",
-    lastName: "Doe",
-    image: "https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
-  },
 }
