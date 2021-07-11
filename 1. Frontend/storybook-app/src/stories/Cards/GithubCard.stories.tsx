@@ -12,11 +12,11 @@ const Template: Story<GithubCardProps> = (args) => <GithubCard {...args} />;
 
 export const BasicCard = Template.bind(this);
 BasicCard.args = {
-    avatar: () => <Avatar>
+    avatar: <Avatar>
             R
         </Avatar>,
-    cardTitle: "Rodger Gu",
-    subHeader: "Project Lorem Ipsum",
+    cardTitle: "Project Lorem Ipsum",
+    subHeader: "Rodger Gu",
     cardContent: <Typography>
             some content
         </Typography>,
