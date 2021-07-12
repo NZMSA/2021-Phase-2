@@ -13,27 +13,22 @@ namespace Visual_Studio_Projects.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder
-                .Entity<Project>()
+            modelBuilder.Entity<Project>()
                 .HasOne(p => p.Student)
                 .WithMany(s => s.Projects)
                 .HasForeignKey(p => p.StudentId);
 
-            modelBuilder
-                .Entity<Project>()
-                .HasMany(p => p.Comments)
-                .WithOne(c => c.Project)
-                .HasForeignKey(p => p.ProjectId);
-
             modelBuilder.Entity<Comment>()
                 .HasOne(c => c.Student)
                 .WithMany(s => s.Comments)
-                .HasForeignKey(c => c.StudentId);
+                .HasForeignKey(c => c.StudentId)
+                .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Comment>()
                 .HasOne(c => c.Project)
                 .WithMany(p => p.Comments)
-                .HasForeignKey(c => c.ProjectId);
+                .HasForeignKey(c => c.ProjectId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

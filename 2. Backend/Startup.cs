@@ -38,6 +38,7 @@ namespace Visual_Studio_Projects
             services.AddPooledDbContextFactory<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SQLDatabase")));
             services
                 .AddGraphQLServer()
+                .AddAuthorization()
                 .AddQueryType(d => d.Name("Query"))
                     .AddTypeExtension<ProjectQueries>()
                     .AddTypeExtension<StudentQueries>()
