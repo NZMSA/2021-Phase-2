@@ -1,4 +1,4 @@
-import { makeStyles, createStyles } from '@material-ui/core';
+import { makeStyles, createStyles, CircularProgress } from '@material-ui/core';
 import React from 'react';
 import { CardList, SectionHeader } from './stories';
 
@@ -24,7 +24,7 @@ const FeedPage = ({pageTitle} : FeedPageProps) : JSX.Element => {
             <div className={styles.header}>
                 <SectionHeader sectionTitle={pageTitle} doClick={() => {}}/>
             </div>
-            <CardList cards={cards} cols={2}/>
+            cards.length === 0 ? <CircularProgress /> : <CardList cards={cards} cols={2}/>
         </div>
 }
 
