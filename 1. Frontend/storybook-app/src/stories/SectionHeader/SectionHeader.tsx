@@ -23,9 +23,9 @@ const SectionHeader = ({sectionTitle, doClick} : SectionHeaderProps) : JSX.Eleme
                 {sectionTitle}
             </Typography>
         </div>
-        <IconButton className={styles.button} onClick={handleClick} color={'primary'}>
+        {/* <IconButton className={styles.button} onClick={handleClick} color={'primary'}>
                 {open ? <ExpandLess /> : <ExpandMore />}
-            </IconButton>
+            </IconButton> */}
     </div>
 }
 
