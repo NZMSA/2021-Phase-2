@@ -1,7 +1,6 @@
 import React from 'react';
-import { Button, ButtonGroup, Card, CardActionArea, CardContent, CardHeader, Dialog, DialogTitle, Divider } from '@material-ui/core';
+import { Button, Card, CardActionArea, CardContent, CardHeader, Dialog, DialogTitle, Divider } from '@material-ui/core';
 import makeGCardStyles, { makeDialogStyles } from './GCardStyles';
-import { URL } from 'url';
 
 export interface GithubCardProps {
     avatar: JSX.Element;
