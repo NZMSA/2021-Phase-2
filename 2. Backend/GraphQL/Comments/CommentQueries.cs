@@ -10,7 +10,7 @@ using Visual_Studio_Projects.DataLoader;
 using Visual_Studio_Projects.Models;
 using Visual_Studio_Projects.Extensions;
 
-namespace Visual_Studio_Projects.GraphQL
+namespace Visual_Studio_Projects.GraphQL.Comments
 {
     [ExtendObjectType(name: "Query")]
     public class CommentQueries

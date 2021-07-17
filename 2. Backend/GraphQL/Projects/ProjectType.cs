@@ -15,7 +15,7 @@ namespace Visual_Studio_Projects.GraphQL.Projects
             descriptor.Field(p => p.Name).Type<StringType>();
             descriptor.Field(p => p.Description).Type<StringType>();
             descriptor.Field(p => p.Link).Type<StringType>();
-            descriptor.Field(p => p.Year).Type<YearType>();
+            descriptor.Field(p => p.Year).Type<EnumType<Year>>();
 
             descriptor
                 .Field(p => p.Student)
@@ -35,6 +35,5 @@ namespace Visual_Studio_Projects.GraphQL.Projects
                 return context.Students.Find(project.StudentId);
             }
         }
-
     }
 }

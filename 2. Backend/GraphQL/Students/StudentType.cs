@@ -42,6 +42,5 @@ namespace Visual_Studio_Projects.GraphQL.Students
                 return context.Comments.Where(c => c.StudentId == student.Id);
             }
         }
-
     }
 }

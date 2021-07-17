@@ -5,5 +5,4 @@ namespace Visual_Studio_Projects.GraphQL.Projects
         string? Name,
         string? Description,
         string? Link);
-
 }

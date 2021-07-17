@@ -4,7 +4,7 @@ using HotChocolate.Types;
 using Visual_Studio_Projects.DataLoader;
 using Visual_Studio_Projects.Models;
 
-namespace Visual_Studio_Projects.GraphQL
+namespace Visual_Studio_Projects.GraphQL.Students
 {
     [ExtendObjectType(name: "Query")]
     public class StudentQueries
