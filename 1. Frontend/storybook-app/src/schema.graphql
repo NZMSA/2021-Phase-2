@@ -1,0 +1,334 @@
+"""
+The `@defer` directive may be provided for fragment spreads and inline fragments to inform the executor to delay the execution of the current fragment to indicate deprioritization of the current fragment. A query with `@defer` directive will cause the request to potentially return multiple responses, where non-deferred data is delivered in the initial response and data deferred is delivered in a subsequent response. `@include` and `@skip` take precedence over `@defer`.
+"""
+directive @defer(
+  """
+  If this argument label has a value other than null, it will be passed on to the result of this defer directive. This label is intended to give client applications a way to identify to which fragment a deferred result belongs to.
+  """
+  label: String
+
+  """
+  Deferred when true.
+  """
+  if: Boolean
+) on FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+The `@stream` directive may be provided for a field of `List` type so that the backend can leverage technology such as asynchronous iterators to provide a partial list in the initial response, and additional list items in subsequent responses. `@include` and `@skip` take precedence over `@stream`.
+"""
+directive @stream(
+  """
+  If this argument label has a value other than null, it will be passed on to the result of this stream directive. This label is intended to give client applications a way to identify to which fragment a streamed result belongs to.
+  """
+  label: String
+
+  """
+  The initial elements that shall be send down to the consumer.
+  """
+  initialCount: Int!
+
+  """
+  Streamed when true.
+  """
+  if: Boolean!
+) on FIELD
+
+directive @authorize(
+  """
+  The name of the authorization policy that determines access to the annotated resource.
+  """
+  policy: String
+
+  """
+  Roles that are allowed to access the annotated resource.
+  """
+  roles: [String!]
+
+  """
+  Defines when when the resolver shall be executed.By default the resolver is executed after the policy has determined that the current user is allowed to access the field.
+  """
+  apply: ApplyPolicy! = BEFORE_RESOLVER
+) on SCHEMA | OBJECT | FIELD_DEFINITION
+
+"""
+Direct the client to resolve this field locally, either from the cache or local resolvers.
+"""
+directive @client(
+  """
+  When true, the client will never use the cache for this value. See
+  https://www.apollographql.com/docs/react/essentials/local-state/#forcing-resolvers-with-clientalways-true
+  """
+  always: Boolean
+) on FIELD | FRAGMENT_DEFINITION | INLINE_FRAGMENT
+
+"""
+Export this locally resolved field as a variable to be used in the remainder of this query. See
+https://www.apollographql.com/docs/react/essentials/local-state/#using-client-fields-as-variables
+"""
+directive @export(
+  """
+  The variable name to export this field as.
+  """
+  as: String!
+) on FIELD
+
+"""
+Specify a custom store key for this result. See
+https://www.apollographql.com/docs/react/advanced/caching/#the-connection-directive
+"""
+directive @connection(
+  """
+  Specify the store key.
+  """
+  key: String!
+
+  """
+  An array of query argument names to include in the generated custom store key.
+  """
+  filter: [String!]
+) on FIELD
+
+type Query {
+  projects(
+    first: Int
+    after: String
+    last: Int
+    before: String
+  ): ProjectConnection
+  projectById(id: Int!): Project!
+  projectsById(ids: [Int!]!): [Project!]!
+  studentById(id: Int!): Student!
+  comments(
+    first: Int
+    after: String
+    last: Int
+    before: String
+  ): CommentConnection
+  commentById(id: Int!): Comment!
+  commentsById(ids: [Int!]!): [Comment!]!
+}
+
+type Mutation {
+  addProject(input: AddProjectInput!): AddProjectPayload!
+  editProject(input: EditProjectInput!): EditProjectPayload!
+  addStudent(input: AddStudentInput!): AddStudentPayload!
+  editStudent(input: EditStudentInput!): EditStudentPayload!
+  addComment(input: AddCommentInput!): AddCommentPayload!
+  editComment(input: EditCommentInput!): EditCommentPayload!
+}
+
+type Project {
+  id: ID
+  name: String
+  description: String
+  link: String
+  year: Year
+  student: Student
+  modified: DateTime
+  created: DateTime
+  studentId: Int!
+  comments: [Comment!]!
+}
+
+type Student {
+  id: ID
+  name: String
+  gitHub: String
+  imageURI: String
+  projects: Project
+  comments: Comment
+}
+
+type Comment {
+  id: ID
+  content: String
+  project: Project
+  student: Student
+  modified: DateTime
+  created: DateTime
+  projectId: Int!
+  studentId: Int!
+}
+
+enum ApplyPolicy {
+  BEFORE_RESOLVER
+  AFTER_RESOLVER
+}
+
+enum Year {
+  YEAR_2021
+}
+
+"""
+The `DateTime` scalar represents an ISO-8601 compliant date time type.
+"""
+scalar DateTime
+
+"""
+A connection to a list of items.
+"""
+type ProjectConnection {
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+
+  """
+  A list of edges.
+  """
+  edges: [ProjectEdge!]
+
+  """
+  A flattened list of the nodes.
+  """
+  nodes: [Project!]
+}
+
+"""
+A connection to a list of items.
+"""
+type CommentConnection {
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+
+  """
+  A list of edges.
+  """
+  edges: [CommentEdge!]
+
+  """
+  A flattened list of the nodes.
+  """
+  nodes: [Comment!]
+}
+
+"""
+Information about pagination in a connection.
+"""
+type PageInfo {
+  """
+  Indicates whether more edges exist following the set defined by the clients arguments.
+  """
+  hasNextPage: Boolean!
+
+  """
+  Indicates whether more edges exist prior the set defined by the clients arguments.
+  """
+  hasPreviousPage: Boolean!
+
+  """
+  When paginating backwards, the cursor to continue.
+  """
+  startCursor: String
+
+  """
+  When paginating forwards, the cursor to continue.
+  """
+  endCursor: String
+}
+
+"""
+An edge in a connection.
+"""
+type ProjectEdge {
+  """
+  A cursor for use in pagination.
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge.
+  """
+  node: Project!
+}
+
+"""
+An edge in a connection.
+"""
+type CommentEdge {
+  """
+  A cursor for use in pagination.
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge.
+  """
+  node: Comment!
+}
+
+type EditStudentPayload {
+  student: Student
+  errors: [UserError!]
+}
+
+type AddStudentPayload {
+  student: Student
+  errors: [UserError!]
+}
+
+input EditProjectInput {
+  projectId: String!
+  name: String
+  description: String
+  link: String
+}
+
+input AddProjectInput {
+  name: String!
+  description: String!
+  link: String!
+  year: String!
+  studentId: String!
+}
+
+type EditProjectPayload {
+  project: Project
+  errors: [UserError!]
+}
+
+type AddProjectPayload {
+  project: Project
+  errors: [UserError!]
+}
+
+input AddStudentInput {
+  name: String!
+  gitHub: String!
+  imageURI: String
+}
+
+input EditStudentInput {
+  studentId: String!
+  name: String
+  gitHub: String
+  imageURI: String
+}
+
+type AddCommentPayload {
+  comment: Comment
+  errors: [UserError!]
+}
+
+type EditCommentPayload {
+  comment: Comment
+  errors: [UserError!]
+}
+
+input AddCommentInput {
+  content: String!
+  projectId: String!
+  studentId: String!
+}
+
+input EditCommentInput {
+  commentId: String!
+  content: String
+}
+
+type UserError {
+  message: String!
+  code: String!
+}
