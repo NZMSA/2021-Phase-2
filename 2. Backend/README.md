@@ -1,23 +1,24 @@
-# Example Backend Project for MSA Phase 2 2021
+# MSA Yearbook GraphQL backend
 
-## How to run
+## Introduction
 
-Setup Local docker-compose
+# Prerequisites
 
-```
-docker-compose up -d
-```
+- [Azure Account - Free for students](https://azure.microsoft.com/en-us/free/students/)
+- [Visual Studio Community 2019](https://visualstudio.microsoft.com/downloads/)
+  - When installing ensure [ASP.NET](http://asp.net/) and web development is selected
+- [.NET Core 5.0 SDK](https://dotnet.microsoft.com/download/dotnet/5.0)
+- [Insomnia](https://insomnia.rest/) (Optional)
 
-Entity Framework Migrations
+## Table of contents
 
-```
-dotnet ef migrations script
-
-# or
-
-Script-Migration
-```
-
-[More Info](https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying?tabs=vs)
-
-#&eT7k]W=}temX6d
+| **Part**                                                         | **Topics**                   |
+| ---------------------------------------------------------------- | ---------------------------- |
+| [Part #1](Docs/1-introduction-to-msa-yearbook.md)                | Introductions                |
+| [Part #2](Docs/2-azure-sql-database.md)                          | Azure Database               |
+| [Part #3](Docs/3-create-an-empty-project-using-visual-studio.md) | Create Project in VS         |
+| [Part #4](Docs/4-adding-nuget-packages.md)                       | Nuget Packages               |
+| [Part #5](Docs/5-setup-hot-chocolate.md)                         | Setup Hot Chocolate          |
+| [Part #6](Docs/6-implement-graphql-queries.md)                   | GraphQL Queries              |
+| [Part #7](Docs/7-implement-graphql-mutations.md)                 | GraphQL Mutations            |
+| [Part #8](Docs/8-setup-github-oauth-and-authorisation.md)        | GitHub Oauth & Authorisation |
