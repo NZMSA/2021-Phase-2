@@ -11,6 +11,9 @@ on:
 jobs:
   build-and-deploy:
     runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: "./2. Backend"
 
     steps:
     # checkout the repo
