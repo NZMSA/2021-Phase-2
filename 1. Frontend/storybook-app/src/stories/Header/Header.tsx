@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { AppBar, Avatar, fade, Grid, Hidden, IconButton, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Avatar, fade, Hidden, IconButton, Toolbar, Typography } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
@@ -94,6 +94,9 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+const CLIENT_ID = "memes";
+const REDIRECT_URI = "http://localhost:3000/";
+
 export const Header: React.FC<HeaderProps> = ({ user }) => {
   const classes = useStyles();
 
@@ -131,9 +134,11 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
             </div>
           </Hidden>
           {user == null ?
-            <Button color="inherit">
-              Login
+            <a href={`https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=user&redirect_uri=${REDIRECT_URI}`} >
+              <Button color="inherit">
+                Login
               </Button>
+            </a>
             :
             <div className={classes.userInformation}>
               <Avatar alt="user-avatar" src={`${user.image}`} />
