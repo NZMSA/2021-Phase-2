@@ -1,12 +1,12 @@
 # Docs for the Azure Web Apps Deploy action: https://go.microsoft.com/fwlink/?linkid=2134798
 # More GitHub Actions for Azure: https://go.microsoft.com/fwlink/?linkid=2135048
 
-name: Build & Deploy GraphQl Backend
+name: Build & Deploy GraphQL Backend
 
 on:
   push:
     branches:
-      - feature/github-actions
+      - main
 
 jobs:
   build-and-deploy:
