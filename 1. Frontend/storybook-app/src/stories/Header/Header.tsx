@@ -134,11 +134,9 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
             </div>
           </Hidden>
           {user == null ?
-            <a href={`https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=user&redirect_uri=${REDIRECT_URI}`} >
-              <Button color="inherit">
+              <Button color="inherit" href={`https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=user&redirect_uri=${REDIRECT_URI}`}>
                 Login
               </Button>
-            </a>
             :
             <div className={classes.userInformation}>
               <Avatar alt="user-avatar" src={`${user.image}`} />
