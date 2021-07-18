@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { AppBar, Avatar, fade, Hidden, IconButton, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Avatar, Drawer, fade, Hidden, IconButton, Toolbar, Typography } from '@material-ui/core';
+import { SideBar } from '../Sidebar/Sidebar';
 import MenuIcon from '@material-ui/icons/Menu';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
@@ -91,7 +92,9 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       display: 'flex',
     }
-  }),
+
+  }
+  ),
 );
 
 const CLIENT_ID = "memes";
@@ -99,6 +102,11 @@ const REDIRECT_URI = "http://localhost:3000/";
 
 export const Header: React.FC<HeaderProps> = ({ user }) => {
   const classes = useStyles();
+  const [sideBar, setSideBar] = useState(false);
+
+  const toggleSideBar = () => {
+    setSideBar(!sideBar);
+  }
 
   return (
     <div className={classes.root}>
@@ -109,8 +117,12 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
+            onClick={toggleSideBar}
           >
             <MenuIcon />
+            <Drawer anchor="left" open={sideBar} onClose={toggleSideBar}>
+              <SideBar/>
+            </Drawer>
           </IconButton>
           <IconButton>
             <img src={logo} id="logo" width="200px" alt="MSA Logo" />
