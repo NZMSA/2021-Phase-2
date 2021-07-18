@@ -1,5 +1,5 @@
-# Microsoft Student Accelerator 2021Phase 2 Training - General Stream
-The official repository and source of knowledge for MSA students taking part in MSA 2021Phase 2 Training. 
+# Microsoft Student Accelerator 2021 Phase 2 Training - General Stream
+The official repository and source of knowledge for MSA students taking part in MSA 2021 Phase 2 Training. 
 
 # Assignment
 *tbd
