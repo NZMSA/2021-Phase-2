@@ -86,7 +86,7 @@
    In `StudentMutations.cs` in `GraphQL/Students` add the following new method
 
    ```csharp
-   [UseDbContext(typeof(AppDbContext))]
+   [UseAppDbContext]
    public async Task<LoginPayload> LoginAsync(LoginInput input, [ScopedService] AppDbContext context, CancellationToken cancellationToken)
    {
 
@@ -192,7 +192,7 @@
 In `StudentQueries.cs` in `GraphQL/Students`
 
 ```csharp
-[UseDbContext(typeof(AppDbContext))]
+[UseAppDbContext]
 [Authorize]
 public Student GetSelf(ClaimsPrincipal claimsPrincipal, [ScopedService] AppDbContext context)
 {
@@ -234,19 +234,19 @@ The self request allows the user to request details of themself after they log i
    using System.Threading.Tasks;
    using System.Security.Claims;
    using HotChocolate;
-   using HotChocolate.Data;
    using HotChocolate.Types;
    using HotChocolate.AspNetCore;
    using HotChocolate.AspNetCore.Authorization;
    using MSAYearbook.Models;
    using MSAYearbook.Data;
+   using MSAYearbook.Extensions;
 
    namespace MSAYearbook.GraphQL.Projects
    {
        [ExtendObjectType(name: "Mutation")]
        public class ProjectMutations
        {
-           [UseDbContext(typeof(AppDbContext))]
+           [UseAppDbContext]
            [Authorize]
            public async Task<Project> AddProjectAsync(AddProjectInput input, ClaimsPrincipal claimsPrincipal,
                [ScopedService] AppDbContext context, CancellationToken cancellationToken)
@@ -269,7 +269,7 @@ The self request allows the user to request details of themself after they log i
                return project;
            }
 
-           [UseDbContext(typeof(AppDbContext))]
+           [UseAppDbContext]
            [Authorize]
            public async Task<Project> EditProjectAsync(EditProjectInput input, ClaimsPrincipal claimsPrincipal,
                [ScopedService] AppDbContext context, CancellationToken cancellationToken)
@@ -321,19 +321,19 @@ The self request allows the user to request details of themself after they log i
    using System.Threading.Tasks;
    using System.Security.Claims;
    using HotChocolate;
-   using HotChocolate.Data;
    using HotChocolate.Types;
    using HotChocolate.AspNetCore;
    using HotChocolate.AspNetCore.Authorization;
    using MSAYearbook.Models;
    using MSAYearbook.Data;
+   using MSAYearbook.Extensions;
 
    namespace MSAYearbook.GraphQL.Comments
    {
        [ExtendObjectType(name: "Mutation")]
        public class CommentMutations
        {
-           [UseDbContext(typeof(AppDbContext))]
+           [UseAppDbContext]
            [Authorize]
            public async Task<Comment> AddCommentAsync(AddCommentInput input, ClaimsPrincipal claimsPrincipal,
            [ScopedService] AppDbContext context, CancellationToken cancellationToken)
@@ -354,7 +354,7 @@ The self request allows the user to request details of themself after they log i
                return comment;
            }
 
-           [UseDbContext(typeof(AppDbContext))]
+           [UseAppDbContext]
            [Authorize]
            public async Task<Comment> EditCommentAsync(EditCommentInput input, ClaimsPrincipal claimsPrincipal,
                    [ScopedService] AppDbContext context, CancellationToken cancellationToken)
@@ -395,7 +395,7 @@ The self request allows the user to request details of themself after they log i
    `StudentMutations.cs`, remove `AddStudent` and `AddStudentInput.cs` . Edit the following:
 
    ```csharp
-   [UseDbContext(typeof(AppDbContext))]
+   [UseAppDbContext]
    [Authorize]
    public async Task<Student> EditStudentAsync(EditStudentInput input, ClaimsPrincipal claimsPrincipal,
            [ScopedService] AppDbContext context, CancellationToken cancellationToken)

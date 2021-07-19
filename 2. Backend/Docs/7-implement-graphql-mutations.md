@@ -40,17 +40,17 @@
    using System.Threading;
    using System.Threading.Tasks;
    using HotChocolate;
-   using HotChocolate.Data;
    using HotChocolate.Types;
    using MSAYearbook.Models;
    using MSAYearbook.Data;
+   using MSAYearbook.Extensions;
 
    namespace MSAYearbook.GraphQL.Students
    {
        [ExtendObjectType(name: "Mutation")]
        public class StudentMutation
        {
-           [UseDbContext(typeof(AppDbContext))]
+           [UseAppDbContext]
            public async Task<Student> AddStudentAsync(AddStudentInput input,
            [ScopedService] AppDbContext context, CancellationToken cancellationToken)
            {
@@ -67,7 +67,7 @@
                return student;
            }
 
-           [UseDbContext(typeof(AppDbContext))]
+           [UseAppDbContext]
            public async Task<Student> EditStudentAsync(EditStudentInput input,
                    [ScopedService] AppDbContext context, CancellationToken cancellationToken)
            {
@@ -169,10 +169,10 @@
      using System.Threading;
      using System.Threading.Tasks;
      using HotChocolate;
-     using HotChocolate.Data;
      using HotChocolate.Types;
      using MSAYearbook.Models;
      using MSAYearbook.Data;
+     using MSAYearbook.Extensions;
      using MSAYearbook.Extensions;
 
      namespace MSAYearbook.GraphQL.Projects
@@ -180,7 +180,7 @@
          [ExtendObjectType(name: "Mutation")]
          public class ProjectMutations
          {
-             [UseDbContext(typeof(AppDbContext))]
+             [UseAppDbContext]
              public async Task<Project> AddProjectAsync(AddProjectInput input,
                  [ScopedService] AppDbContext context, CancellationToken cancellationToken)
              {
@@ -201,7 +201,7 @@
                  return project;
              }
 
-             [UseDbContext(typeof(AppDbContext))]
+             [UseAppDbContext]
              public async Task<Project> EditProjectAsync(EditProjectInput input,
                  [ScopedService] AppDbContext context, CancellationToken cancellationToken)
              {
@@ -253,17 +253,17 @@
      using System.Threading;
      using System.Threading.Tasks;
      using HotChocolate;
-     using HotChocolate.Data;
      using HotChocolate.Types;
      using MSAYearbook.Models;
      using MSAYearbook.Data;
+     using MSAYearbook.Extensions;
 
      namespace MSAYearbook.GraphQL.Comments
      {
          [ExtendObjectType(name: "Mutation")]
          public class CommentMutations
          {
-             [UseDbContext(typeof(AppDbContext))]
+             [UseAppDbContext]
              public async Task<Comment> AddCommentAsync(AddCommentInput input,
              [ScopedService] AppDbContext context, CancellationToken cancellationToken)
              {
@@ -282,7 +282,7 @@
                  return comment;
              }
 
-             [UseDbContext(typeof(AppDbContext))]
+             [UseAppDbContext]
              public async Task<Comment> EditCommentAsync(EditCommentInput input,
                      [ScopedService] AppDbContext context, CancellationToken cancellationToken)
              {
@@ -317,6 +317,6 @@
 
 ## Summary
 
-In this part, we learned how to mutate data in our database using mutations. In here we cover adding new data and updating existing data. We cover how to define mutation inputs when dealing with different mutations.
+In this part, we learned how to mutate data in our database using mutations. In here we cover adding new data and updating existing data. We cover howuit s to define mutation inputs when dealing with different mutations.
 
 [**<< Part #8 - GitHub Oauth & Authorisation >>**](8-setup-github-oauth-and-authorisation.md)

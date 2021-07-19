@@ -1,5 +1,8 @@
 # Setup Hot Chocolate
 
+Every taught here would be referenced from Hot Chocolate v11
+Read more: [Hot Chocolate Docs](https://chillicream.com/docs/hotchocolate/)
+
 1. To start let us remove everything that is unnecessary. Delete the following files/folders
 
    1. `./Controller` (Folder)
@@ -40,6 +43,8 @@
 
    ![5-setup-hot-chocolate/Untitled%202.png](5-setup-hot-chocolate/Untitled%202.png)
 
+   For more info about entity framework checkout [here](https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application#install-entity-framework-6)
+
 4. Next, we'll create a new Entity Framework DbContext. Create a new `AppDbContext` class in the `Data` folder using the following code:
 
    ```csharp
@@ -69,7 +74,7 @@
    }
    ```
 
-6. Now that we have set up our model and the context, we can begin to update the database with our model. Code first programming will allow us to mirror our model in our database. First, remember we had the connection previously when we created our database. Open appsettings.json and add the following. (where `Server=tcp:msa-yearbook-db.data...` is the string you copied earlier when we created the database in Azure Portal)
+6. Now that we have set up our model and the context, we can begin to update the database with our model. Code first programming will allow us to mirror our model in our database. First, remember we had the connection previously when we created our database. Open `appsettings.Development.json` and add the following. (where `Server=tcp:msa-yearbook-db.data...` is the string you copied earlier when we created the database in Azure Portal)
 
    ```json
    {
@@ -80,6 +85,8 @@
      }
    }
    ```
+
+   > It is a good idea to git ignore this file (`appsettings.Development.json`) before creating a git repo.
 
 7. Configuring EF Migrations
 
@@ -141,7 +148,7 @@
            app.UseDeveloperExceptionPage();
        }
 
-       app
+       appx
            .UseRouting()
            .UseEndpoints(endpoints =>
            {
@@ -158,7 +165,7 @@
 
     ![5-setup-hot-chocolate/Untitled%205.png](5-setup-hot-chocolate/Untitled%205.png)
 
-    students the schema we have just defined and we can see all the fields that students have.
+    `students` the schema we have just defined and we can see all the fields that students have.
 
 ## Summary
 
