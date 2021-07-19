@@ -12,10 +12,12 @@ function App() {
       <Header />
       <Switch>
         <Route path="/home">
-          {/* Render cards here - probably best to wrap this in a page itself? */}
+          {/* TODO 
+          Render cards here - probably best to wrap this in a page itself? */}
         </Route>
         <Route path="/submit">
-          {/* Render submit page here*/}
+          {/* TODO  
+          Render submit page here*/}
         </Route>
       </Switch>
       <Footer />
