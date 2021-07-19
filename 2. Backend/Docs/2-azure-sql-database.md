@@ -61,3 +61,9 @@ On the left hand panel find the label Connection String and copy the string some
 Copy the connection string under ADO.NET.
 
 ![2-azure-sql-database/Untitled%2012.png](2-azure-sql-database/Untitled%2012.png)
+
+## Summary
+
+In this part, we covered how to create a SQL database on Azure cloud and how to get credentials for accessing your database.
+
+[**<< Part #3 - Create Project in VS >>**](3-create-an-empty-project-using-visual-studio.md)

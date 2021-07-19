@@ -39,3 +39,9 @@ Install-Package HotChocolate.AspNetCore.Authorization
 Install-Package Microsoft.AspNetCore.Authentication.JwtBearer
 Install-Package Octokit
 ```
+
+## Summary
+
+In this part, we explored two different ways to install nuget packages (.NET's packages) and the list of packaging that we would be required to install for our project. It is recommended to install these now as it would take time to install.
+
+[**<< Part #5 - Nuget Packages >>**](5-setup-hot-chocolate.md)

@@ -426,3 +426,9 @@
 8. Run the app and check if the schema has been updated (make sure you click the refresh button to reload the schema)
 
    ![6-implement-graphql-queries/Untitled%201.png](6-implement-graphql-queries/Untitled%201.png)
+
+## Summary
+
+In this part, we looked at how to create multiple Entity Framework models with relations and how these relationships would be in GraphQL. It is an important note that Resolvers are required when calling nested relations as we need to call the child.
+
+[**<< Part #7 - GraphQL Mutations >>**](7-implement-graphql-mutations.md)

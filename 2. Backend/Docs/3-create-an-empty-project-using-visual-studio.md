@@ -19,3 +19,9 @@ We have created an empty API project which will create a basic REST API. At this
 ![3-create-an-empty-project-using-visual-studio/Untitled%204.png](3-create-an-empty-project-using-visual-studio/Untitled%204.png)
 
 ![3-create-an-empty-project-using-visual-studio/Untitled%205.png](3-create-an-empty-project-using-visual-studio/Untitled%205.png)
+
+## Summary
+
+In this part, we went through how to create a template project in Visual Studio. We will be using this empty template project to build our API on top of.
+
+[**<< Part #4 - Nuget Packages >>**](4-adding-nuget-packages.md)

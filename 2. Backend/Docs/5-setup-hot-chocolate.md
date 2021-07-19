@@ -159,3 +159,9 @@
     ![5-setup-hot-chocolate/Untitled%205.png](5-setup-hot-chocolate/Untitled%205.png)
 
     students the schema we have just defined and we can see all the fields that students have.
+
+## Summary
+
+We covered how to setup a very basic GraphQL server with a basic query based on an Entity Framework model. We learn now to create a basic Entity Framework model and learn how to use the framework to perform migrations and connect to the SQL server. We will be using this basic project structure and be building ontop of this to complete our API.
+
+[**<< Part #6 - GraphQL Queries >>**](6-implement-graphql-queries.md)

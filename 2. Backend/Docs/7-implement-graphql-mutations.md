@@ -314,3 +314,9 @@
    		.AddType<StudentType>()
    		.AddType<CommentType>();
    ```
+
+## Summary
+
+In this part, we learned how to mutate data in our database using mutations. In here we cover adding new data and updating existing data. We cover how to define mutation inputs when dealing with different mutations.
+
+[**<< Part #8 - GitHub Oauth & Authorisation >>**](8-setup-github-oauth-and-authorisation.md)
