@@ -16,9 +16,6 @@ const useStyles = makeStyles({
   },
 });
 
-// Custom Link composition component
-
-
 export const SideBar = () => {
   const classes = useStyles();
   return (
@@ -28,13 +25,13 @@ export const SideBar = () => {
           <ListItemIcon><HomeIcon /></ListItemIcon>
           <ListItemText className={classes.listText} primary="Home" />
         </ListItem>
+        <ListItem button href="/submit" component={Link}>
+          <ListItemIcon><ArrowUpwardIcon /></ListItemIcon>
+          <ListItemText className={classes.listText} primary="Submit" />
+        </ListItem>
       </List>
       <Divider />
       <List>
-        <ListItem button href="/submit" component={Link}>
-          <ListItemIcon><ArrowUpwardIcon /></ListItemIcon>
-          <ListItemText className={classes.listText} primary="Settings" />
-        </ListItem>
         <ListItem button href="/logout" component={Link}>
           <ListItemIcon><ExitToAppIcon /></ListItemIcon>
           <ListItemText className={classes.listText} primary="Logout" />
