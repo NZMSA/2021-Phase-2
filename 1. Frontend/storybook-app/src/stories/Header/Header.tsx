@@ -121,7 +121,7 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
           >
             <MenuIcon />
             <Drawer anchor="left" open={sideBar} onClose={toggleSideBar}>
-              <SideBar/>
+              <SideBar />
             </Drawer>
           </IconButton>
           <IconButton href="https://nzmsa.netlify.app/">
@@ -146,9 +146,9 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
             </div>
           </Hidden>
           {user == null ?
-              <Button color="inherit" href={`https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=user&redirect_uri=${REDIRECT_URI}`}>
-                Login
-              </Button>
+            <Button color="inherit" href={`https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=user&redirect_uri=${REDIRECT_URI}`}>
+              Login
+            </Button>
             :
             <div className={classes.userInformation}>
               <Avatar alt="user-avatar" src={`${user.image}`} />
