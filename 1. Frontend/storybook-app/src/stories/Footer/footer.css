@@ -1,0 +1,17 @@
+.footer{
+    min-height: 60px;
+    background-color: #3C3C41;
+    color: white;
+    display: flex;
+    align-items: center;
+    margin: 0 !important;
+  }
+
+  @media only screen and (max-width : 990px) {
+    .footer {
+      min-height: 110px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }
+  

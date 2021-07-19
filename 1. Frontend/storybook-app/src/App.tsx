@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router';
 import './App.css';
 import { Header } from './stories/Header/Header';
+import { Footer } from './stories/Footer/Footer';
 
 function App() {
   // TODO token parser from window - for oauth
@@ -17,6 +18,7 @@ function App() {
           {/* Render submit page here*/}
         </Route>
       </Switch>
+      <Footer />
     </div>
   );
 }
