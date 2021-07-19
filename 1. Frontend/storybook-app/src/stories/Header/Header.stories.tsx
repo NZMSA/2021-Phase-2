@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react';
 import { Header, HeaderProps } from './Header';
 
 export default {
-  title: 'Example/Header',
+  title: 'UI Components/Header',
   component: Header,
 } as Meta;
 

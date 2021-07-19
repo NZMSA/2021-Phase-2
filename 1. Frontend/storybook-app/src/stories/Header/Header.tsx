@@ -112,7 +112,7 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
           >
             <MenuIcon />
           </IconButton>
-          <IconButton>
+          <IconButton href="https://nzmsa.netlify.app/">
             <img src={logo} id="logo" width="200px" alt="MSA Logo" />
           </IconButton>
           <Typography className={classes.title} variant="h5" noWrap>
