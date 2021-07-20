@@ -33,7 +33,7 @@
 
    You'll notice that the`?` means the field is nullable. When we edit a student if the field is null we want to not update the field.
 
-2. With our inputs defined, under `Students` folder let's create a `StudentMutation.cs` file. The file contains the mutations AddStudent and EditStudent which does their job by using the entity framework.
+2. With our inputs defined, under `Students` folder let's create a `StudentMutations.cs` file. The file contains the mutations AddStudent and EditStudent which does their job by using the entity framework.
 
    ```csharp
    using System;

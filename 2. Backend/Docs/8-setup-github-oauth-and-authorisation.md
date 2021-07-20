@@ -1,4 +1,4 @@
-# Adv: GitHub Oauth
+# Advance Feature: GitHub Oauth
 
 1. Let's add authentication to services in `Startup.cs`
 
