@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router';
 import './App.css';
 import { Header } from './stories/Header/Header';
 import { Footer } from './stories/Footer/Footer';
+import FeedPage from './FeedPage';
 
 function App() {
   // TODO token parser from window - for oauth
@@ -12,8 +13,7 @@ function App() {
       <Header />
       <Switch>
         <Route path="/home">
-          {/* TODO 
-          Render cards here - probably best to wrap this in a page itself? */}
+          <FeedPage pageTitle="2021" />
         </Route>
         <Route path="/submit">
           {/* TODO  

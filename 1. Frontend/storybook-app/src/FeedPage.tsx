@@ -12,7 +12,7 @@ export interface FeedPageProps {
     pageTitle: string;
 };
 
-const FeedPage = ({pageTitle} : FeedPageProps) : JSX.Element => {
+const FeedPage = ({ pageTitle }: FeedPageProps): JSX.Element => {
     const [cards, setCards] = React.useState<JSX.Element[]>([]);
     const styles = FeedPageStyles();
 
@@ -21,11 +21,11 @@ const FeedPage = ({pageTitle} : FeedPageProps) : JSX.Element => {
     }, []);
 
     return <div>
-            <div className={styles.header}>
-                <SectionHeader sectionTitle={pageTitle} doClick={() => {}}/>
-            </div>
-            cards.length === 0 ? <CircularProgress /> : <CardList cards={cards} cols={2}/>
+        <div className={styles.header}>
+            <SectionHeader sectionTitle={pageTitle} doClick={() => { }} />
         </div>
+        {cards.length === 0 ? <CircularProgress /> : <CardList cards={cards} cols={2} />}
+    </div>
 }
 
 export default FeedPage;
