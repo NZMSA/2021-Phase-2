@@ -54,13 +54,13 @@ git push --set-upstream origin feature/github-actions
 
 1. Login to your [Azure portal](https://portal.azure.com/) and click on `Create a resource`.
 
-![Create a resource - Azure portal.](/imgs/create-resource.png)
+![Create a resource - Azure portal.](imgs/create-resource.png)
 
 2. Select `Web App` and fill out the configuration details. If you don't have a resource group - Click on `Create new`. This allows you to group all project resources on Azure together.
     - Select the correct runtime stack for your backend. e.g. `.NET 5` 
     - Make sure for `Sky and size` - you select a free tier for development. Otherwise this could unneccessary burns through your available credit! 💸    
 
-![Select web app option from create a resource.](/imgs/select-webapp.png)
+![Select web app option from create a resource.](imgs/select-webapp.png)
 
 ![Configuring web app service creation.](imgs/create-web-app-configuration.png)
 
