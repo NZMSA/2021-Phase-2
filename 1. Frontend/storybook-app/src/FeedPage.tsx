@@ -1,8 +1,8 @@
-import { makeStyles, createStyles, CircularProgress } from '@material-ui/core';
+import { makeStyles, createStyles, CircularProgress, Avatar, Typography } from '@material-ui/core';
 import React from 'react';
-import { CardList, SectionHeader } from './stories';
-import { QueryGQL, QueryType } from './GraphQLClient';
-import { ApolloQueryResult, FetchResult } from '@apollo/client';
+import { CardList, GithubCard, SectionHeader } from './stories';
+import { useFetchProjects }  from './GraphQLClient';
+import { useEffect } from 'react';
 
 const FeedPageStyles = makeStyles(createStyles({
     header: {
@@ -16,25 +16,22 @@ export interface FeedPageProps {
 
 const FeedPage = ({pageTitle} : FeedPageProps) : JSX.Element => {
     const [cards, setCards] = React.useState<JSX.Element[]>([]);
+    var data = useFetchProjects();
     const styles = FeedPageStyles();
 
-    const handleResult = (result: ApolloQueryResult<any> | FetchResult<any, Record<string, any>, Record<string, any>>) => {
-        if(!result.data) return;
-
-        var data = result.data!;
-        
-    }
-
-    const fetchProjects = React.useCallback(async () => {
-        var res = QueryGQL('', QueryType.QUERY);
-        res.then(result => {
-            handleResult(result);
-        });
-    }, []);
-
-    React.useEffect(() => {
-        fetchProjects();
-    }, [fetchProjects]);
+    useEffect(() => {
+        if(data !== undefined) {
+            setCards(data!.map(project => {
+                return <GithubCard 
+                    avatar={<Avatar>{project.student.name[0]}</Avatar>}
+                    cardTitle={project.name}
+                    subHeader={project.student.name}
+                    cardContent={<Typography>{project.description}</Typography>}
+                    url={project.link}
+                 />
+            }))
+        }
+    }, [data]);
 
     return <div>
             <div className={styles.header}>
