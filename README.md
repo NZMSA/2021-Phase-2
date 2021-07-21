@@ -5,15 +5,24 @@ The official repository and source of knowledge for MSA students taking part in 
 *tbd
 
 # Software Needed
-*tbd
-* Visual Studio Community 2020
-* When installing ensure ASP.NET and web development is selected
-* Azure Account with an active subscription
-* .NET Core 3.1 SDK
-* [Visual Studio Code](https://code.visualstudio.com/download)
-* [NodeJS](https://nodejs.org/en/download/)
-* [NPM (Node Package Manager)](https://www.npmjs.com/get-npm)
-* [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
+- [Visual Studio Community 2019](https://visualstudio.microsoft.com/downloads/)
+    - When installing ensure [ASP.NET](http://asp.net/) and web development is selected
+- [Azure Account - Free for students](https://azure.microsoft.com/en-us/free/students/)
+- [GitHub Account](https://github.com/join)
+- [GIT SCM](https://git-scm.com/downloads)
+- [.NET Core 5.0 SDK](https://dotnet.microsoft.com/download/dotnet/5.0)
+- [Visual Studio Code](https://code.visualstudio.com/download)
+- [NPM](https://www.npmjs.com/get-npm)
+- [NodeJS](https://nodejs.org/en/download/)
+    - be able to run the following commands in command line:
+
+        `npx create-react-app my-app --template typescript
+        cd my-app
+        npm start`
+
+    ```
+
+    ```
 
 
 ## Microsoft Azure Subscription
