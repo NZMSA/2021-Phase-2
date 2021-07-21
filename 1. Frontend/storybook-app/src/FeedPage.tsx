@@ -1,6 +1,8 @@
-import { makeStyles, createStyles, CircularProgress } from '@material-ui/core';
+import { makeStyles, createStyles, CircularProgress, Avatar, Typography } from '@material-ui/core';
 import React from 'react';
-import { CardList, SectionHeader } from './stories';
+import { CardList, GithubCard, SectionHeader } from './stories';
+import { useFetchProjects }  from './GraphQLClient';
+import { useEffect } from 'react';
 
 const FeedPageStyles = makeStyles(createStyles({
     header: {
@@ -14,11 +16,22 @@ export interface FeedPageProps {
 
 const FeedPage = ({pageTitle} : FeedPageProps) : JSX.Element => {
     const [cards, setCards] = React.useState<JSX.Element[]>([]);
+    var data = useFetchProjects();
     const styles = FeedPageStyles();
 
-    React.useEffect(() => {
-        //TODO: Hook apollo client call into here.
-    }, []);
+    useEffect(() => {
+        if(data !== undefined) {
+            setCards(data!.map(project => {
+                return <GithubCard 
+                    avatar={<Avatar>{project.student.name[0]}</Avatar>}
+                    cardTitle={project.name}
+                    subHeader={project.student.name}
+                    cardContent={<Typography>{project.description}</Typography>}
+                    url={project.link}
+                 />
+            }))
+        }
+    }, [data]);
 
     return <div>
             <div className={styles.header}>
