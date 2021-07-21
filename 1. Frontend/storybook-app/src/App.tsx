@@ -18,7 +18,7 @@ function App() {
       <Header />
       <Switch>
         <Route path="/home">
-          <FeedPage pageTitle="2021" />
+          <FeedPage pageTitle="MSA Projects 2021" />
         </Route>
         <Route path="/submit">
           {/* TODO  
