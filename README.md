@@ -14,15 +14,15 @@ The official repository and source of knowledge for MSA students taking part in 
 - [Visual Studio Code](https://code.visualstudio.com/download)
 - [NPM](https://www.npmjs.com/get-npm)
 - [NodeJS](https://nodejs.org/en/download/)
-    - be able to run the following commands in command line:
-
-        `npx create-react-app my-app --template typescript
+    - be able to run the following commands in command line (run as Administrator):
+        ``` 
+        npx create-react-app my-app --template typescript
         cd my-app
-        npm start`
+        npm start 
+        ```
+        You should see the following page open in your web browser after the last command (npm start):
+        ![my-app](./img/my-app-react.png)
 
-    ```
-
-    ```
 
 
 ## Microsoft Azure Subscription
