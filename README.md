@@ -21,7 +21,7 @@ The official repository and source of knowledge for MSA students taking part in 
         npm start 
         ```
         You should see the following page open in your web browser after the last command (npm start):
-        ![my-app](./img/my-app-react.png)
+        ![my-app](./img/my-app-react.PNG)
 
 
 
