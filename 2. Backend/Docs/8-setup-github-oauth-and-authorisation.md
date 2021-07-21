@@ -299,7 +299,7 @@ The self request allows the user to request details of themself after they log i
    }
    ```
 
-   remember to remove `StudentId` from inputs in `AddProjectInput.cs`. example:
+   Remember to remove `StudentId` from inputs in `AddProjectInput.cs`. example:
 
    ```csharp
    namespace MSAYearbook.GraphQL.Projects
@@ -412,3 +412,15 @@ The self request allows the user to request details of themself after they log i
        return student;
    }
    ```
+
+### Congratulations you just finished the backend!
+
+There is still plently of advance features you should challenge!
+
+We recommend trying to add Dataloaders first. Contact us if you need help 🍻
+
+- https://chillicream.com/docs/hotchocolate/fetching-data/dataloader/
+- https://www.learmoreseekmore.com/2021/01/hotchocolate-graphql-query-dataloader.html
+
+[😁 Like my work? Hit the follow button!](https://github.com/scorpionknifes)
+⭐ This repo above!

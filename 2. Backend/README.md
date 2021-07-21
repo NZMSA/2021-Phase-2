@@ -2,6 +2,24 @@
 
 ## Introduction
 
+_Did someone say MSA was too easy?_
+_Not excited writing REST API's in .NET anymore?_
+
+We found the perfect solution:
+
+- GraphQL API in .NET 5
+- GitHub OAuth and Authorisation
+
+> **_CAUTION: You have been warned_**
+
+<details>
+  <summary>Note</summary> 
+  We'll look down on you for not using GraphQL and .NET
+
+We'll only be dissapointed if you only use one of the two, GraphQL or .NET
+
+</details>
+
 # Prerequisites
 
 - [Azure Account - Free for students](https://azure.microsoft.com/en-us/free/students/)
