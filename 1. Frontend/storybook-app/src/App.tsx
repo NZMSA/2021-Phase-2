@@ -1,27 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Route, Switch } from 'react-router';
 import './App.css';
+
+import { Header } from './stories/Header/Header';
+import { Footer } from './stories/Footer/Footer';
+import FeedPage from './FeedPage';
 import { ApolloProvider } from '@apollo/client';
 import graphQLClient from './GraphQLClient';
 
+
 function App() {
+  // TODO token parser from window - for oauth
+  // const token = (window.location.href.match(/\?code=(.*)/)) && (window.location.href.match(/\?code=(.*)/) ?? [1]);
   return (
     <ApolloProvider client={graphQLClient}>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Switch>
+        <Route path="/home">
+          <FeedPage pageTitle="2021" />
+        </Route>
+        <Route path="/submit">
+          {/* TODO  
+          Render submit page here*/}
+        </Route>
+      </Switch>
+      <Footer />
     </div>
     </ApolloProvider>
   );
