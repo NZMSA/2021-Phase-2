@@ -28,12 +28,12 @@ namespace MSAYearbook.GraphQL.Students
                 [ScopedService] AppDbContext context, CancellationToken cancellationToken)
         {
             var studentIdStr = claimsPrincipal.Claims.First(c => c.Type == "studentId").Value;
-            var student = await context.Students.FindAsync(int.Parse(studentIdStr), cancellationToken);
+            var student = await context.Students.FindAsync(int.Parse(studentIdStr));
 
             student.Name = input.Name ?? student.Name;
             student.ImageURI = input.ImageURI ?? student.ImageURI;
 
-            context.Students.Add(student);
+
             await context.SaveChangesAsync(cancellationToken);
 
             return student;
