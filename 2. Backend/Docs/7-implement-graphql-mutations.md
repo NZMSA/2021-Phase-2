@@ -90,15 +90,15 @@
 
    ```csharp
    services
-   		.AddGraphQLServer()
-   		.AddQueryType(d => d.Name("Query"))
-   		    .AddTypeExtension<ProjectQueries>()
-   		    .AddTypeExtension<StudentQueries>()
-   		.AddMutationType(d => d.Name("Mutation"))
-   		    .AddTypeExtension<StudentMutations>()
-   		.AddType<ProjectType>()
-   		.AddType<StudentType>()
-   		.AddType<CommentType>();
+       .AddGraphQLServer()
+       .AddQueryType(d => d.Name("Query"))
+           .AddTypeExtension<ProjectQueries>()
+           .AddTypeExtension<StudentQueries>()
+       .AddMutationType(d => d.Name("Mutation"))
+           .AddTypeExtension<StudentMutations>()
+       .AddType<ProjectType>()
+       .AddType<StudentType>()
+       .AddType<CommentType>();
    ```
 
 4. We can now try write a GraphQL mutation request
@@ -302,17 +302,17 @@
 
    ```csharp
    services
-   		.AddGraphQLServer()
-   		.AddQueryType(d => d.Name("Query"))
-   		    .AddTypeExtension<ProjectQueries>()
-   		    .AddTypeExtension<StudentQueries>()
-   		.AddMutationType(d => d.Name("Mutation"))
-   				.AddTypeExtension<StudentMutations>()
-   		    .AddTypeExtension<ProjectMutations>()
-   				.AddTypeExtension<CommentMutations>()
-   		.AddType<ProjectType>()
-   		.AddType<StudentType>()
-   		.AddType<CommentType>();
+       .AddGraphQLServer()
+       .AddQueryType(d => d.Name("Query"))
+   		   .AddTypeExtension<ProjectQueries>()
+   		   .AddTypeExtension<StudentQueries>()
+       .AddMutationType(d => d.Name("Mutation"))
+           .AddTypeExtension<StudentMutations>()
+           .AddTypeExtension<ProjectMutations>()
+           .AddTypeExtension<CommentMutations>()
+       .AddType<ProjectType>()
+       .AddType<StudentType>()
+       .AddType<CommentType>();
    ```
 
 ## Summary
