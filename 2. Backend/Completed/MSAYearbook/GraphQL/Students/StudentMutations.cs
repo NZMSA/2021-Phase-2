@@ -66,7 +66,6 @@ namespace MSAYearbook.GraphQL.Students
                 student.GitHub = user.Login;
                 student.ImageURI = user.AvatarUrl;
 
-                context.Students.Add(student);
                 await context.SaveChangesAsync(cancellationToken);
             }
 

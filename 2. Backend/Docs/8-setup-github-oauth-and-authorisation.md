@@ -290,7 +290,6 @@ The self request allows the user to request details of themself after they log i
                project.Link = input.Link ?? project.Link;
                project.Modified = DateTime.Now;
 
-               context.Projects.Add(project);
                await context.SaveChangesAsync(cancellationToken);
 
                return project;
@@ -371,7 +370,6 @@ The self request allows the user to request details of themself after they log i
                }
 
                comment.Content = input.Content ?? comment.Content;
-               context.Comments.Add(comment);
 
                await context.SaveChangesAsync(cancellationToken);
 
@@ -406,7 +404,6 @@ The self request allows the user to request details of themself after they log i
        student.Name = input.Name ?? student.Name;
        student.ImageURI = input.ImageURI ?? student.ImageURI;
 
-       context.Students.Add(student);
        await context.SaveChangesAsync(cancellationToken);
 
        return student;

@@ -61,7 +61,6 @@ namespace MSAYearbook.GraphQL.Projects
             project.Link = input.Link ?? project.Link;
             project.Modified = DateTime.Now;
 
-            context.Projects.Add(project);
             await context.SaveChangesAsync(cancellationToken);
 
             return project;

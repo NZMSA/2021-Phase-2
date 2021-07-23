@@ -77,7 +77,6 @@
                student.GitHub = input.GitHub ?? student.GitHub;
                student.ImageURI = input.ImageURI ?? student.ImageURI;
 
-               context.Students.Add(student);
                await context.SaveChangesAsync(cancellationToken);
 
                return student;
@@ -212,7 +211,6 @@
                  project.Link = input.Link ?? project.Link;
                  project.Modified = DateTime.Now;
 
-                 context.Projects.Add(project);
                  await context.SaveChangesAsync(cancellationToken);
 
                  return project;
@@ -288,7 +286,6 @@
              {
                  var comment = await context.Comments.FindAsync(int.Parse(input.CommentId));
                  comment.Content = input.Content ?? comment.Content;
-                 context.Comments.Add(comment);
 
                  await context.SaveChangesAsync(cancellationToken);
 
