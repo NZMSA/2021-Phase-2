@@ -117,7 +117,7 @@ Read more: [Hot Chocolate Docs](https://chillicream.com/docs/hotchocolate/)
        [ExtendObjectType(name: "Query")]
        public class StudentQueries
        {
-           public IQueryable<Student> GetSpeakers([Service] AppDbContext context)
+           public IQueryable<Student> GetStudents([Service] AppDbContext context)
            {
                return context.Students;
            }
