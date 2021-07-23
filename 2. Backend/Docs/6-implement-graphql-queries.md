@@ -276,7 +276,7 @@
 
                descriptor
                    .Field(p => p.Comments)
-                   .ResolveWith<Resolvers>(r => r.GetComments(default!, default!))
+                   .ResolveWith<Resolvers>(r => r.GetComments(default!, default!, default))
                    .UseDbContext<AppDbContext>()
                    .Type<NonNullType<ListType<NonNullType<CommentType>>>>();
 
@@ -285,18 +285,19 @@
 
            }
 
+           
            private class Resolvers
            {
-               public async Task<Project> GetProject(Comment comment, [ScopedService] AppDbContext context,
-                   CancellationToken cancellationToken)
-               {
-                   return await context.Projects.FindAsync(new object[] { comment.ProjectId }, cancellationToken);
-               }
-
-               public async Task<Student> GetStudent(Comment comment, [ScopedService] AppDbContext context,
+               public async Task<Student> GetStudent(Project project, [ScopedService] AppDbContext context,
                    CancellationToken cancellationToken)
                {
                    return await context.Students.FindAsync(new object[] { comment.StudentId }, cancellationToken);
+               }
+
+               public async Task<IEnumerable<Comment>> GetComments(Project project, [ScopedService] AppDbContext context,
+                   CancellationToken cancellationToken)
+               {
+                   return await context.Comments.Where(c => c.ProjectId == project.Id).ToArrayAsync(cancellationToken);
                }
            }
        }
@@ -343,19 +344,19 @@
                descriptor.Field(p => p.Created).Type<NonNullType<DateTimeType>>();
 
            }
-
+           
            private class Resolvers
            {
-               public async Task<Student> GetStudent(Project project, [ScopedService] AppDbContext context,
+               public async Task<Project> GetProject(Comment comment, [ScopedService] AppDbContext context,
                    CancellationToken cancellationToken)
                {
-                   return await context.Students.FindAsync(new object[]{ project.StudentId }, cancellationToken);
+                   return await context.Projects.FindAsync(new object[] { comment.ProjectId }, cancellationToken);
                }
 
-               public async Task<IEnumerable<Comment>> GetComments(Project project, [ScopedService] AppDbContext context,
+               public async Task<Student> GetStudent(Comment comment, [ScopedService] AppDbContext context,
                    CancellationToken cancellationToken)
                {
-                   return await context.Comments.Where(c => c.ProjectId == project.Id).ToArrayAsync(cancellationToken);
+                   return await context.Students.FindAsync(new object[] { comment.StudentId }, cancellationToken);
                }
            }
        }
