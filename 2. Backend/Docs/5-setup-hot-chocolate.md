@@ -107,6 +107,7 @@
 
    namespace MSAYearbook.GraphQL.Students
    {
+       [ExtendObjectType(name: "Query")]
        public class StudentQueries
        {
            public IQueryable<Student> GetSpeakers([Service] AppDbContext context)
