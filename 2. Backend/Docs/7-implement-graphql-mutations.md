@@ -48,7 +48,7 @@
    namespace MSAYearbook.GraphQL.Students
    {
        [ExtendObjectType(name: "Mutation")]
-       public class StudentMutation
+       public class StudentMutations
        {
            [UseAppDbContext]
            public async Task<Student> AddStudentAsync(AddStudentInput input,
