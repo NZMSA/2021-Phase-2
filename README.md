@@ -2,7 +2,7 @@
 The official repository and source of knowledge for MSA students taking part in MSA 2021 Phase 2 Training. 
 
 # Assignment
-[General Software Stream](2021-MSA-Phase2-General-Stream.pdf)
+[General Software Stream](https://github.com/NZMSA/2021-Phase2-Assignments/blob/main/2021-MSA-Phase2-General-Stream.pdf)
 
 # Software Needed
 - [Visual Studio Community 2019](https://visualstudio.microsoft.com/downloads/)
