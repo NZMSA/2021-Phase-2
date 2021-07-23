@@ -213,13 +213,13 @@
                    .Field(s => s.Projects)
                    .ResolveWith<Resolvers>(r => r.GetProjects(default!, default!, default))
                    .UseDbContext<AppDbContext>()
-                   .Type<ProjectType>();
+                   .Type<NonNullType<ListType<NonNullType<ProjectType>>>>();
 
                descriptor
                    .Field(s => s.Comments)
                    .ResolveWith<Resolvers>(r => r.GetComments(default!, default!, default))
                    .UseDbContext<AppDbContext>()
-                   .Type<CommentType>();
+                   .Type<NonNullType<ListType<NonNullType<CommentType>>>>();
            }
 
            private class Resolvers
@@ -253,8 +253,11 @@
    using HotChocolate.Types;
    using MSAYearbook.Data;
    using MSAYearbook.Models;
-   using MSAYearbook.GraphQL.Projects;
    using MSAYearbook.GraphQL.Students;
+   using MSAYearbook.GraphQL.Comments;
+   using System.Collections.Generic;
+   using System.Linq;
+   using Microsoft.EntityFrameworkCore;
 
    namespace MSAYearbook.GraphQL.Projects
    {
@@ -276,7 +279,7 @@
 
                descriptor
                    .Field(p => p.Comments)
-                   .ResolveWith<Resolvers>(r => r.GetComments(default!, default!))
+                   .ResolveWith<Resolvers>(r => r.GetComments(default!, default!, default))
                    .UseDbContext<AppDbContext>()
                    .Type<NonNullType<ListType<NonNullType<CommentType>>>>();
 
@@ -285,18 +288,19 @@
 
            }
 
+           
            private class Resolvers
            {
-               public async Task<Project> GetProject(Comment comment, [ScopedService] AppDbContext context,
-                   CancellationToken cancellationToken)
-               {
-                   return await context.Projects.FindAsync(new object[] { comment.ProjectId }, cancellationToken);
-               }
-
-               public async Task<Student> GetStudent(Comment comment, [ScopedService] AppDbContext context,
+               public async Task<Student> GetStudent(Project project, [ScopedService] AppDbContext context,
                    CancellationToken cancellationToken)
                {
                    return await context.Students.FindAsync(new object[] { comment.StudentId }, cancellationToken);
+               }
+
+               public async Task<IEnumerable<Comment>> GetComments(Project project, [ScopedService] AppDbContext context,
+                   CancellationToken cancellationToken)
+               {
+                   return await context.Comments.Where(c => c.ProjectId == project.Id).ToArrayAsync(cancellationToken);
                }
            }
        }
@@ -306,17 +310,13 @@
    Add a new item Class `CommentType.cs` in the `GraphQL/Type` directory using the following code:
 
    ```csharp
-   using System.Linq;
    using System.Threading.Tasks;
    using System.Threading;
-   using System.Collections.Generic;
-   using Microsoft.EntityFrameworkCore;
    using HotChocolate;
    using HotChocolate.Types;
    using MSAYearbook.Data;
    using MSAYearbook.Models;
-   using MSAYearbook.GraphQL.Students;
-   using MSAYearbook.GraphQL.Comments;
+   using MSAYearbook.GraphQL.Projects;
 
    namespace MSAYearbook.GraphQL.Comments
    {
@@ -331,31 +331,31 @@
                    .Field(s => s.Project)
                    .ResolveWith<Resolvers>(r => r.GetProject(default!, default!))
                    .UseDbContext<AppDbContext>()
-                   .Type<NonNullType<ListType<NonNullType<ProjectType>>>>();
+                   .Type<NonNullType<CommentType>>();
 
                descriptor
                    .Field(s => s.Student)
                    .ResolveWith<Resolvers>(r => r.GetStudent(default!, default!))
                    .UseDbContext<AppDbContext>()
-                   .Type<NonNullType<ListType<NonNullType<CommentType>>>>();
+                   .Type<NonNullType<CommentType>>();
 
                descriptor.Field(p => p.Modified).Type<NonNullType<DateTimeType>>();
                descriptor.Field(p => p.Created).Type<NonNullType<DateTimeType>>();
 
            }
-
+           
            private class Resolvers
            {
-               public async Task<Student> GetStudent(Project project, [ScopedService] AppDbContext context,
+               public async Task<Project> GetProject(Comment comment, [ScopedService] AppDbContext context,
                    CancellationToken cancellationToken)
                {
-                   return await context.Students.FindAsync(new object[]{ project.StudentId }, cancellationToken);
+                   return await context.Projects.FindAsync(new object[] { comment.ProjectId }, cancellationToken);
                }
 
-               public async Task<IEnumerable<Comment>> GetComments(Project project, [ScopedService] AppDbContext context,
+               public async Task<Student> GetStudent(Comment comment, [ScopedService] AppDbContext context,
                    CancellationToken cancellationToken)
                {
-                   return await context.Comments.Where(c => c.ProjectId == project.Id).ToArrayAsync(cancellationToken);
+                   return await context.Students.FindAsync(new object[] { comment.StudentId }, cancellationToken);
                }
            }
        }
