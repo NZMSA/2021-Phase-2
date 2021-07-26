@@ -1,7 +1,7 @@
 import { makeStyles, createStyles, CircularProgress, Avatar, Typography } from '@material-ui/core';
 import React from 'react';
 import { CardList, GithubCard, SectionHeader } from './stories';
-import { useFetchProjects }  from './GraphQLClient';
+import { Project, useFetchProjects }  from './GraphQLClient';
 import { useEffect } from 'react';
 
 const FeedPageStyles = makeStyles(createStyles({
@@ -21,7 +21,7 @@ const FeedPage = ({ pageTitle }: FeedPageProps): JSX.Element => {
 
     useEffect(() => {
         if(data !== undefined) {
-            setCards(data!.map(project => {
+            setCards(data!.projects.nodes.map((project : Project) => {
                 return <GithubCard 
                     avatar={<Avatar>{project.student.name[0]}</Avatar>}
                     cardTitle={project.name}
@@ -37,7 +37,7 @@ const FeedPage = ({ pageTitle }: FeedPageProps): JSX.Element => {
         <div className={styles.header}>
             <SectionHeader sectionTitle={pageTitle} doClick={() => { }} />
         </div>
-        {cards.length === 0 ? <CircularProgress /> : <CardList cards={cards} cols={2} />}
+        {cards.length === 0 ? <CircularProgress /> : <CardList cards={cards} cols={window.innerWidth / 650} />}
     </div>
 }
 

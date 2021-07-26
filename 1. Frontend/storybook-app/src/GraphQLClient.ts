@@ -2,13 +2,9 @@ import { ApolloClient, InMemoryCache, gql, useQuery } from '@apollo/client';
 import { useEffect } from 'react';
 
 const graphQLClient = new ApolloClient({
-    uri: '',
+    uri: 'https://msa-yearbook.azurewebsites.net/graphql',
     cache: new InMemoryCache()
 });
-
-export enum QueryType {
-    QUERY, MUTATION
-}
 
 export interface Comment {
     id: string;
@@ -65,8 +61,8 @@ const FETCH_PROJECTS = gql`
     }
 `;
 
-export function useFetchProjects() : Project[] | undefined {
-    const {loading, data} = useQuery<Project[]>(FETCH_PROJECTS);
+export function useFetchProjects() : any | undefined {
+    const {loading, data} = useQuery(FETCH_PROJECTS);
 
     useEffect(() => {}, [loading]);
 
