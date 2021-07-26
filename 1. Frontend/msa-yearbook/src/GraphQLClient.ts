@@ -2,7 +2,7 @@ import { ApolloClient, InMemoryCache, gql, useQuery } from '@apollo/client';
 import { useEffect } from 'react';
 
 const graphQLClient = new ApolloClient({
-    uri: '',
+    uri: process.env.REACT_APP_GRAPHQL_ENDPOINT,
     cache: new InMemoryCache()
 });
 
@@ -19,7 +19,7 @@ export interface Comment {
     created: Date;
     projectId: number;
     studentId: number;
-  }
+}
 
 export interface Project {
     id: string;
@@ -32,8 +32,8 @@ export interface Project {
     created: Date;
     studentId: number;
     comments: Comment[];
-  }
-  
+}
+
 export interface Student {
     id: string;
     name: string;
@@ -41,7 +41,7 @@ export interface Student {
     imageURI: string;
     projects: Project;
     comments: Comment;
-  }
+}
 
 const FETCH_PROJECTS = gql`
     query {
@@ -65,15 +65,15 @@ const FETCH_PROJECTS = gql`
     }
 `;
 
-export function useFetchProjects() : Project[] | undefined {
-    const {loading, data} = useQuery<Project[]>(FETCH_PROJECTS);
+export function useFetchProjects(): Project[] | undefined {
+    const { loading, data } = useQuery<Project[]>(FETCH_PROJECTS);
 
-    useEffect(() => {}, [loading]);
+    useEffect(() => { }, [loading]);
 
     return data;
 }
 
-export function useAddProject() : boolean {
+export function useAddProject(): boolean {
     //TODO: Add useMutation hook to add projects
     return false;
 }
