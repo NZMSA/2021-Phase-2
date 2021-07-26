@@ -7,6 +7,9 @@ import { useEffect } from 'react';
 const FeedPageStyles = makeStyles(createStyles({
     header: {
         position: 'sticky'
+    },
+    page: {
+        padding: '20px'
     }
 }));
 
@@ -33,7 +36,7 @@ const FeedPage = ({ pageTitle }: FeedPageProps): JSX.Element => {
         }
     }, [data]);
 
-    return <div>
+    return <div className={styles.page}>
         <div className={styles.header}>
             <SectionHeader sectionTitle={pageTitle} doClick={() => { }} />
         </div>
