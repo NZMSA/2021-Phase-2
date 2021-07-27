@@ -2,8 +2,8 @@ import { gql } from "@apollo/client";
 import * as fragments from "./fragments";
 
 export const LOGIN = gql`
-  mutation Login($name: String, $imageURI: String) {
-    editStudent(input: { name: $name, imageURI: $imageURI }) {
+  mutation Login($code: String!) {
+    login(input: { code: $code }) {
       student {
         ...studentFields
       }
@@ -13,9 +13,9 @@ export const LOGIN = gql`
   ${fragments.STUDENT}
 `;
 
-export const EDIT_STUDENT = gql`
-  mutation EditStudent($name: String, $imageURI: String) {
-    editStudent(input: { name: $name, imageURI: $imageURI }) {
+export const EDIT_SELF = gql`
+  mutation EditSelf($name: String, $imageURI: String) {
+    editSelf(input: { name: $name, imageURI: $imageURI }) {
       ...studentFields
     }
   }
@@ -30,7 +30,7 @@ export const ADD_PROJECT = gql`
     $link: String!
     $year: String!
   ) {
-    addProject(input: { name: $name, description: $description, link: $link }) {
+    addProject(input: { name: $name, description: $description, link: $link, year: $year }) {
       ...projectFields
     }
   }
@@ -39,16 +39,16 @@ export const ADD_PROJECT = gql`
 
 export const EDIT_PROJECT = gql`
   mutation EditProject(
-    $projectId: String!
+    $projectId: ID!
     $name: String
     $description: String
     $link: String
   ) {
     editProject(
       input: {
-        project: $projectId
-        name: $name
-        description: $description
+        projectId: $projectId,
+        name: $name,
+        description: $description,
         link: $link
       }
     ) {
@@ -61,7 +61,7 @@ export const EDIT_PROJECT = gql`
 export const ADD_COMMENT = gql`
   mutation AddComment(
     $content: String!,
-    $projectId: String!
+    $projectId: ID!
   ) {
     addComment(input: { content: $content, projectId: $projectId }) {
       ...commentFields
@@ -72,7 +72,7 @@ export const ADD_COMMENT = gql`
 
 export const EDIT_COMMENT = gql`
   mutation EditComment(
-    $commentId: String!,
+    $commentId: ID!,
     $content: String
   ) {
     editComment(input: { commentId: $commentId, content: $content}) {
