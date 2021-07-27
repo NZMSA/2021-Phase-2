@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const STUDENT = gql`
-    fragments studentFields on Student {
+    fragment studentFields on Student {
         id
         name
         gitHub
@@ -10,7 +10,7 @@ export const STUDENT = gql`
 `;
 
 export const PROJECT = gql`
-    fragments projectFields on Project {
+    fragment projectFields on Project {
         id
         name
         description
@@ -18,12 +18,11 @@ export const PROJECT = gql`
         year
         modified
         created
-        student
     }
 `;
 
 export const COMMENT = gql`
-    fragments commentFields on Comment {
+    fragment commentFields on Comment {
         id
         content
         modified
@@ -32,17 +31,10 @@ export const COMMENT = gql`
 `;
 
 export const PAGE_INFO = gql`
-    fragments pageInfoFields on PageInfo {
+    fragment pageInfoFields on PageInfo {
         hasNextPage
-        hasPreviosPage
+        hasPreviousPage
         startCursor
         endCursor
     }
 `;
-
-
-export const PROJECT_EDGE = gql`
-    fragments projectEditFields on ProjectEdge {
-        
-    }
-`
