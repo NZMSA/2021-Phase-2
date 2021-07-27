@@ -4,6 +4,7 @@ import "./App.css";
 
 import { Header } from "./components/Header/Header";
 import { Footer } from "./components/Footer/Footer";
+import { SubmitForm } from "./stories/SubmitForm/SubmitForm";
 import FeedPage from "./FeedPage";
 import { ApolloProvider } from "@apollo/client";
 import graphQLClient from "./GraphQLClient";
@@ -22,8 +23,7 @@ function App() {
               <FeedPage pageTitle="MSA Projects 2021" />
             </Route>
             <Route path="/submit">
-              {/* TODO  
-          Render submit page here*/}
+              <SubmitForm />
             </Route>
           </Switch>
           <Footer />
