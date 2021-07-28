@@ -1,8 +1,25 @@
-import { ApolloClient, InMemoryCache, gql, useQuery, useMutation } from '@apollo/client';
+import { ApolloClient, InMemoryCache, gql, useQuery,createHttpLink, useMutation } from '@apollo/client';
 import { useEffect } from 'react';
+import { setContext } from '@apollo/client/link/context';
+
+const httpLink = createHttpLink({
+    uri: 'https://msa-yearbook.azurewebsites.net/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem('token');
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    }
+  }
+});
 
 const graphQLClient = new ApolloClient({
-    uri: 'https://msa-yearbook.azurewebsites.net/graphql',
+    link: authLink.concat(httpLink),
     cache: new InMemoryCache()
 });
 
@@ -40,31 +57,34 @@ export interface Student {
   }
 
 const FETCH_PROJECTS = gql`
-    query {
+    query FetchProjects {
         projects {
             nodes {
-                id,
-                name,
-                description,
-                link,
-                year,
+                id
+                name
+                description
+                link
+                year
                 student {
-                    name,
-                    gitHub,
+                    name
+                    gitHub
                     imageURI
-                },
-                modified,
-                created,
-                studentId
+                }
+                modified
+                created
             }
         }
     }
 `;
 
-const FETCH_TOKEN = gql`
-mutation ($code: CodeInput!) {
+export const FETCH_TOKEN = gql`
+    mutation Login($code: String!) {
     login(input: {code: $code}) {
       jwt
+      student {
+          id
+          name
+      }
     }
   }
 `

@@ -18,7 +18,7 @@ export const Footer = () => {
                     <Grid item xs={6}>
                         {SOCIAL_MEDIA.map((icon: SocialIconProps) => {
                             return (
-                                <FooterSocialIcon {...icon} />
+                                <FooterSocialIcon key={icon.name} {...icon} />
                             )
                         })}
                     </Grid>
@@ -46,7 +46,7 @@ export const Footer = () => {
                         <Box marginLeft={8}>
                             {SOCIAL_MEDIA.map((icon: SocialIconProps) => {
                                 return (
-                                    <FooterSocialIcon {...icon} />
+                                    <FooterSocialIcon key={icon.name} {...icon} />
                                 )
                             })}
                         </Box>
