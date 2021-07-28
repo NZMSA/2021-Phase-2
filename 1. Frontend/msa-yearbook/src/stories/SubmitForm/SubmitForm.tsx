@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { TextField } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import { Button } from '../../components/Button/Button';
+import { Button } from './Button/Button';
 
 import './submit-form.css';
 
