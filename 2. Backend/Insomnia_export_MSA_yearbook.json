@@ -1,0 +1,278 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2021-07-23T03:17:46.987Z",
+  "__export_source": "insomnia.desktop.app:v2021.4.1",
+  "resources": [
+    {
+      "_id": "req_9e82ae14bdcc47e6aa190ef77aa0482a",
+      "parentId": "fld_46004c788c8247a9afd0450a2daca0e3",
+      "modified": 1627007874617,
+      "created": 1627007800246,
+      "url": "https://localhost:44321/graphql/",
+      "name": "addComment",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/graphql",
+        "text": "{\"query\":\"mutation {\\n  addComment(input: {projectId: \\\"1\\\", content: \\\"Hello\\\"}) {\\n    id\\n    content\\n    modified\\n    created\\n  }\\n}\\n\"}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_ca8e284e5d664b8abaaa213e5b438bfc"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1627007131040.8125,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_46004c788c8247a9afd0450a2daca0e3",
+      "parentId": "wrk_399d653184cb4c1a9ea4ba579b36d590",
+      "modified": 1627007131219,
+      "created": 1627007131219,
+      "name": "Comment",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1627007131219,
+      "_type": "request_group"
+    },
+    {
+      "_id": "wrk_399d653184cb4c1a9ea4ba579b36d590",
+      "parentId": null,
+      "modified": 1627006981582,
+      "created": 1627006981582,
+      "name": "MSA-Yearbook",
+      "description": "",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_eeaaeddb81d241a680c964aab6758202",
+      "parentId": "fld_46004c788c8247a9afd0450a2daca0e3",
+      "modified": 1627007894232,
+      "created": 1627007785847,
+      "url": "https://localhost:44321/graphql/",
+      "name": "editComment",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/graphql",
+        "text": "{\"query\":\"mutation {\\n  editComment(input: {commentId: \\\"1\\\", content: \\\"Hello\\\"}) {\\n    id\\n    content\\n    modified\\n    created\\n  }\\n}\\n\"}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_ca8e284e5d664b8abaaa213e5b438bfc"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1627007130990.8125,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_4de6ff8dad5745beb663b9f50af85a78",
+      "parentId": "fld_68848a11bfb3474ca97b8fdfabcd0122",
+      "modified": 1627009619740,
+      "created": 1627007693480,
+      "url": "https://localhost:44321/graphql/",
+      "name": "addProject",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/graphql",
+        "text": "{\"query\":\"mutation {\\n  addProject(input: {name: \\\"EditName\\\", description: \\\"demo description\\\", link: \\\"https://github.com/scorpionknifes\\\", year: \\\"YEAR_2021\\\"}) {\\n    id\\n    name\\n    description\\n    link\\n    year\\n    modified\\n    created\\n  }\\n}\\n\"}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_ca8e284e5d664b8abaaa213e5b438bfc"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1627007125641,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_68848a11bfb3474ca97b8fdfabcd0122",
+      "parentId": "wrk_399d653184cb4c1a9ea4ba579b36d590",
+      "modified": 1627007127568,
+      "created": 1627007127568,
+      "name": "Project",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1627007127568,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_055cb6457f0942af830fc2888f53c4d1",
+      "parentId": "fld_68848a11bfb3474ca97b8fdfabcd0122",
+      "modified": 1627007999332,
+      "created": 1627007681962,
+      "url": "https://localhost:44321/graphql/",
+      "name": "editProject",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/graphql",
+        "text": "{\"query\":\"mutation {\\n  editProject(input: {projectId: \\\"1\\\", name: \\\"EditName\\\"}) {\\n    id\\n    name\\n    description\\n    link\\n    year\\n    modified\\n    created\\n  }\\n}\\n\"}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_ca8e284e5d664b8abaaa213e5b438bfc"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1627007125591,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_3b91426c114146058811f0524304d489",
+      "parentId": "fld_a2530ecec3374c93985c1873bda3fd07",
+      "modified": 1627008001807,
+      "created": 1627007170321,
+      "url": "https://localhost:44321/graphql/",
+      "name": "editStudent",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/graphql",
+        "text": "{\"query\":\"mutation{\\n  editStudent(input: {name: \\\"CZ2\\\"}) {\\n    id\\n    name\\n    gitHub\\n    imageURI\\n  }\\n}\"}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_ca8e284e5d664b8abaaa213e5b438bfc"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1626886914023,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_a2530ecec3374c93985c1873bda3fd07",
+      "parentId": "wrk_399d653184cb4c1a9ea4ba579b36d590",
+      "modified": 1627007123614,
+      "created": 1627007123614,
+      "name": "Student",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1627007123614,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_7cf23721d83d451a896c4e1629185249",
+      "parentId": "wrk_399d653184cb4c1a9ea4ba579b36d590",
+      "modified": 1627008010815,
+      "created": 1627007041015,
+      "url": "https://localhost:44321/graphql/",
+      "name": "login",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/graphql",
+        "text": "{\"query\":\"mutation{\\n  login(input:{code: \\\"\\\"}) {\\n    student {\\n      id\\n      name\\n      gitHub\\n      imageURI \\n    }\\n    jwt\\n  }\\n}\"}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_ca8e284e5d664b8abaaa213e5b438bfc"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1627007041015,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "env_f913b279f5b409ecefe444ef4e7822731f4d8335",
+      "parentId": "wrk_399d653184cb4c1a9ea4ba579b36d590",
+      "modified": 1627006981780,
+      "created": 1627006981780,
+      "name": "Base Environment",
+      "data": {},
+      "dataPropertyOrder": null,
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1627006981780,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_f913b279f5b409ecefe444ef4e7822731f4d8335",
+      "parentId": "wrk_399d653184cb4c1a9ea4ba579b36d590",
+      "modified": 1627006981788,
+      "created": 1627006981788,
+      "name": "Default Jar",
+      "cookies": [],
+      "_type": "cookie_jar"
+    },
+    {
+      "_id": "spc_fc8373fff26249208a96e9ce987e9b5c",
+      "parentId": "wrk_399d653184cb4c1a9ea4ba579b36d590",
+      "modified": 1627006981584,
+      "created": 1627006981584,
+      "fileName": "MSA-Yearbook",
+      "contents": "",
+      "contentType": "yaml",
+      "_type": "api_spec"
+    }
+  ]
+}
