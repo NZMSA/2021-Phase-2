@@ -12,7 +12,7 @@ import {
 import { SideBar } from "../Sidebar/Sidebar";
 import MenuIcon from "@material-ui/icons/Menu";
 import Button from "@material-ui/core/Button";
-import logo from "../assets/logos/msa_full_neg.svg";
+import logo from "../../assets/logos/msa_full_neg.svg";
 import { FETCH_TOKEN, Self_self } from "../../GraphQLClient";
 import { useHistory, useLocation } from "react-router-dom";
 import { useMutation } from "@apollo/client";
