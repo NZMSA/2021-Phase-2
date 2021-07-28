@@ -13,7 +13,7 @@ import { SideBar } from "../Sidebar/Sidebar";
 import MenuIcon from "@material-ui/icons/Menu";
 import Button from "@material-ui/core/Button";
 import logo from "../assets/logos/msa_full_neg.svg";
-import { FETCH_TOKEN, useFetchToken } from "../../GraphQLClient";
+import { FETCH_TOKEN, Self_self } from "../../GraphQLClient";
 import { useHistory, useLocation } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 
@@ -22,11 +22,7 @@ function useQuery() {
 }
 
 export interface HeaderProps {
-  user?: {
-    firstName: String;
-    lastName: String;
-    image: String;
-  };
+  user?: Self_self;
   onLogin?: () => void;
   onLogout?: () => void;
   onCreateAccount?: () => void;
@@ -87,6 +83,7 @@ export interface Login {
 export interface LoginVariables {
   code: string;
 }
+
 export const Header: React.FC<HeaderProps> = ({ user }) => {
   const history = useHistory()
   const classes = useStyles();
@@ -151,9 +148,9 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
             </Button>
           ) : (
             <div className={classes.userInformation}>
-              <Avatar alt="user-avatar" src={`${user.image}`} />
+              <Avatar alt="user-avatar" src={user.imageURI} />
               <Hidden smDown>
-                <Button color="inherit">{`${user.firstName} ${user.lastName}`}</Button>
+                <Button color="inherit">{user.name}</Button>
               </Hidden>
             </div>
           )}

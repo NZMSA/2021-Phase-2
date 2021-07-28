@@ -54,8 +54,21 @@ export interface Student {
     imageURI: string;
     projects: Project;
     comments: Comment;
-  }
+}
 
+
+export interface Self_self {
+    __typename: "Student";
+    id: string;
+    name: string;
+    gitHub: string;
+    imageURI: string;
+}
+  
+export interface Self {
+    self: Self_self;
+}
+  
 const FETCH_PROJECTS = gql`
     query FetchProjects {
         projects {
@@ -79,24 +92,28 @@ const FETCH_PROJECTS = gql`
 
 export const FETCH_TOKEN = gql`
     mutation Login($code: String!) {
-    login(input: {code: $code}) {
-      jwt
-      student {
-          id
-          name
-      }
+        login(input: {code: $code}) {
+            jwt
+            student {
+                id
+                name
+            }
+        }
     }
-  }
 `
 ;
 
-export function useFetchToken(code: string | number | null) :  any | undefined {
-    const [loading, data] = useMutation<{code: string}>(FETCH_TOKEN, {
-        variables: {code}
-    });
-    useEffect(() => {}, [loading]);
-    return data;
-}
+export const SELF = gql`
+    query Self {
+        self {
+            name
+            gitHub
+            imageURI
+        }
+    }
+`
+;
+
 
 export function useFetchProjects() : any | undefined {
     const {loading, data} = useQuery(FETCH_PROJECTS);
