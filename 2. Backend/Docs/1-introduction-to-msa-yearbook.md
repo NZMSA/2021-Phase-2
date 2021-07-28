@@ -29,12 +29,12 @@ Our simple API would store the following things:
 - [Hot Chocolate Examples](https://github.com/ChilliCream/hotchocolate-examples)
 
 **_Final Product:_**
-![1-introduction-to-msa-yearbook/Untitled.png](1-introduction-to-msa-yearbook/Untitled.png)
+![images/1-introduction-to-msa-yearbook/Untitled.png](1-introduction-to-msa-yearbook/Untitled.png)
 The following is a GraphQL client provided by Hot Chocolate a GraphQL framework which we will be using.
 
 ### Database Table Structure
 
-![1-introduction-to-msa-yearbook/entity.png](1-introduction-to-msa-yearbook/entity.png)
+![images/1-introduction-to-msa-yearbook/entity.png](1-introduction-to-msa-yearbook/entity.png)
 
 PK stands for Primary Key in SQL Server
 FK stands for Foreign Key in SQL Server

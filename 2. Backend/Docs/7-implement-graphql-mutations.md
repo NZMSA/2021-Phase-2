@@ -29,7 +29,7 @@
 
     The syntax`?` won't work you need to enable nullable first. Double click on the project `MSAYearbook` and add in the line `<Nullable>enable</Nullable>` After targeted framework.
 
-    ![7-implement-graphql-mutations/Untitled.png](7-implement-graphql-mutations/Untitled.png)
+    ![images/7-implement-graphql-mutations/Untitled.png](7-implement-graphql-mutations/Untitled.png)
 
     You'll notice that the`?` means the field is nullable. When we edit a student if the field is null we want to not update the field.
 
@@ -102,7 +102,7 @@
 
 4.  We can now try write a GraphQL mutation request
 
-    ![7-implement-graphql-mutations/Untitled%201.png](7-implement-graphql-mutations/Untitled%201.png)
+    ![images/7-implement-graphql-mutations/Untitled%201.png](7-implement-graphql-mutations/Untitled%201.png)
 
     ```graphql
     mutation {
@@ -128,7 +128,7 @@
     }
     ```
 
-    ![7-implement-graphql-mutations/Untitled%202.png](7-implement-graphql-mutations/Untitled%202.png)
+    ![images/7-implement-graphql-mutations/Untitled%202.png](7-implement-graphql-mutations/Untitled%202.png)
 
 5.  Let's add in Mutations for adding and editing Projects and Comments
 

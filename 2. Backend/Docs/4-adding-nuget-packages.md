@@ -22,17 +22,17 @@ The following are different methods of install the above packages. For windows u
 
 We also need to install some libraries/extensions to the project to help us create the API. At the top of the screen go to **Tools** -> **Nuget Package Manager** -> **Manage Nuget Package for Solution.**
 
-![4-adding-nuget-packages/Untitled.png](4-adding-nuget-packages/Untitled.png)
+![images/4-adding-nuget-packages/Untitled.png](4-adding-nuget-packages/Untitled.png)
 
 Search each package from the above table and install it. e.g Microsoft.EntityFrameworkCore
 
-![4-adding-nuget-packages/Untitled%201.png](4-adding-nuget-packages/Untitled%201.png)
+![images/4-adding-nuget-packages/Untitled%201.png](4-adding-nuget-packages/Untitled%201.png)
 
 ### Use Package Manager Console (CLI, command line)
 
 I prefer using the CLI as I won't need to search each package manually.
 
-![4-adding-nuget-packages/Untitled%202.png](4-adding-nuget-packages/Untitled%202.png)
+![images/4-adding-nuget-packages/Untitled%202.png](4-adding-nuget-packages/Untitled%202.png)
 
 ```bash
 Install-Package Microsoft.EntityFrameworkCore

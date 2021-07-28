@@ -9,13 +9,13 @@ Read more: [Hot Chocolate Docs](https://chillicream.com/docs/hotchocolate/)
     2.  `./WeatherForecast.cs` (File)
 
     You project should look something like this:
-    ![5-setup-hot-chocolate/Untitled.png](5-setup-hot-chocolate/Untitled.png)
+    ![images/5-setup-hot-chocolate/Untitled.png](5-setup-hot-chocolate/Untitled.png)
 
 2.  Add 2 new folder `Model` and `Data` where we want to place all our database related code. _(Note: I spelt it wrong on the video/presentation, this doesn't matter just make sure you are consistent in your implementation)_
 
     Right Click `MSAYearbook` → `Add` → `New Folder`
 
-    ![5-setup-hot-chocolate/Untitled%201.png](5-setup-hot-chocolate/Untitled%201.png)
+    ![images/5-setup-hot-chocolate/Untitled%201.png](5-setup-hot-chocolate/Untitled%201.png)
 
     The `Model` folder will be where we will add all our Entity Framework Models, to learn more click [here](https://docs.microsoft.com/en-us/ef/core/modeling/)
 
@@ -47,7 +47,7 @@ Read more: [Hot Chocolate Docs](https://chillicream.com/docs/hotchocolate/)
     We want to make `Id` a Key attribute (`[Key]`) as we want to use it as a Primary Key in Entity Framework.
     Since the fields Name and GitHub are required fields we will ad the attribute `[Required]`
 
-    ![5-setup-hot-chocolate/Untitled%202.png](5-setup-hot-chocolate/Untitled%202.png)
+    ![images/5-setup-hot-chocolate/Untitled%202.png](5-setup-hot-chocolate/Untitled%202.png)
 
     Right Click `MSAYearbook` → `Add` → `New Item`
 
@@ -132,7 +132,7 @@ Read more: [Hot Chocolate Docs](https://chillicream.com/docs/hotchocolate/)
 
     Add a new item in `GraphQL/Student` called `StudentQueries.cs`
 
-    ![5-setup-hot-chocolate/Untitled%203.png](5-setup-hot-chocolate/Untitled%203.png)
+    ![images/5-setup-hot-chocolate/Untitled%203.png](5-setup-hot-chocolate/Untitled%203.png)
 
     Insert the following code to define a query
 
@@ -199,13 +199,13 @@ Read more: [Hot Chocolate Docs](https://chillicream.com/docs/hotchocolate/)
 
 10. Let's try running our application. Click `IIS Express`
 
-    ![5-setup-hot-chocolate/Untitled%204.png](5-setup-hot-chocolate/Untitled%204.png)
+    ![images/5-setup-hot-chocolate/Untitled%204.png](5-setup-hot-chocolate/Untitled%204.png)
 
     This will open up a link in your browser, navigate to /graphql e.g. `https://localhost:00000/graphql/`
 
     You can change the default lanuch url by going into debug properties _(should have came to presentation 😉)_
 
-    ![5-setup-hot-chocolate/Untitled%205.png](5-setup-hot-chocolate/Untitled%205.png)
+    ![images/5-setup-hot-chocolate/Untitled%205.png](5-setup-hot-chocolate/Untitled%205.png)
 
     `students` the schema we have just defined and we can see all the fields that students have. These fields are translated directly from the Entity Framework models we defined.
 
