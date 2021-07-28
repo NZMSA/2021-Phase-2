@@ -10,18 +10,16 @@ import graphQLClient from './GraphQLClient';
 
 
 function App() {
-  // TODO token parser from window - for oauth
-  // const token = (window.location.href.match(/\?code=(.*)/)) && (window.location.href.match(/\?code=(.*)/) ?? [1]);
   return (
     <ApolloProvider client={graphQLClient}>
     <div className="App">
       <Header />
       <Switch>
-        <Route path="/home">
+        <Route path="/home" render={(props) => (
           <FeedPage pageTitle="MSA Projects 2021" />
-        </Route>
+        )}/>
         <Route path="/submit">
-          {/* TODO  
+          {/* TODO
           Render submit page here*/}
         </Route>
       </Switch>

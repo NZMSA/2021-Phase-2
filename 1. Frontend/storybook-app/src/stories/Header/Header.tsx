@@ -5,12 +5,9 @@ import { SideBar } from '../Sidebar/Sidebar';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import logo from "../assets/logos/msa_full_neg.svg"
+import { useEffect } from 'react';
+import { useFetchToken } from '../../GraphQLClient';
 
-// Not sure if we are going to demonstrate both importing a css file and in component styling.
-// Maybe leave both options? We can explain both.
-
-// Header needs to know what user is logged in to render their name. If needed renders the image of their github.
-// Here I have assumed that the image will be a URL.
 export interface HeaderProps {
   user?: {
     firstName: String,
@@ -36,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     title: {
       flexGrow: 1,
-      marginLeft: '10px'
+      marginRight: '200px'
     },
     inputRoot: {
       color: 'inherit',
@@ -54,16 +51,22 @@ const useStyles = makeStyles((theme: Theme) =>
   ),
 );
 
-const CLIENT_ID = "memes";
-const REDIRECT_URI = "http://localhost:3000/";
+const CLIENT_ID = "a6ac879139cfdf60af2a";
+const REDIRECT_URI = "http://localhost:3000/home";
 
 export const Header: React.FC<HeaderProps> = ({ user }) => {
+  const code = (window.location.href.match(/\?code=(.*)/)) && (window.location.href.match(/\?code=(.*)/) ?? [1]);
+
   const classes = useStyles();
+  const [userToken, setUserToken] = useState(null);
   const [sideBar, setSideBar] = useState(false);
+  const [userCode, setUserCode] = useState("");
 
   const toggleSideBar = () => {
     setSideBar(!sideBar);
   }
+  const data = useFetchToken(code !== null ? code[1] : null);
+
 
   return (
     <div className={classes.root}>
@@ -86,6 +89,7 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
           </IconButton>
           <Typography className={classes.title} variant="h5" noWrap>
             Microsoft Student Accelerator Project Submissions
+            {console.log(data)}
           </Typography>
           {user == null ?
             <Button color="inherit" href={`https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=user&redirect_uri=${REDIRECT_URI}`}>
