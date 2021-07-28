@@ -66,4 +66,4 @@ Copy the connection string under ADO.NET.
 
 In this part, we covered how to create a SQL database on Azure cloud and how to get credentials for accessing your database.
 
-[**<< Part #3 - Create Project in VS >>**](images/3-create-an-empty-project-using-visual-studio.md)
+[**<< Part #3 - Create Project in VS >>**](3-create-an-empty-project-using-visual-studio.md)

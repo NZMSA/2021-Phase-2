@@ -62,6 +62,6 @@ We will not be covering the follow (self study :blush:)
 
 Lets start creating our project!
 
-[**<< Part #2 - Azure Database >>**](images/2-azure-sql-database.md)
+[**<< Part #2 - Azure Database >>**](2-azure-sql-database.md)
 
 Click above to goto next page :smirk:

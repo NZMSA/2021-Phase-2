@@ -568,4 +568,4 @@
 
 In this part, we looked at how to create multiple Entity Framework models with relations and how these relationships would be in GraphQL. It is an important note that Resolvers are required when calling nested relations as we need to call the child.
 
-[**<< Part #7 - GraphQL Mutations >>**](images/7-implement-graphql-mutations.md)
+[**<< Part #7 - GraphQL Mutations >>**](7-implement-graphql-mutations.md)

@@ -66,4 +66,4 @@ dotnet add package Octokit
 
 In this part, we explored three different ways to install nuget packages (.NET's packages) and the list of packaging that we would be required to install for our project. It is recommended to install these now as it would take time to install.
 
-[**<< Part #5 - Nuget Packages >>**](images/5-setup-hot-chocolate.md)
+[**<< Part #5 - Nuget Packages >>**](5-setup-hot-chocolate.md)

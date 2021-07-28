@@ -26,4 +26,4 @@ After running with IIS Express (on macOS it is different) the follow webpage sho
 
 In this part, we went through how to create a template project in Visual Studio. We will be using this empty template project to build our API on top of.
 
-[**<< Part #4 - Nuget Packages >>**](images/4-adding-nuget-packages.md)
+[**<< Part #4 - Nuget Packages >>**](4-adding-nuget-packages.md)
