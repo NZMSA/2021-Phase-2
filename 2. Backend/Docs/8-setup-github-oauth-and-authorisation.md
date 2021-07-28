@@ -42,17 +42,17 @@
 
 3.  Let's create an Oauth Application using Github at [https://github.com/settings/developers](https://github.com/settings/developers)
 
-    ![images/8-setup-github-oauth-and-authorisation/Untitled.png](8-setup-github-oauth-and-authorisation/Untitled.png)
+    ![images/8-setup-github-oauth-and-authorisation/Untitled.png](images/8-setup-github-oauth-and-authorisation/Untitled.png)
 
     The Homepage URL and Authorization callback URL should be the frontend URL however since they haven't been made just use any temporary URL
 
-    ![images/8-setup-github-oauth-and-authorisation/Untitled%201.png](8-setup-github-oauth-and-authorisation/Untitled%201.png)
+    ![images/8-setup-github-oauth-and-authorisation/Untitled%201.png](images/8-setup-github-oauth-and-authorisation/Untitled%201.png)
 
-    ![images/8-setup-github-oauth-and-authorisation/Untitled%202.png](8-setup-github-oauth-and-authorisation/Untitled%202.png)
+    ![images/8-setup-github-oauth-and-authorisation/Untitled%202.png](images/8-setup-github-oauth-and-authorisation/Untitled%202.png)
 
 4.  Let's add our client ID and client secrets to `appsettings.Development.json`
 
-    ![images/8-setup-github-oauth-and-authorisation/Untitled%203.png](8-setup-github-oauth-and-authorisation/Untitled%203.png)
+    ![images/8-setup-github-oauth-and-authorisation/Untitled%203.png](images/8-setup-github-oauth-and-authorisation/Untitled%203.png)
 
     We also set JWT secret like above your secret should be a random string that no one knows
 
@@ -169,7 +169,7 @@
 
     Once Logged in, you would be redirected to a temporary link you defined
 
-    ![images/8-setup-github-oauth-and-authorisation/Untitled%204.png](8-setup-github-oauth-and-authorisation/Untitled%204.png)
+    ![images/8-setup-github-oauth-and-authorisation/Untitled%204.png](images/8-setup-github-oauth-and-authorisation/Untitled%204.png)
 
     The code is located in the URL params `code`
 
@@ -183,11 +183,11 @@
     }
     ```
 
-    ![images/8-setup-github-oauth-and-authorisation/Untitled%205.png](8-setup-github-oauth-and-authorisation/Untitled%205.png)
+    ![images/8-setup-github-oauth-and-authorisation/Untitled%205.png](images/8-setup-github-oauth-and-authorisation/Untitled%205.png)
 
     Check out [https://jwt.io/](https://jwt.io/) and use the Debugger to view the JWT decoded (base64)
 
-    ![images/8-setup-github-oauth-and-authorisation/Untitled%206.png](8-setup-github-oauth-and-authorisation/Untitled%206.png)
+    ![images/8-setup-github-oauth-and-authorisation/Untitled%206.png](images/8-setup-github-oauth-and-authorisation/Untitled%206.png)
 
 11. Now let us add authorisation to an endpoint called `self`
 
@@ -219,11 +219,11 @@
 
     We can try to call this using the following (make sure you set the bearer token)
 
-    ![images/8-setup-github-oauth-and-authorisation/Untitled%207.png](8-setup-github-oauth-and-authorisation/Untitled%207.png)
+    ![images/8-setup-github-oauth-and-authorisation/Untitled%207.png](images/8-setup-github-oauth-and-authorisation/Untitled%207.png)
 
     The self request allows the user to request details of themself after they log in!
 
-    ![images/8-setup-github-oauth-and-authorisation/Untitled%208.png](8-setup-github-oauth-and-authorisation/Untitled%208.png)
+    ![images/8-setup-github-oauth-and-authorisation/Untitled%208.png](images/8-setup-github-oauth-and-authorisation/Untitled%208.png)
 
 12. Let's update the old mutations to use the new authorisation settings. Example:
 

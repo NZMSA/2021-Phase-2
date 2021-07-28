@@ -2,7 +2,7 @@
 
 > The following workshop will become substantially harder from this point. Hightly recommend self studing the code.
 
-![images/1-introduction-to-msa-yearbook/entity.png](1-introduction-to-msa-yearbook/entity.png)
+![images/1-introduction-to-msa-yearbook/entity.png](images/1-introduction-to-msa-yearbook/entity.png)
 
 1.  Let's define our relational data shown in the above diagram using Entity Framework models we learnt earlier.
 
@@ -193,7 +193,7 @@
 
 4.  Now we have implemented all our models. let's run our API again!
 
-    ![images/6-implement-graphql-queries/Untitled.png](6-implement-graphql-queries/Untitled.png)
+    ![images/6-implement-graphql-queries/Untitled.png](images/6-implement-graphql-queries/Untitled.png)
 
     You will notice there are now two objects available under Students. One is Projects and the other are Comments. Under Projects, there are also Comments.
 
@@ -562,10 +562,10 @@
 9.  Run the app and check if the schema has been updated (make sure you click the refresh button to reload the schema)
 
     This should be what our schema should look like
-    ![images/6-implement-graphql-queries/Untitled%201.png](6-implement-graphql-queries/Untitled%201.png)
+    ![images/6-implement-graphql-queries/Untitled%201.png](images/6-implement-graphql-queries/Untitled%201.png)
 
 ## Summary
 
 In this part, we looked at how to create multiple Entity Framework models with relations and how these relationships would be in GraphQL. It is an important note that Resolvers are required when calling nested relations as we need to call the child.
 
-[**<< Part #7 - GraphQL Mutations >>**](7-implement-graphql-mutations.md)
+[**<< Part #7 - GraphQL Mutations >>**](images/7-implement-graphql-mutations.md)

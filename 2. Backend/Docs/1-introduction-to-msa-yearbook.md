@@ -29,12 +29,12 @@ Our simple API would store the following things:
 - [Hot Chocolate Examples](https://github.com/ChilliCream/hotchocolate-examples)
 
 **_Final Product:_**
-![images/1-introduction-to-msa-yearbook/Untitled.png](1-introduction-to-msa-yearbook/Untitled.png)
+![images/1-introduction-to-msa-yearbook/Untitled.png](images/1-introduction-to-msa-yearbook/Untitled.png)
 The following is a GraphQL client provided by Hot Chocolate a GraphQL framework which we will be using.
 
 ### Database Table Structure
 
-![images/1-introduction-to-msa-yearbook/entity.png](1-introduction-to-msa-yearbook/entity.png)
+![images/1-introduction-to-msa-yearbook/entity.png](images/1-introduction-to-msa-yearbook/entity.png)
 
 PK stands for Primary Key in SQL Server
 FK stands for Foreign Key in SQL Server
@@ -62,6 +62,6 @@ We will not be covering the follow (self study :blush:)
 
 Lets start creating our project!
 
-[**<< Part #2 - Azure Database >>**](2-azure-sql-database.md)
+[**<< Part #2 - Azure Database >>**](images/2-azure-sql-database.md)
 
 Click above to goto next page :smirk:

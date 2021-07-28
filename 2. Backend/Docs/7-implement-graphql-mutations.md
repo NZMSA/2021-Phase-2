@@ -29,7 +29,7 @@
 
     The syntax`?` won't work you need to enable nullable first. Double click on the project `MSAYearbook` and add in the line `<Nullable>enable</Nullable>` After targeted framework.
 
-    ![images/7-implement-graphql-mutations/Untitled.png](7-implement-graphql-mutations/Untitled.png)
+    ![images/7-implement-graphql-mutations/Untitled.png](images/7-implement-graphql-mutations/Untitled.png)
 
     You'll notice that the`?` means the field is nullable. When we edit a student if the field is null we want to not update the field.
 
@@ -102,7 +102,7 @@
 
 4.  We can now try write a GraphQL mutation request
 
-    ![images/7-implement-graphql-mutations/Untitled%201.png](7-implement-graphql-mutations/Untitled%201.png)
+    ![images/7-implement-graphql-mutations/Untitled%201.png](images/7-implement-graphql-mutations/Untitled%201.png)
 
     ```graphql
     mutation {
@@ -128,7 +128,7 @@
     }
     ```
 
-    ![images/7-implement-graphql-mutations/Untitled%202.png](7-implement-graphql-mutations/Untitled%202.png)
+    ![images/7-implement-graphql-mutations/Untitled%202.png](images/7-implement-graphql-mutations/Untitled%202.png)
 
 5.  Let's add in Mutations for adding and editing Projects and Comments
 
@@ -316,4 +316,4 @@
 
 In this part, we learned how to mutate data in our database using mutations. In here we cover adding new data and updating existing data. We cover howuit s to define mutation inputs when dealing with different mutations.
 
-[**<< Part #8 - GitHub Oauth & Authorisation >>**](8-setup-github-oauth-and-authorisation.md)
+[**<< Part #8 - GitHub Oauth & Authorisation >>**](images/8-setup-github-oauth-and-authorisation.md)
