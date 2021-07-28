@@ -4,7 +4,8 @@ import { CardList, GithubCard, SectionHeader } from './stories';
 import { Project, useFetchProjects }  from './GraphQLClient';
 import { useEffect } from 'react';
 
-const FeedPageStyles = makeStyles(createStyles({
+const FeedPageStyles = makeStyles(
+  createStyles({
     header: {
         position: 'sticky'
     },
@@ -14,13 +15,13 @@ const FeedPageStyles = makeStyles(createStyles({
 }));
 
 export interface FeedPageProps {
-    pageTitle: string;
-};
+  pageTitle: string;
+}
 
 const FeedPage = ({ pageTitle }: FeedPageProps): JSX.Element => {
-    const [cards, setCards] = React.useState<JSX.Element[]>([]);
-    var data = useFetchProjects();
-    const styles = FeedPageStyles();
+  const [cards, setCards] = React.useState<JSX.Element[]>([]);
+  var data = useFetchProjects();
+  const styles = FeedPageStyles();
 
     useEffect(() => {
         if(data !== undefined) {
@@ -42,6 +43,7 @@ const FeedPage = ({ pageTitle }: FeedPageProps): JSX.Element => {
         </div>
         {cards.length === 0 ? <CircularProgress /> : <CardList cards={cards} cols={window.innerWidth / 650} />}
     </div>
-}
+  
+};
 
 export default FeedPage;

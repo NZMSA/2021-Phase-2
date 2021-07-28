@@ -1,9 +1,14 @@
-import React from 'react';
-import { FooterSocialIcon, SocialIconProps } from '../SocialIcon/SocialIcon';
-import { Box, Grid, Hidden, Link } from '@material-ui/core';
-import { SOCIAL_MEDIA, MICROSOFT_LOGO, PRIVACY_POLICY, TERMS_OF_USE } from "../assets/resources";
+import React from "react";
+import { FooterSocialIcon, SocialIconProps } from "../SocialIcon/SocialIcon";
+import { Box, Grid, Hidden, Link } from "@material-ui/core";
+import {
+  SOCIAL_MEDIA,
+  MICROSOFT_LOGO,
+  PRIVACY_POLICY,
+  TERMS_OF_USE,
+} from "../../assets/resources";
 
-import './footer.css';
+import "./footer.css";
 
 export const Footer = () => {
 

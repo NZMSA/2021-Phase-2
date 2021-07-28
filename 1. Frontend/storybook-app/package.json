@@ -1,5 +1,5 @@
 {
-  "name": "storybook-app",
+  "name": "msa-yearbook",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -67,6 +67,7 @@
     "@storybook/preset-create-react-app": "^3.1.7",
     "@storybook/react": "^6.2.9",
     "@types/graphql": "^14.5.0",
-    "apollo": "^2.33.4"
+    "apollo": "^2.33.4",
+    "prettier": "2.3.2"
   }
 }

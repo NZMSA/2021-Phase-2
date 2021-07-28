@@ -32,7 +32,7 @@ export interface Comment {
     created: Date;
     projectId: number;
     studentId: number;
-  }
+}
 
 export interface Project {
     id: string;
@@ -118,12 +118,12 @@ export const SELF = gql`
 export function useFetchProjects() : any | undefined {
     const {loading, data} = useQuery(FETCH_PROJECTS);
 
-    useEffect(() => {}, [loading]);
+    useEffect(() => { }, [loading]);
 
     return data;
 }
 
-export function useAddProject() : boolean {
+export function useAddProject(): boolean {
     //TODO: Add useMutation hook to add projects
     return false;
 }
