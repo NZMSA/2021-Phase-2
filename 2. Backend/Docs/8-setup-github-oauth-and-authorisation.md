@@ -103,8 +103,8 @@
 
     if (tokenInfo.AccessToken == null) {
         throw new GraphQLRequestException(ErrorBuilder.New()
-            .SetMessage("UNAUTHORIZED")
-            .SetCode("400")
+            .SetMessage("Bad code")
+            .SetCode("AUTH_NOT_AUTHENTICATED")
             .Build());
     }
     ```
@@ -123,13 +123,13 @@
     ```csharp
     if (student == null)
     {
-        var student = new Student {
-            Name = user.Name ?? user.Login;
-            GitHub = user.Login;
-            ImageURI = user.AvatarUrl;
-        }
+        student = new Student {
+            Name = user.Name ?? user.Login,
+            GitHub = user.Login,
+            ImageURI = user.AvatarUrl,
+        };
 
-        context.Students.Add(student)
+        context.Students.Add(student);
         await context.SaveChangesAsync(cancellationToken);
     }
     ```

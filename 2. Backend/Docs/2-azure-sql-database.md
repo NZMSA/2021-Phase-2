@@ -10,13 +10,13 @@ Navigate to [portal.azure.com](https://portal.azure.com/) on your browser and 
 
 ![2-azure-sql-database/Untitled%201.png](2-azure-sql-database/Untitled%201.png)
 
-> Make sure the subscription is Azure for Students.
+> Make sure the subscription is Azure for Students (Note the following creation will cost your student credits).
 
 - Click **Create New**, to create a new resource group. (The resource group is a collection of resources that are used for a particular application or group of applications)
 
 ![2-azure-sql-database/Untitled%202.png](2-azure-sql-database/Untitled%202.png)
 
-- Name your database.
+- Name your database e.g msa-yearbook
 
 ![2-azure-sql-database/Untitled%203.png](2-azure-sql-database/Untitled%203.png)
 
@@ -24,7 +24,7 @@ Navigate to [portal.azure.com](https://portal.azure.com/) on your browser and 
 
 ![2-azure-sql-database/Untitled%204.png](2-azure-sql-database/Untitled%204.png)
 
-- You should have something similar to this.
+- You should have something similar to this (Australia East is where we are closest). Make sure you note down your username and password
 
 ![2-azure-sql-database/Untitled%205.png](2-azure-sql-database/Untitled%205.png)
 

@@ -4,7 +4,7 @@
 
 ![1-introduction-to-msa-yearbook/entity.png](1-introduction-to-msa-yearbook/entity.png)
 
-1.  Let's define our relational data shown in the above diagram using entity framework we learnt earlier.
+1.  Let's define our relational data shown in the above diagram using Entity Framework models we learnt earlier.
 
     Add a new item Class `Project.cs` in the `Model` directory using the following code:
 
@@ -89,7 +89,7 @@
     }
     ```
 
-    In here we have two foreign keys `ProjectId` and `StudentId`. Each of these keys would resolve into a relation linked to one Project and one Student]
+    In here we have two foreign keys `ProjectId` and `StudentId`. Each of these keys would resolve into a relation linked to one Project and one Student
 
     Edit `Student.cs` in the `Model` with the following
 
@@ -118,6 +118,8 @@
         }
     }
     ```
+
+    The ICollection and Objects we have just defined will not be processed by Entity Framework by default, we will need to define them inside our relations to let Entity Framework know how to deal with these fields.
 
 2.  We want to add our newly defined models and the foreign key relationship between them in `AppDbContext.cs`.
 
@@ -159,6 +161,15 @@
     }
     ```
 
+    Using the following code we can define the ICollection from s.Projects and the Object p.Student are in a one to many relationship on the Project model.
+
+    ```csharp
+    modelBuilder.Entity<Project>()
+        .HasOne(p => p.Student)
+        .WithMany(s => s.Projects)
+        .HasForeignKey(p => p.StudentId);
+    ```
+
     > You would notice`.OnDelete(DeleteBehavior.NoAction);` is only used on Comment. This is because Microsoft SQL Server doesn't support multiple cascades on one table. For our case, we will not be removing any students/projects so we can just disable cascade (remove when a parent is removed).
 
 3.  Let's make an entity framework migration with our new database schema
@@ -171,7 +182,14 @@
         Update-Database
         ```
 
-        > This may fail due to you serverless SQL server is not running. Serverless SQL servers are slower on Cold boot you might want to retry after a few seconds.
+        For macOS users open terminal and navigate to your project directory and run (also works for Windows using cmd)
+
+        ```bash
+        dotnet ef migrations add Initial
+        dotnet ef database update
+        ```
+
+        > This may fail due to your serverless SQL server is not running. Serverless SQL servers are slower on Cold boot you might want to retry after a few seconds.
 
 4.  Now we have implemented all our models. let's run our API again!
 
@@ -179,9 +197,13 @@
 
     You will notice there are now two objects available under Students. One is Projects and the other are Comments. Under Projects, there are also Comments.
 
+    These fields are all extracted by Hot Chocolate by looking at your model :grin:
+
 5.  For us to use nested queries e.g `Student -> Project -> Comment` . We must introduce resolvers. Resolvers are placed on the types of objects.
 
-    Let's create a type for each object with its corresponding resolvers
+    What happens is that when you call a nested object using Hot Chocolate, it doesn't know how to deal with nested calls. To fix this we want to tell Hot Chocolate that it can resolve it using a certain query.
+
+    Before adding resolvers we need to create a type for each object. Hot Chocolate will see this type and use it instead of the model from entity framework. With the type defined we can add resolvers on the type which Hot Chocolate would automatically find.
 
     Add a new item Class `StudentType.cs` in the `GraphQL/Student` directory using the following code:
 
@@ -240,9 +262,23 @@
     }
     ```
 
+    We are using Code-first syntax shown in `descriptor.Field(s => s.Id).Type<NonNullType<IdType>>();` Read more [here](https://chillicream.com/docs/hotchocolate/defining-a-schema/object-types#explicit-types)
+
+    We can bind a resolver to a field by the following
+
+    ```csharp
+    descriptor
+        .Field(s => s.Comments) // Field
+        .ResolveWith<Resolvers>(r => r.GetComments(default!, default!, default)) // Calling a resolver (default just means passing in a same value as parent)
+        .UseDbContext<AppDbContext>() // Call AppDbContext for a new DbContext
+        .Type<NonNullType<ListType<NonNullType<CommentType>>>>(); // Set Type
+    ```
+
+    We are using `.UseDbContext<AppDbContext>()` here because Hot Chocolate calls resolvers using a different thread from the parent. Since the AppDbContext doesn't support multithread we need to create a new AppDbContext for this new thread to avoid errors.
+
     > CancellationToken are very important in Backend API. They allow the backend to stop requesting things (e.g from the database) when the user decides to cancel their request. This is most useful when doing heavy operations e.g resolving nested queries.
 
-    Add two new folders inside `GraphQL` called `Projects` and `Comments`
+    Add two new folders inside `GraphQL` called `Projects` and `Comments`. We want to make our Objects inside different folders to make it easier to maintain
 
     Add a new item Class `ProjectType.cs` in the `GraphQL/Projects` directory using the following code:
 
@@ -329,13 +365,13 @@
 
                 descriptor
                     .Field(s => s.Project)
-                    .ResolveWith<Resolvers>(r => r.GetProject(default!, default!))
+                    .ResolveWith<Resolvers>(r => r.GetProject(default!, default!, default))
                     .UseDbContext<AppDbContext>()
                     .Type<NonNullType<CommentType>>();
 
                 descriptor
                     .Field(s => s.Student)
-                    .ResolveWith<Resolvers>(r => r.GetStudent(default!, default!))
+                    .ResolveWith<Resolvers>(r => r.GetStudent(default!, default!, default))
                     .UseDbContext<AppDbContext>()
                     .Type<NonNullType<CommentType>>();
 
@@ -364,9 +400,11 @@
 
 6.  Hot Chocolate Resolves the query in parallel however Entity Framework's DbContext does not. To fix this we want to create a new DbContext from the pool we create previously each time we use DbContext.
 
-    To do this we'll create a new folder called `Extensions` and the following files
+    > Note: You do not need to understand the following for extensions. You just need to make sure you add it into your project.
 
-    `ObjectFieldDescriptorExtensions.cs`:
+    To do this we'll create a new folder called `Extensions` and the following files:
+
+    First we want to create `ObjectFieldDescriptorExtensions.cs` inside `Extensions` with the following content:
 
     ```csharp
     using Microsoft.EntityFrameworkCore;
@@ -390,27 +428,31 @@
 
     ```
 
-    `UseAppDbContextAttribute.cs`:
+    The above creates a new `AppDbContext` whenever `UseAppDbContext` is called.
+
+    To make calling `UseAppDbContext` easier let's create a custom attribute called `UseAppDbContextAttribute` so we can call it by using `[UseAppDbContext]`.
+
+    Create the following simple helper attribute `UseAppDbContextAttribute.cs` inside `Extensions` with the following content:
 
     ```csharp
-     using System.Reflection;
-     using MSAYearbook.Data;
-     using HotChocolate.Types;
-     using HotChocolate.Types.Descriptors;
+    using System.Reflection;
+    using MSAYearbook.Data;
+    using HotChocolate.Types;
+    using HotChocolate.Types.Descriptors;
 
-     namespace MSAYearbook.Extensions
-     {
-         public class UseAppDbContextAttribute : ObjectFieldDescriptorAttribute
-         {
-             public override void OnConfigure(
-                 IDescriptorContext context,
-                 IObjectFieldDescriptor descriptor,
-                 MemberInfo member)
-             {
-                 descriptor.UseDbContext<AppDbContext>();
-             }
-         }
-     }
+    namespace MSAYearbook.Extensions
+    {
+        public class UseAppDbContextAttribute : ObjectFieldDescriptorAttribute
+        {
+            public override void OnConfigure(
+                IDescriptorContext context,
+                IObjectFieldDescriptor descriptor,
+                MemberInfo member)
+            {
+                descriptor.UseDbContext<AppDbContext>();
+            }
+        }
+    }
     ```
 
 7.  Now all the types and resolvers are setup let's finalise our queries
@@ -445,6 +487,9 @@
         }
     }
     ```
+
+    We want to add `[UseAppDbContext]` to all queries so we create a new AppDbContext for each query.
+    We are using pagination here to show off how [pagination works in GraphQL](https://chillicream.com/docs/hotchocolate/fetching-data/pagination).
 
     Edit the file `StudentQueries.cs` in the `GraphQL/Students`directory using the following code:
 
@@ -482,8 +527,7 @@
     ```csharp
     services
         .AddGraphQLServer()
-        .AddQueryType(d => d.Name("Query"))
-            .AddTypeExtension<StudentQueries>()
+        ...
         .AddType<ProjectType>()
         .AddType<StudentType>()
         .AddType<CommentType>();
@@ -497,13 +541,27 @@
         .AddQueryType(d => d.Name("Query"))
             .AddTypeExtension<ProjectQueries>()
             .AddTypeExtension<StudentQueries>()
+        ...
+    ```
+
+    The final thing should look like the following:
+
+    ```csharp
+    services
+        .AddGraphQLServer()
+        .AddQueryType(d => d.Name("Query"))
+            .AddTypeExtension<ProjectQueries>()
+            .AddTypeExtension<StudentQueries>()
         .AddType<ProjectType>()
         .AddType<StudentType>()
         .AddType<CommentType>();
     ```
 
+    _(Note: we should only have one `QueryType` on one `GraphQLServer`)_
+
 9.  Run the app and check if the schema has been updated (make sure you click the refresh button to reload the schema)
 
+    This should be what our schema should look like
     ![6-implement-graphql-queries/Untitled%201.png](6-implement-graphql-queries/Untitled%201.png)
 
 ## Summary

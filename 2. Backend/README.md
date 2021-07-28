@@ -2,6 +2,8 @@
 
 ## Introduction
 
+_**Update:** Updated docs with more explaination._
+
 _Did someone say MSA was too easy?_
 _Not excited writing REST API's in .NET anymore?_
 
@@ -14,7 +16,8 @@ We found the perfect solution:
 
 <details>
   <summary>Note</summary> 
-  We'll look down on you for not using GraphQL and .NET
+  
+We'll look down on you for not using GraphQL and .NET
 
 We'll only be dissapointed if you only use one of the two, GraphQL or .NET
 
