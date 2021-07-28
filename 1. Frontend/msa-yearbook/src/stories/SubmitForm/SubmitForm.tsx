@@ -1,118 +1,104 @@
-import React, {useState} from 'react';
-import { TextField } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
+import React, { useState } from 'react';
+import { TextField, Typography, Grid, Container } from '@material-ui/core';
+import { makeStyles, Theme } from "@material-ui/core/styles";
 import { Button } from '../Button/Button';
+import { ADD_PROJECT} from '../../api/mutations';
+import { AddProject } from '../../api/__generated__/AddProject';
+import { useMutation } from '@apollo/client';
 
 import './submit-form.css';
 
-export interface formInput{
-    ProjectName: string;
-    GithubUrl: string;
-    Description: string;
-    Year: number;
-}
-
+const useStyles = makeStyles((theme: Theme) => ({
+    root: {
+      "& .MuiFormHelperText-root": {
+        color: "white",
+      }
+    }
+  }));
 export interface SubmitFormProps {
-    nameNotValid?: boolean;
-    urlNotValid?: boolean;
-    submit?: boolean;
+
 }
 
-export const SubmitForm: React.FC<SubmitFormProps> = ({submit, nameNotValid, urlNotValid}) => {
-    const year = (new Date()).getFullYear();
-    const [ProjectName, setProjectName] = useState<string>("");
-    const handleProjectNameChange = (s: string) => {
-        setProjectName(s);
-    };
-    const [GithubUrl, setGithubUrl] = useState<string>("");
-    const handleGithubUrlChange = (s: string) => {
-        setGithubUrl(s);
-    };
-    const [ Description, setDescription] = useState<string>("");
-    const handleDescriptionChange = (s: string) => {
-        setDescription(s);
-    };
+export const SubmitForm: React.FC<SubmitFormProps> = () => {
+    const classes = useStyles();
+    const year = "YEAR_2021";
+    const [projectName, setProjectName] = useState<string>("");
+    const [githubUrl, setGithubUrl] = useState<string>("");
+    const [description, setDescription] = useState("");
+    const [submit, setSubmit] = useState(false);
 
-    const [HasFocus, setHasFocus] = useState<boolean>(false);
+    const [hasFocus, setHasFocus] = useState(false);
 
-    const isGithubUrl=(value: string)=>{
+    const isGithubUrl = (value: string) => {
         const urlRegex = /^(http[s]{0,1}:\/\/){0,1}(github.com\/)([a-zA-Z0-9\-~!@#$%^&*+?:_\/=<>\.]*)?$/i;
         return urlRegex.test(value);
     }
 
-    const handleSubmit = () => {
+    const [addProject] = useMutation<AddProject>(ADD_PROJECT)
 
-        if (ProjectName === "") {
-            setHasFocus(true);
-            nameNotValid = true;
-        } else if (!isGithubUrl(GithubUrl)){
-            setHasFocus(true);
-            urlNotValid = true;
-        } else {
-            console.log(ProjectName + GithubUrl);
-            let formInput: formInput = {
-                ProjectName: ProjectName,
-                GithubUrl: GithubUrl,
-                Description: Description,
-                Year: year
+    const handleSubmit = async() => {
+        if (projectName !== "" && isGithubUrl(githubUrl)) {
+            console.log(projectName + githubUrl);
+
+            try {
+                await addProject({variables: {
+                    name: projectName,
+                    description: description,
+                    link: githubUrl,
+                    year: year,
+                }})
+                setSubmit(true)
+            } catch(e) {
+                console.log(e)
             }
-            console.log(formInput);
+        }else{
+            setHasFocus(true);
         }
 
     };
-    
+
     return (
-        <div className="form_container">
-            <h1 className="form__title">Submit your project here!</h1>
-                {
-                    submit ?
-                    <div className="form__success">
+        <Container className="form_container">
+            <Typography variant="h4" >Submit your project here!</Typography>
+            {
+                submit ?
+                    <Grid>
                         Congratulations! Your project has been submitted successfully.
-                    </div> : null
-                }
-            <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-            <TextField id="standard-basic" label="Project Name" fullWidth
-            error={HasFocus && ProjectName === ""}
-            value={ProjectName}
-            onChange={e => handleProjectNameChange(e.target.value)}/>
-                {
-                    nameNotValid ?
-                    <div className="form__fail">
-                        Invalid name
-                    </div> : null
-                }
+                    </Grid> : null
+            }
+            <Grid container spacing={4}>
+                <Grid item xs={12} sm={6}>
+                    <TextField id="standard-basic" label="Project Name" fullWidth
+                        error={hasFocus && projectName === ""}
+                        value={projectName}
+                        className={hasFocus && projectName === ""?"":classes.root}
+                        helperText="Invalid Project Name"
+                        onChange={e => setProjectName(e.target.value)} />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField id="standard-basic" label="Github URL" fullWidth
+                        error={hasFocus && (githubUrl === "" || !isGithubUrl(githubUrl))}
+                        value={githubUrl}
+                        onChange={e => setGithubUrl(e.target.value)}
+                        className={hasFocus && (githubUrl === "" || !isGithubUrl(githubUrl))?"":classes.root}
+                        helperText="Invalid URL" />
+                </Grid>
+                <Grid item xs={12} sm={12}>
+                    <TextField
+                        id="outlined-multiline-static"
+                        label="Description"
+                        multiline
+                        rows={5}
+                        placeholder="Introduce your project..."
+                        variant="outlined"
+                        fullWidth
+                        value={description}
+                        onChange={e => setDescription(e.target.value)}
+                    />
+                </Grid>
+                
             </Grid>
-            <Grid item xs={12} sm={12}>            
-            <TextField id="standard-basic" label="Github URL" fullWidth
-            error={HasFocus && GithubUrl === ""}
-            value={GithubUrl}
-            onChange={e => handleGithubUrlChange(e.target.value)}/>
-                {
-                    urlNotValid ?
-                    <div className="form__fail">
-                        Invalid URL
-                    </div> : null
-                }
-            </Grid>
-            <Grid item xs={12} sm={12}> 
-            <TextField
-                id="outlined-multiline-static"
-                label="Description"
-                multiline
-                rows={5}
-                placeholder="Introduce your project..."
-                variant="outlined"
-                fullWidth
-                error={HasFocus && GithubUrl === ""}
-                value={Description}
-                onChange={e => handleDescriptionChange(e.target.value)}
-            />
-            </Grid>
-            </Grid>
-            <div className="form__button">
-                <Button backgroundColor="limegreen" label="Submit" onClick={handleSubmit} primary size="medium"/>
-            </div>
-        </div>
+            <Button className="form_button" backgroundColor="limegreen" label="Submit" onClick={handleSubmit} primary size="medium" />
+        </Container>
     );
 };

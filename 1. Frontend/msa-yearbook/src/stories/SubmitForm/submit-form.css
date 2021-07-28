@@ -1,31 +1,10 @@
-.form_container{
+.form_container {
+    max-width: 600px !important;
     margin: auto;
-    font-family: Roboto, sans-serif;
-    width: 60%;
+    padding: 15px;
 }
 
-.form__title {
-    letter-spacing: 1px;
-    font-weight: 600;
-    display: block;
-}
-
-.form__success {
-    color: #666;
-    margin: 20px;
-}
-
-.form__fail {
-    color: red;
-    margin-top: 8px;
-}
-
-.form__button {
-    margin: 10px;
-    margin-right: 0;
-    border-radius: 10px;
-    color: white;
-    border: 0;
-    cursor: pointer;
-    font-weight: bold;
+.form_button {
+    margin: auto;
+    margin-top: 10px;
 }
