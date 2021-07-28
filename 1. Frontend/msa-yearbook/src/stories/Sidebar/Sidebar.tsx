@@ -21,7 +21,7 @@ export const SideBar = () => {
   return (
     <div className={classes.list}>
       <List>
-        <ListItem button href="/home" component={Link}>
+        <ListItem button href="/" component={Link}>
           <ListItemIcon><HomeIcon /></ListItemIcon>
           <ListItemText className={classes.listText} primary="Home" />
         </ListItem>

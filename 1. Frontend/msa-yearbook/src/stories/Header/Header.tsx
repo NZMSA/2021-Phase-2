@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import {
   AppBar,
@@ -13,18 +13,17 @@ import { SideBar } from "../Sidebar/Sidebar";
 import MenuIcon from "@material-ui/icons/Menu";
 import Button from "@material-ui/core/Button";
 import logo from "../../assets/logos/msa_full_neg.svg";
+import { useHistory, useLocation } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { Self_self } from "../../api/__generated__/Self";
+import { LOGIN } from "../../api/mutations";
 
-// Not sure if we are going to demonstrate both importing a css file and in component styling.
-// Maybe leave both options? We can explain both.
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
-// Header needs to know what user is logged in to render their name. If needed renders the image of their github.
-// Here I have assumed that the image will be a URL.
 export interface HeaderProps {
-  user?: {
-    firstName: String;
-    lastName: String;
-    image: String;
-  };
+  user?: Self_self;
   onLogin?: () => void;
   onLogout?: () => void;
   onCreateAccount?: () => void;
@@ -44,7 +43,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     title: {
       flexGrow: 1,
-      marginLeft: "10px",
+      marginRight: "200px",
     },
     inputRoot: {
       color: "inherit",
@@ -61,16 +60,63 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const CLIENT_ID = "memes";
-const REDIRECT_URI = "http://localhost:3000/";
+const CLIENT_ID = "a6ac879139cfdf60af2a";
+const REDIRECT_URI = "http://localhost:3000/home";
+
+export interface Login_login_student {
+  __typename: "Student";
+  id: string;
+  name: string;
+  gitHub: string;
+  imageURI: string;
+}
+
+export interface Login_login {
+  __typename: "LoginPayload";
+  student: Login_login_student;
+  jwt: string;
+}
+
+export interface Login {
+  login: Login_login;
+}
+
+export interface LoginVariables {
+  code: string;
+}
 
 export const Header: React.FC<HeaderProps> = ({ user }) => {
+  const history = useHistory()
   const classes = useStyles();
   const [sideBar, setSideBar] = useState(false);
+
+  const query = useQuery();
 
   const toggleSideBar = () => {
     setSideBar(!sideBar);
   };
+
+  const [login] = useMutation<Login>(LOGIN);
+
+  useEffect(() => {
+    const loginMethod = async () => {
+      const code = query.get("code");
+
+      if (code != null) {
+        console.log(code)
+        try {
+          const {data} = await login({ variables: { code } });
+          if (data != null ){
+            localStorage.setItem("token", data.login.jwt)
+          }
+        } catch (e) {
+          console.log(e);
+        }
+        history.push('/home')
+      }
+    };
+    loginMethod();
+  }, []);
 
   return (
     <div className={classes.root}>
@@ -103,9 +149,9 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
             </Button>
           ) : (
             <div className={classes.userInformation}>
-              <Avatar alt="user-avatar" src={`${user.image}`} />
+              <Avatar alt="user-avatar" src={user.imageURI} />
               <Hidden smDown>
-                <Button color="inherit">{`${user.firstName} ${user.lastName}`}</Button>
+                <Button color="inherit">{user.name}</Button>
               </Hidden>
             </div>
           )}
