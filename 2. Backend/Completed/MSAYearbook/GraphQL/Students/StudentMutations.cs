@@ -60,12 +60,15 @@ namespace MSAYearbook.GraphQL.Students
 
             var student = await context.Students.FirstOrDefaultAsync(s => s.GitHub == user.Login, cancellationToken);
 
-            if (student.Name == "")
+            if (student == null)
             {
-                student.Name = user.Name;
-                student.GitHub = user.Login;
-                student.ImageURI = user.AvatarUrl;
+                var student = new Student {
+                    Name = user.Name ?? user.Login;
+                    GitHub = user.Login;
+                    ImageURI = user.AvatarUrl;
+                }
 
+                context.Students.Add(student)
                 await context.SaveChangesAsync(cancellationToken);
             }
 
