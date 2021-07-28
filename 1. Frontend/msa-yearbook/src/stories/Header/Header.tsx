@@ -13,9 +13,10 @@ import { SideBar } from "../Sidebar/Sidebar";
 import MenuIcon from "@material-ui/icons/Menu";
 import Button from "@material-ui/core/Button";
 import logo from "../../assets/logos/msa_full_neg.svg";
-import { FETCH_TOKEN, Self_self } from "../../GraphQLClient";
 import { useHistory, useLocation } from "react-router-dom";
 import { useMutation } from "@apollo/client";
+import { Self_self } from "../../api/__generated__/Self";
+import { LOGIN } from "../../api/mutations";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -95,7 +96,7 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
     setSideBar(!sideBar);
   };
 
-  const [login] = useMutation<Login>(FETCH_TOKEN);
+  const [login] = useMutation<Login>(LOGIN);
 
   useEffect(() => {
     const loginMethod = async () => {

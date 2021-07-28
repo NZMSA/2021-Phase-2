@@ -1,8 +1,10 @@
 import { makeStyles, createStyles, CircularProgress, Avatar, Typography } from '@material-ui/core';
 import React from 'react';
 import { CardList, GithubCard, SectionHeader } from './stories';
-import { Project, useFetchProjects }  from './GraphQLClient';
 import { useEffect } from 'react';
+import { useQuery } from '@apollo/client';
+import { PROJECTS } from './api/queries';
+import { Projects,Projects_projects_nodes } from './api/__generated__/Projects';
 
 const FeedPageStyles = makeStyles(
   createStyles({
@@ -20,12 +22,13 @@ export interface FeedPageProps {
 
 const FeedPage = ({ pageTitle }: FeedPageProps): JSX.Element => {
   const [cards, setCards] = React.useState<JSX.Element[]>([]);
-  var data = useFetchProjects();
+  
+  const {loading, error, data} = useQuery<Projects>(PROJECTS)
   const styles = FeedPageStyles();
 
     useEffect(() => {
-        if(data !== undefined) {
-            setCards(data!.projects.nodes.map((project : Project) => {
+        if(!loading && !error) {
+            setCards(data!.projects!.nodes!.map((project : Projects_projects_nodes) => {
                 return <GithubCard 
                     avatar={<Avatar>{project.student.name[0]}</Avatar>}
                     cardTitle={project.name}

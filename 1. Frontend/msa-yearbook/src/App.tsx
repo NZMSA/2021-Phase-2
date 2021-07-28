@@ -6,7 +6,8 @@ import { Header } from "./stories/Header/Header";
 import { Footer } from "./stories/Footer/Footer";
 import FeedPage from "./FeedPage";
 import { useQuery } from "@apollo/client";
-import { Self, SELF } from "./GraphQLClient";
+import { SELF } from "./api/queries";
+import { Self } from "./api/__generated__/Self";
 
 function App() {
   const { loading, error, data } = useQuery<Self>(SELF);
