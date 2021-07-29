@@ -4,6 +4,7 @@ import "./App.css";
 
 import { Header } from "./stories/Header/Header";
 import { Footer } from "./stories/Footer/Footer";
+import {SubmitForm} from "./stories/SubmitForm/SubmitForm"
 import FeedPage from "./FeedPage";
 import { useQuery } from "@apollo/client";
 import { SELF } from "./api/queries";
@@ -24,8 +25,7 @@ function App() {
           render={() => <FeedPage pageTitle="MSA Projects 2021" />}
         />
         <Route path="/submit">
-          {/* TODO
-            Render submit page here*/}
+          <SubmitForm />
         </Route>
       </Switch>
       <Footer />
