@@ -18,7 +18,7 @@ Once complete, you'll be able to run storybook on a seperate port.
 
 You'll see the storybook webapp has started in `localhost:6006` with some example stories on the left hand side.
 
-![5-storybook/Untitled.png](5-storybook/Untitled.png)
+![5-storybook/Untitled.PNG](5-storybook/Untitled.PNG)
 
 ## What is a story?
 
@@ -60,13 +60,13 @@ Small.args = {
 
 The args here describe the pre-built or "interesting" states in which we can set defaults for. In the storybook web app you can actually change the props within the `Button` component on the fly!
 
-![5-storybook/Untitled1.png](5-storybook/Untitled1.png)
+![5-storybook/Untitled1.PNG](5-storybook/Untitled1.PNG)
 
 You can see how this can be extremely useful, being able to dynamically see and change how the component looks in a safe environment! Have a go and play around with the other args that are available.
 
 There are a myriad of tools built into Storybook which help developers debug, develop and refine their components. One cool tip is this change view icon, where you can see how the component will look in a small mobile, large mobile or tablet view.
 
-![5-storybook/Untitled2.png](5-storybook/Untitled2.png)
+![5-storybook/Untitled2.PNG](5-storybook/Untitled2.PNG)
 
 Under the docs tab, we can add documention such as how to use the component, and all the other things that come with _documentation_ heh.
 
@@ -101,7 +101,7 @@ interface ButtonProps {
  */
 ```
 
-![5-storybook/Untitled3.png](5-storybook/Untitled3.png)
+![5-storybook/Untitled3.PNG](5-storybook/Untitled3.PNG)
 
 ## Creating our own story using our components
 
@@ -136,7 +136,7 @@ GithubIcon.args = {
 
 What we've done here is created another entry in the `Example` directory in storybook and added our component `SocialIcon`. I've put in a background color of black so we are able to see the icons render on the screen.
 
-![5-storybook/Untitled4.png](5-storybook/Untitled4.png)
+![5-storybook/Untitled4.PNG](5-storybook/Untitled4.PNG)
 
 As you can see we've created a unique render of our Social Icon as Github Icon. Lets create some more unique render cases for our other scenarios
 
@@ -171,7 +171,7 @@ YoutubeIcon.args = {
 
 You should now see a few other scenarios that are defined in Storybook under the SocialIcon component.
 
-![5-storybook/Untitled5.png](5-storybook/Untitled5.png)
+![5-storybook/Untitled5.PNG](5-storybook/Untitled5.PNG)
 
 Well done we've just integrated our component with Storybook! Play around with using other arguments other than strings such as enum, boolean and see how your components can render dynmically as you are in control! :sunglasses:
 
