@@ -127,4 +127,4 @@ In this part, we looked at how to implement basic navigation within our project.
 
 Next up we will talk about another third party library - Storybook which is primarily used as a component library.
 
-[**<< Part #5 - Storybook >>**](5-storybook)
+[**<< Part #5 - Storybook >>**](5-storybook.md)
