@@ -24,9 +24,6 @@ function useQuery() {
 
 export interface HeaderProps {
   user?: Self_self;
-  onLogin?: () => void;
-  onLogout?: () => void;
-  onCreateAccount?: () => void;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -59,10 +56,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
-
-const CLIENT_ID = "a6ac879139cfdf60af2a";
-const REDIRECT_URI = "http://localhost:3000/home";
-
 export interface Login_login_student {
   __typename: "Student";
   id: string;
@@ -85,6 +78,10 @@ export interface LoginVariables {
   code: string;
 }
 
+const CLIENT_ID = "a6ac879139cfdf60af2a";
+const REDIRECT_URI = "http://localhost:3000/home";
+
+
 export const Header: React.FC<HeaderProps> = ({ user }) => {
   const history = useHistory()
   const classes = useStyles();
@@ -101,22 +98,21 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
   useEffect(() => {
     const loginMethod = async () => {
       const code = query.get("code");
-
       if (code != null) {
-        console.log(code)
         try {
-          const {data} = await login({ variables: { code } });
-          if (data != null ){
+          const { data } = await login({ variables: { code } });
+          if (data != null) {
             localStorage.setItem("token", data.login.jwt)
           }
         } catch (e) {
           console.log(e);
         }
-        history.push('/home')
+        history.push('/home');
       }
     };
     loginMethod();
   }, []);
+
 
   return (
     <div className={classes.root}>
@@ -131,10 +127,10 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
           >
             <MenuIcon />
             <Drawer anchor="left" open={sideBar} onClose={toggleSideBar}>
-              <SideBar />
+              <SideBar user={user} />
             </Drawer>
           </IconButton>
-          <IconButton href="https://nzmsa.netlify.app/">
+          <IconButton href="/home">
             <img src={logo} id="logo" width="200px" alt="MSA Logo" />
           </IconButton>
           <Typography className={classes.title} variant="h5" noWrap>
@@ -149,9 +145,9 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
             </Button>
           ) : (
             <div className={classes.userInformation}>
-              <Avatar alt="user-avatar" src={user.imageURI} />
               <Hidden smDown>
-                <Button color="inherit">{user.name}</Button>
+                <Avatar alt="user-avatar" src={user.imageURI} />
+                <Button color="inherit" href="/submit">{user.name}</Button>
               </Hidden>
             </div>
           )}

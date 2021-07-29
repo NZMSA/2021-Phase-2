@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router";
+import { Redirect, Route, Switch } from "react-router";
 import "./App.css";
 
 import { Header } from "./stories/Header/Header";
@@ -17,9 +17,12 @@ function App() {
     <div className="App">
       <Header user={data?.self} />
       <Switch>
+        <Route exact path="/">
+          <Redirect to="/home" />
+        </Route>
         <Route
           path="/home"
-          render={(props) => <FeedPage pageTitle="MSA Projects 2021" />}
+          render={() => <FeedPage pageTitle="MSA Projects 2021" />}
         />
         <Route path="/submit">
           <SubmitForm />
