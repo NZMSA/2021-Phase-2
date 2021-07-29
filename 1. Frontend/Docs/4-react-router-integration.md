@@ -1,47 +1,140 @@
-# Adding Nuget Packages
+# React Router
 
-Packages we want to add:
+[Official Documentation](https://reactrouter.com/)
 
-| Name                                          | Usage                                                                                                                 |
-| --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| Microsoft.EntityFrameworkCore                 | This framework is an ORM (Object-Relational Mapper) that allows developers to work with a database using .NET objects |
-| Microsoft.EntityFrameworkCore.SqlServer       | Allows the ORM to use Microsoft SQL Server (database communication)                                                   |
-| Microsoft.EntityFrameworkCore.Tools           | Tools for database migrations                                                                                         |
-| HotChocolate.AspNetCore                       | Hot Chocolate GraphQL endpoint                                                                                        |
-| HotChocolate.Data                             | Hot Chocolate Data management                                                                                         |
-| HotChocolate.Data.EntityFramework             | Hot Chocolate Data management for Entity Framework                                                                    |
-| HotChocolate.AspNetCore.Authorization         | Hot Chocolate Authorization Library                                                                                   |
-| Microsoft.AspNetCore.Authentication.JwtBearer | JWT library to generate Bearer tokens                                                                                 |
-| Octokit                                       | GitHub .NET library                                                                                                   |
+So in the previous Section we built our `Sidebar.tsx` Component. Lets add routing and create new pages for our application to render.
 
-### Use Manage Package for Solution (UI)
+As mentioned in the docs, there are three [Primary Components](https://reactrouter.com/web/guides/primary-components), Routers, Route matchers and Navigation - each serve a different purpose. Routers should be at the core of each application. `react-router-dom`. To use the router, which keeps track of your URL paths and routes, place a router in the root element. There are two different routers - `<HashRouter>` and `<BrowserRouter>`, in this example we will use BrowserRouter as it gives better looking URL's.
 
-We also need to install some libraries/extensions to the project to help us create the API. At the top of the screen go to **Tools** -> **Nuget Package Manager** -> **Manage Nuget Package for Solution.**
+The router should live in the root element heirarchy so that your `<App/>` component is wrapped within the router and is able to use Routes.
 
-![4-adding-nuget-packages/Untitled.png](4-adding-nuget-packages/Untitled.png)
+`index.tsx`
 
-Search each package from the above table and install it. e.g Microsoft.EntityFrameworkCore
-
-![4-adding-nuget-packages/Untitled%201.png](4-adding-nuget-packages/Untitled%201.png)
-
-### Use Package Manager Console (CLI, command line)
-
-![4-adding-nuget-packages/Untitled%202.png](4-adding-nuget-packages/Untitled%202.png)
-
-```bash
-Install-Package Microsoft.EntityFrameworkCore
-Install-Package Microsoft.EntityFrameworkCore.SqlServer
-Install-Package Microsoft.EntityFrameworkCore.Tools
-Install-Package HotChocolate.AspNetCore
-Install-Package HotChocolate.Data
-Install-Package HotChocolate.Data.EntityFramework
-Install-Package HotChocolate.AspNetCore.Authorization
-Install-Package Microsoft.AspNetCore.Authentication.JwtBearer
-Install-Package Octokit
 ```
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import { BrowserRouter } from 'react-router-dom';
+
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById('root')
+);
+```
+
+Lets now go ahead and create some Route Matchers. According to the documentation, we add a `<Switch>` component which will then match each child `<Route>` and if the path matches will render the appropriate child component.
+
+Add some pages first to render. Lets simply render a page with a simple title. In the src file create a new folder called Pages and create two folders for a `HomePage` and a `SubmitPage`.
+
+Lets code up a simple page which will show a title for the relevant page.
+
+`HomePage.tsx`
+
+```
+import React from 'react';
+import { Typography } from '@material-ui/core';
+
+
+export const HomePage = () => {
+    return (
+        <Typography variant='h3'>
+            Home Page
+        </Typography>
+    )
+}
+```
+
+`SubmitPage.tsx`
+
+```
+import React from 'react';
+import { Typography } from '@material-ui/core';
+
+
+export const SubmitPage = () => {
+    return (
+        <Typography variant='h3'>
+            Submit Page
+        </Typography>
+    )
+}
+```
+
+Now lets add some router logic to ensure that these pages are rendered when the URL of the page that is navigated to is either `/home` for the `HomePage` or `/submit` for the `SubmitPage`
+
+`App.tsx`
+
+```
+import React from 'react';
+.
+.
+.
+import { Route, Switch } from 'react-router';
+import { HomePage } from './Pages/HomePage/HomePage';
+import { SubmitPage } from './Pages/SubmitPage/SubmitPage';
+
+function App() {
+  return (
+    <div className="App">
+      <Header />
+      <Switch>
+        <Route path="/home" component={HomePage} />
+        <Route path="/submit" component={SubmitPage} />
+      </Switch>
+      <Footer />
+    </div>
+  );
+}
+.
+.
+....
+```
+
+Lets now add these paths to our Sidebar to allow us to navigate to these paths.
+
+`Sidebar.tsx`
+
+```
+.
+.
+.
+
+            <List>
+                <ListItem button href="/home" component={Link}>
+                    <ListItemIcon><HomeIcon /></ListItemIcon>
+                    <ListItemText className={classes.listText} primary="Home" />
+                </ListItem>
+                <ListItem button href="/submit" component={Link}>
+                    <ListItemIcon><ArrowUpwardIcon /></ListItemIcon>
+                    <ListItemText className={classes.listText} primary="Submit" />
+                </ListItem>
+            </List>
+            <Divider />
+            <List>
+                <ListItem button href="/login" component={Link}>
+                    <ListItemIcon><AddBoxIcon /></ListItemIcon>
+                    <ListItemText className={classes.listText} primary="Login" />
+                </ListItem>
+            </List>
+.
+.
+.
+...
+```
+
+Give it a try now! if you click on the Home or Submit buttons on the sidebar you should see a title showing the relevant page, and also the URL navigating to the route.
+
+![4-react-router-integration/Untitled.png](4-react-router-integration/Untitled.png)
+
+I'll leave the rest of the implmentation to you! Congrats you have now integrated React router with your application. Have a look at the [documentation](https://reactrouter.com/web/guides/quick-start) on what else is possible with React Router!
 
 ## Summary
 
-In this part, we explored two different ways to install nuget packages (.NET's packages) and the list of packaging that we would be required to install for our project. It is recommended to install these now as it would take time to install.
+In this part, we looked at how to implement basic navigation within our project. We learnt about Routers, and routes and switch components within React router dom, and how to use links to navigate within the webpage.
 
-[**<< Part #5 - Nuget Packages >>**](5-setup-hot-chocolate.md)
+Next up we will talk about another third party library - Storybook which is primarily used as a component library.
+
+[**<< Part #5 - Storybook >>**](5-storybook)

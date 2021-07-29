@@ -1,69 +1,37 @@
-# Azure Database
+# Create React App with Typescript
 
-Before we can build our model we first need a server to host our database. There are multiple ways and technologies we could use to create a database. For simplicity, we will use Azure SQL databases to host our data. For this step, you will need an Azure for Student Subscription and an account to go with it. Visit [azure.microsoft.com/en-us/free/students](http://azure.microsoft.com/en-us/free/students) to redeem your subscription. This will give you some free credits to host our API and Databases.
+## Creating a base react application
 
-### 1.1 Creating the database
+Let's create a base template for your react w/ typescript application.
 
-Navigate to [portal.azure.com](https://portal.azure.com/) on your browser and click **Create a resource** and search for **SQL Database**.
+In your terminal run the command:
 
-![2-azure-sql-database/Untitled.png](2-azure-sql-database/Untitled.png)
+If you are running npm:
 
-![2-azure-sql-database/Untitled%201.png](2-azure-sql-database/Untitled%201.png)
+`npx create-react-app {app-name} --template typescript `
 
-> Make sure the subscription is Azure for Students.
+If you are running yarn:
 
-- Click **Create New**, to create a new resource group. (The resource group is a collection of resources that are used for a particular application or group of applications)
+`yarn create react-app {app-name} --template typescript `
 
-![2-azure-sql-database/Untitled%202.png](2-azure-sql-database/Untitled%202.png)
+--template typescript tells create react app to use the typescript template for the react project.
 
-- Name your database.
+Navigate into your root directory for your app and run the react-app locally
 
-![2-azure-sql-database/Untitled%203.png](2-azure-sql-database/Untitled%203.png)
+`cd {app-name}`
 
-- Click Create new which will prompt you to create an admin account for this database and then select a region that it will be hosted on.
+`npm run start`
 
-![2-azure-sql-database/Untitled%204.png](2-azure-sql-database/Untitled%204.png)
+This runs the start script specified in our package.json, and will spawn off a server which reloads the page as we save our files. Typically the server runs at http://localhost:3000, but should be automatically opened for you.
 
-- You should have something similar to this.
+![2-create-react-app-typescript/Untitled.png](2-create-react-app-typescript/Untitled.png)
 
-![2-azure-sql-database/Untitled%205.png](2-azure-sql-database/Untitled%205.png)
+Every time you save a change to your application it should be automatically rebuilt. This helps us by allowing us to quickly see changes and therefore iterate on a more frequent basis.
 
-- Click **Configure database** and navigate to the basic option (the default one is overkill and is quite expensive for our purposes) and apply the changes.
-
-![2-azure-sql-database/Untitled%206.png](2-azure-sql-database/Untitled%206.png)
-
-We want to change the database configuration because the default one is expensive and overkill for our purposes. Since we are going to use this database for learning, serverless is a sweet option as it costing the least.
-
-![2-azure-sql-database/Untitled%207.png](2-azure-sql-database/Untitled%207.png)
-
-We want to select Locally-redundant backup storage. Locally-redundant storage (LRS) copies your data synchronously three times within a single physical location in the primary region. LRS is the least expensive replication option but is not recommended for applications requiring high availability or durability.
-
-- Review and create the SQL Database
-
-![2-azure-sql-database/Untitled%208.png](2-azure-sql-database/Untitled%208.png)
-
-Once satisfied with the setting you can click review and create and the deployment should be underway. This might take some time.
-
-### 3.2 Firewall settings
-
-When the database has finished being deployed you can click on "Go to resource" and 'Set server firewall'.
-
-![2-azure-sql-database/Untitled%209.png](2-azure-sql-database/Untitled%209.png)
-
-Change the setting so that 'Allow Azure service' is Yes and add the rule 0.0.0.0 and 255.255.255.255. This is giving all IP addresses access. Ideally, we would want to restrict access in a production environment but for simplicity, I will allow all connections. Make sure to save before exiting.
-
-![2-azure-sql-database/Untitled%2010.png](2-azure-sql-database/Untitled%2010.png)
-
-On the left hand panel find the label Connection String and copy the string somewhere. (We would need this to connect to the database we created in the .NET project)
-
-![2-azure-sql-database/Untitled%2011.png](2-azure-sql-database/Untitled%2011.png)
-
-Copy the connection string under ADO.NET.
-
-![2-azure-sql-database/Untitled%2012.png](2-azure-sql-database/Untitled%2012.png)
+Lets move onto making some components using Material UI!
 
 ## Summary
 
-In this part, we covered how to create a SQL database on Azure cloud and how to get credentials for accessing your database.
+In this part, we've created our base react application, lets go ahead and add some components using a UI library!
 
-[**<< Part #3 - Create Project in VS >>**](3-create-an-empty-project-using-visual-studio.md)
+[**<< Part #3 - Material UI Integration >>**](3-material-ui-integration.md)
