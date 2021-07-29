@@ -10,18 +10,18 @@ The router should live in the root element heirarchy so that your `<App/>` compo
 
 `index.tsx`
 
-```
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import { BrowserRouter } from 'react-router-dom';
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   <BrowserRouter>
     <App />
   </BrowserRouter>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 ```
 
@@ -33,41 +33,31 @@ Lets code up a simple page which will show a title for the relevant page.
 
 `HomePage.tsx`
 
-```
-import React from 'react';
-import { Typography } from '@material-ui/core';
-
+```javascript
+import React from "react";
+import { Typography } from "@material-ui/core";
 
 export const HomePage = () => {
-    return (
-        <Typography variant='h3'>
-            Home Page
-        </Typography>
-    )
-}
+  return <Typography variant="h3">Home Page</Typography>;
+};
 ```
 
 `SubmitPage.tsx`
 
-```
-import React from 'react';
-import { Typography } from '@material-ui/core';
-
+```javascript
+import React from "react";
+import { Typography } from "@material-ui/core";
 
 export const SubmitPage = () => {
-    return (
-        <Typography variant='h3'>
-            Submit Page
-        </Typography>
-    )
-}
+  return <Typography variant="h3">Submit Page</Typography>;
+};
 ```
 
 Now lets add some router logic to ensure that these pages are rendered when the URL of the page that is navigated to is either `/home` for the `HomePage` or `/submit` for the `SubmitPage`
 
 `App.tsx`
 
-```
+```javascript
 import React from 'react';
 .
 .
@@ -97,7 +87,7 @@ Lets now add these paths to our Sidebar to allow us to navigate to these paths.
 
 `Sidebar.tsx`
 
-```
+```javascript
 .
 .
 .
