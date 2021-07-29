@@ -1,3 +1,3 @@
 # Storybook
 
-[**<< Part #6 - Apollo Client >>**](6-storybook.md)
+[**<< Part #6 - Apollo Client >>**](6-apollo-client.md)
