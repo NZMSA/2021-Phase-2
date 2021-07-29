@@ -213,4 +213,4 @@ In this section we learnt about storybook, how to install and what a basic story
 
 Next we'll be moving onto more exciting territory - Apollo client and how we can bring our components to life by hooking them up with our GraphQL backend service!
 
-[**<< Part #6 - Apollo Client >>**](6-storybook.md)
+[**<< Part #6 - Apollo Client >>**](6-apollo-client.md)
