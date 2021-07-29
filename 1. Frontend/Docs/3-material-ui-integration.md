@@ -68,7 +68,7 @@ export default function Header() {
 
 Rendering this component in `App.tsx` you should a simple header, with two buttons (Hamburger / Menu button and a LOGIN button)
 
-![3-material-ui-integration/Untitled.png](3-material-ui-integration/Untitled.png)
+![3-material-ui-integration/Untitled.PNG](3-material-ui-integration/Untitled.PNG)
 
 ## useStyle styling (Material UI)
 
@@ -124,13 +124,13 @@ export default function Header() {
 ```
 
 Now we should see some nice spacing between the buttons and the title.
-![3-material-ui-integration/Untitled2.png](3-material-ui-integration/Untitled2.png)
+![3-material-ui-integration/Untitled2.PNG](3-material-ui-integration/Untitled2.PNG)
 
 ## Footer Component
 
 Now we'll move onto coding a simple Footer component, this is the final product we will look to achieve:
 
-![3-material-ui-integration/Untitled3.png](3-material-ui-integration/Untitled3.png)
+![3-material-ui-integration/Untitled3.PNG](3-material-ui-integration/Untitled3.PNG)
 
 We can break down the above to our footer and smaller `SocialIcon` components.
 
@@ -232,7 +232,7 @@ export const Footer = () => {
 
 Now we should have our basic footer component, fixed to the bottom of the page with our new SocialIcon component which renders the Microsoft logo.
 
-![3-material-ui-integration/Untitled4.png](3-material-ui-integration/Untitled4.png)
+![3-material-ui-integration/Untitled4.PNG](3-material-ui-integration/Untitled4.PNG)
 
 We can now import the rest of our Social Icons such as facebook, discord etc using the JS function [`map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 
@@ -308,7 +308,7 @@ import { SOCIAL_MEDIA } from "../../resources";
 
 Rendering this would result in the following:
 
-![3-material-ui-integration/Untitled5.png](3-material-ui-integration/Untitled5.png)
+![3-material-ui-integration/Untitled5.PNG](3-material-ui-integration/Untitled5.PNG)
 
 Congrats we have built our functional `Header` and `Footer` components utilising Material UI!
 
@@ -417,7 +417,7 @@ Now assuming everything went OK so far, when we press the hamburger menu icon, w
 
 We will add routing and integration with links in section 4. But please follow along below to create other components too! Otherwise click [here](4-react-router-integration.md) for react-router integration.
 
-![3-material-ui-integration/Untitled6.png](3-material-ui-integration/Untitled6.png)
+![3-material-ui-integration/Untitled6.PNG](3-material-ui-integration/Untitled6.PNG)
 
 ## Summary
 
