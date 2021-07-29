@@ -9,10 +9,10 @@ import graphQLClient from './GraphQLClient';
 
 ReactDOM.render(
   <Router>
-      <ApolloProvider client={graphQLClient}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <ApolloProvider client={graphQLClient}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
     </ApolloProvider>
   </Router>,
   document.getElementById('root')
