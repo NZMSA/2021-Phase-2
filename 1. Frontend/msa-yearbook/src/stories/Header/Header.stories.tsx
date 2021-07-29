@@ -12,11 +12,9 @@ const Template: Story<HeaderProps> = (args) => <Header {...args} />;
 export const LoggedIn = Template.bind({});
 LoggedIn.args = {
   user: {
-    __typename: "Student",
-    id: "1",
-    name: "John Doe",
-    gitHub: "johndoe",
-    imageURI: "https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+    firstName: "John",
+    lastName: "Doe",
+    image: "https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
   },
 };
 

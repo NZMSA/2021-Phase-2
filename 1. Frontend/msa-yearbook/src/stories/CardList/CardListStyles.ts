@@ -2,7 +2,7 @@ import { makeStyles, createStyles } from "@material-ui/core";
 
 const CardListStyles = makeStyles(createStyles({
     cardList: {
-        width: '100%',
+        maxWidth: '600px',
         gap: '1%'
     },
     cardListItem: {

@@ -6,7 +6,7 @@ const SectionHeaderStyles = makeStyles(createStyles({
         flexGrow: 1,
         justifyContent: 'space-between',
         alignContent: 'center',
-        paddingBottom: '10px'
+        padding: '10px'
     },
     divider: {
         background: 'linear-gradient(#0000 0 48%, #000 48% 52%, #0000 0)',
