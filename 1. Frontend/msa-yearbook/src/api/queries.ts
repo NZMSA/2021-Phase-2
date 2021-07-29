@@ -12,15 +12,11 @@ export const PROJECTS = gql`
             } 
             nodes { 
                 ...projectFields
-                student{
-                    ...studentFields
-                }
             }
         }
     }
     ${fragments.PROJECT}
     ${fragments.PAGE_INFO}
-    ${fragments.STUDENT}
 `
 
 export const PROJECT  = gql`
@@ -53,15 +49,6 @@ export const STUDENTS = gql`
 export const STUDENT = gql`
     query Student($id: ID!) {
         student(id: $id){
-            ...studentFields
-        }
-    }
-    ${fragments.STUDENT}
-`
-
-export const SELF = gql`
-    query Self {
-        self {
             ...studentFields
         }
     }

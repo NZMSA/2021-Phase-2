@@ -4,16 +4,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { ApolloProvider } from '@apollo/client';
-import graphQLClient from './GraphQLClient';
 
 ReactDOM.render(
   <Router>
-    <ApolloProvider client={graphQLClient}>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </ApolloProvider>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
   </Router>,
   document.getElementById('root')
 );

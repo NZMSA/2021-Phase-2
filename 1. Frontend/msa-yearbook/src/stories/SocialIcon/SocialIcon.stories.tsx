@@ -1,9 +1,9 @@
 import React from 'react';
-import githubLogo from "../../assets/logos/github_logo.svg"
-import microsoftLogo from "../../assets/logos/microsoft_logo.svg"
-import facebookLogo from "../../assets/logos/facebook_logo.svg"
-import discordLogo from "../../assets/logos/discord_logo.svg"
-import youtubeLogo from "../../assets/logos/youtube_logo.svg"
+import githubLogo from "../assets/logos/github_logo.svg"
+import microsoftLogo from "../assets/logos/microsoft_logo.svg"
+import facebookLogo from "../assets/logos/facebook_logo.svg"
+import discordLogo from "../assets/logos/discord_logo.svg"
+import youtubeLogo from "../assets/logos/youtube_logo.svg"
 import { Story, Meta } from '@storybook/react';
 import { SocialIconProps, FooterSocialIcon } from './SocialIcon';
 

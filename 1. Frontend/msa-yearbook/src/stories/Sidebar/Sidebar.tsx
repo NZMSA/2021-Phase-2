@@ -3,8 +3,6 @@ import { Divider, Link, List, ListItem, ListItemIcon, ListItemText, makeStyles }
 import HomeIcon from '@material-ui/icons/Home';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import AddBoxIcon from '@material-ui/icons/AddBox';
-import { HeaderProps } from '../Header/Header';
 
 const useStyles = makeStyles({
   list: {
@@ -18,18 +16,12 @@ const useStyles = makeStyles({
   },
 });
 
-const CLIENT_ID = "a6ac879139cfdf60af2a";
-const REDIRECT_URI = "http://localhost:3000/home";
-
-export const SideBar: React.FC<HeaderProps> = ({ user }) => {
+export const SideBar = () => {
   const classes = useStyles();
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-  }
   return (
     <div className={classes.list}>
       <List>
-        <ListItem button href="/" component={Link}>
+        <ListItem button href="/home" component={Link}>
           <ListItemIcon><HomeIcon /></ListItemIcon>
           <ListItemText className={classes.listText} primary="Home" />
         </ListItem>
@@ -40,17 +32,10 @@ export const SideBar: React.FC<HeaderProps> = ({ user }) => {
       </List>
       <Divider />
       <List>
-        {user ?
-          <ListItem button href="/home" component={Link} onClick={handleLogout}>
-            <ListItemIcon><ExitToAppIcon /></ListItemIcon>
-            <ListItemText className={classes.listText} primary="Logout" />
-          </ListItem> :
-          <ListItem button href={`https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=user&redirect_uri=${REDIRECT_URI}`} component={Link}>
-            <ListItemIcon><AddBoxIcon /></ListItemIcon>
-            <ListItemText className={classes.listText} primary="Login" />
-          </ListItem>
-
-        }
+        <ListItem button href="/logout" component={Link}>
+          <ListItemIcon><ExitToAppIcon /></ListItemIcon>
+          <ListItemText className={classes.listText} primary="Logout" />
+        </ListItem>
       </List>
     </div>
   )
