@@ -38,7 +38,7 @@ export const SubmitForm: React.FC<SubmitFormProps> = () => {
 
     const handleSubmit = async() => {
         if (projectName !== "" && isGithubUrl(githubUrl)) {
-            console.log(projectName + githubUrl);
+            console.log({"projectName": projectName, "githubUrl": githubUrl, "Description": description });
 
             try {
                 await addProject({variables: {
