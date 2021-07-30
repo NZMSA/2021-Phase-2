@@ -3,6 +3,8 @@ import { Divider, Link, List, ListItem, ListItemIcon, ListItemText, makeStyles }
 import HomeIcon from '@material-ui/icons/Home';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import AddBoxIcon from '@material-ui/icons/AddBox';
+import { HeaderProps } from '../Header/Header';
 
 const useStyles = makeStyles({
   list: {
@@ -16,12 +18,18 @@ const useStyles = makeStyles({
   },
 });
 
-export const SideBar = () => {
+const CLIENT_ID = "a6ac879139cfdf60af2a";
+const REDIRECT_URI = "http://localhost:3000/home";
+
+export const SideBar: React.FC<HeaderProps> = ({ user }) => {
   const classes = useStyles();
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+  }
   return (
     <div className={classes.list}>
       <List>
-        <ListItem button href="/home" component={Link}>
+        <ListItem button href="/" component={Link}>
           <ListItemIcon><HomeIcon /></ListItemIcon>
           <ListItemText className={classes.listText} primary="Home" />
         </ListItem>
@@ -32,10 +40,17 @@ export const SideBar = () => {
       </List>
       <Divider />
       <List>
-        <ListItem button href="/logout" component={Link}>
-          <ListItemIcon><ExitToAppIcon /></ListItemIcon>
-          <ListItemText className={classes.listText} primary="Logout" />
-        </ListItem>
+        {user ?
+          <ListItem button href="/home" component={Link} onClick={handleLogout}>
+            <ListItemIcon><ExitToAppIcon /></ListItemIcon>
+            <ListItemText className={classes.listText} primary="Logout" />
+          </ListItem> :
+          <ListItem button href={`https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=user&redirect_uri=${REDIRECT_URI}`} component={Link}>
+            <ListItemIcon><AddBoxIcon /></ListItemIcon>
+            <ListItemText className={classes.listText} primary="Login" />
+          </ListItem>
+
+        }
       </List>
     </div>
   )

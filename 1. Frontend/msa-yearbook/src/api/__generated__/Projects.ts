@@ -37,6 +37,14 @@ export interface Projects_projects_edges {
   cursor: string;
 }
 
+export interface Projects_projects_nodes_student {
+  __typename: "Student";
+  id: string;
+  name: string;
+  gitHub: string;
+  imageURI: string;
+}
+
 export interface Projects_projects_nodes {
   __typename: "Project";
   id: string;
@@ -46,6 +54,7 @@ export interface Projects_projects_nodes {
   year: Year;
   modified: any;
   created: any;
+  student: Projects_projects_nodes_student;
 }
 
 export interface Projects_projects {
