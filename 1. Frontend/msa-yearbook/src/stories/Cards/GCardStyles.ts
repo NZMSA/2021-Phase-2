@@ -8,7 +8,8 @@ const makeGCardStyles = makeStyles(createStyles({
         width: '100%'
     },
     wrapper: {
-        width: '100%'
+        width: '100%',
+        minHeight: '200px'
     },
     divider: {
         width: '90%',
