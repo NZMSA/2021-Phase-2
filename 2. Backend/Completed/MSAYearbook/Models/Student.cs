@@ -9,12 +9,12 @@ namespace MSAYearbook.Models
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string Name { get; set; } = default!;
 
         [Required]
-        public string GitHub { get; set; }
+        public string GitHub { get; set; } = default!;
 
-        public string ImageURI { get; set; }
+        public string ImageURI { get; set; } = default!;
 
         public ICollection<Project> Projects { get; set; } = new List<Project>();
 

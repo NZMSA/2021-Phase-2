@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using HotChocolate;
 
 namespace MSAYearbook.Models
 {
@@ -15,21 +16,22 @@ namespace MSAYearbook.Models
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string Name { get; set; } = default!;
 
         [Required]
-        public string Description { get; set; }
+        public string Description { get; set; } = default!;
 
         [Required]
-        public string Link { get; set; }
+        public string Link { get; set; } = default!;
 
         [Required]
         public Year Year { get; set; }
 
         [Required]
+        [GraphQLIgnore]
         public int StudentId { get; set; }
 
-        public Student Student { get; set; }
+        public Student Student { get; set; } = default!;
 
         public DateTime Modified { get; set; }
 

@@ -54,6 +54,7 @@ namespace MSAYearbook.GraphQL.Comments
             }
 
             comment.Content = input.Content ?? comment.Content;
+            context.Comments.Add(comment);
 
             await context.SaveChangesAsync(cancellationToken);
 

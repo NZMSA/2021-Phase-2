@@ -24,16 +24,16 @@ namespace MSAYearbook.GraphQL.Students
     {
         [UseAppDbContext]
         [Authorize]
-        public async Task<Student> EditStudentAsync(EditStudentInput input, ClaimsPrincipal claimsPrincipal,
+        public async Task<Student> EditSelfAsync(EditSelfInput input, ClaimsPrincipal claimsPrincipal,
                 [ScopedService] AppDbContext context, CancellationToken cancellationToken)
         {
             var studentIdStr = claimsPrincipal.Claims.First(c => c.Type == "studentId").Value;
-            var student = await context.Students.FindAsync(int.Parse(studentIdStr));
+            var student = await context.Students.FindAsync(int.Parse(studentIdStr), cancellationToken);
 
             student.Name = input.Name ?? student.Name;
             student.ImageURI = input.ImageURI ?? student.ImageURI;
 
-
+            context.Students.Add(student);
             await context.SaveChangesAsync(cancellationToken);
 
             return student;
@@ -62,7 +62,9 @@ namespace MSAYearbook.GraphQL.Students
 
             if (student == null)
             {
-                student = new Student {
+
+                student = new Student
+                {
                     Name = user.Name ?? user.Login,
                     GitHub = user.Login,
                     ImageURI = user.AvatarUrl,
