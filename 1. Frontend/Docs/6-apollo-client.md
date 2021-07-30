@@ -1,74 +1,107 @@
-# Apollo Client
+# Apollo GraphQL Client
 
-> 
+## **1** - Installing the client
+To install the libraries needed for interacting with our graphQL back-end, we will need to use a terminal to call some commands. You can find the VS Code integrated terminal from the top tabs, as per the image below:
 
+![picture 1](../images/89e1bc757643b4a24e09b7057145edb5328e77c60b7fd23712c9cbb5087b250e.png)  
 
-Check out the official documentation about how to use [Mutation](https://www.apollographql.com/docs/react/data/mutations/).
+This will open up the following window at the bottom of VS Code:
 
-Now we can integrate `SubmitForm` using Apollo Client.
+![picture 2](../images/b956977f8a12a5462cd5e9ae881c244700188037962ca31efb8e8c6c77d03838.png)  
 
-1. Let's create a corresponding GraphQL mutation named `ADD_PROJECT`. Remember to wrap GraphQL strings in the `gql` function to parse them into query documents:
+The client for apollo client can be installed using node package manager (npm). Start by calling:
+```
+    npm install @apollo-client graphql
+```
 
-   ```typescript
-   import { gql } from "@apollo/client";
-   import * as fragments from "./fragments";
+This will install the apollo client, which we will use to interact with our graphQL back-end, and the graphql library that it requires to work.
 
-   export const ADD_PROJECT = gql`
-    mutation AddProject(
-        $name: String!
-        $description: String!
-        $link: String!
-        $year: String!
-    ) {
-        addProject(input: { name: $name, description: $description, link: $link, year: $year }) {
-            ...projectFields
-        }
-    }
-    ${fragments.PROJECT}
-   `;
-   ```
+We are then going to call:
+```
+    npm install @types/graphql apollo --save-dev
+```
 
-2. We want to pass our `ADD_PROJECT` mutation to the `useMutation` hook.
+This will install the typescript types for the graphql library, and the types for the apollo client. The `--save-dev` tag in the command above will save these to developer dependencies, which won't be included in the final website (because they aren't needed for the website to run)
 
-   Firstly, we have to import `ADD_PROJECT` the mutation, `AddProject`the type, `useMutation` the hook within the `SubmitForm` component, like the following:
+## **2** - Generating Client
+We will then need to generate the client, which we can then use to call the graphQL API. To do this, we will first need to modify our **package.json** file. Add the following lines into the file as a script:
+```
+    "generate": "apollo service:download --endpoint=http://msa-yearbook.azurewebsites.net/graphql/ graphql-schema.json | apollo codegen:generate --localSchemaFile=graphql-schema.json --target=typescript --tagName=gql"
+```
 
-   ```typescript
-    import { ADD_PROJECT} from '../../api/mutations';
-    import { AddProject } from '../../api/__generated__/AddProject';
-    import { useMutation } from '@apollo/client';
-   ```
+Your **package.json** file should have the scripts section looking like this once you've pasted the above code snippet in:
 
- > To generate types of all operation, you can check out [TypeScript GraphQL Code Generator – Generate GraphQL Types with Apollo Codegen Tutorial](https://www.apollographql.com/blog/tooling/apollo-codegen/typescript-graphql-code-generator-generate-graphql-types/).
+![picture 4](../images/78e0859a60519bd21fd43efd0066306f3a0eb12efbda1b8a6e168a92c4586b7c.png) 
 
-   Then declare the mutate function `addproject` and edit the `handleSubmit` function as the following:
+Now we need to use the terminal again. In the terminal at the bottom of VS Code, call the following command:
+```
+    npm run generate
+```
 
-   ```typescript
-    const [addProject] = useMutation<AddProject>(ADD_PROJECT);
+This will download the graphQL schema file from the backend API, and then use that to create some code which we can then use to interact with the API.
 
-    const handleSubmit = async() => {
-        if (projectName !== "" && isGithubUrl(githubUrl)) {
-            try {
-                await addProject({variables: {
-                    name: projectName,
-                    description: description,
-                    link: githubUrl,
-                    year: year,
-                }})
-                setSubmit(true)
-            } catch(e) {
-                console.log(e)
-            }
-        }else{
-            setHasFocus(true);
-        }
-    };
-   ```
+## **3** - Integrating Apollo Client
+To integrate the client, we will need to make some modifications to the code that we wrote earlier. To start, let's open up **index.tsx**, which should look something like this:
 
-In this example, the mutate function `addProject` called by the `onClick` handler that's returned by the `useMutation` hook. This 
-tells Apollo Client to execute the mutation by sending it to our GraphQL server.
+![picture 6](../images/98efefb122a0f9a28c53eb8cd903f299be74b0915ed799f96f1e305ba101ad6c.png)  
+
+To allow the client code to access the back-end, we will need to add something called a *Provider*. Providers are a pattern used in React to *provide* the necessary bits of information to our code to allow it run. TL;DR: they utilise React context to provide the necessary information to the correct components.
+
+As such, we will need to add `<ApolloProvider>` to the following file. Replace the contents of `ReactDOM.render()` with the following:
+```
+  <Router>
+    <ApolloProvider client={graphQLClient}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </ApolloProvider>
+  </Router>,
+  document.getElementById('root')
+```
+
+This should leave your **index.tsx** file looking similar to the image below:
+
+![picture 5](../images/c011e8797273c7906664c0b6a8ed11209faedc483aacd97134301e1e98e347fc.png)  
+
+Now, at this point, your code still won't compile. You'll notice that there is a red line underneath `graphQLClient`. This is because we haven't yet defined the client parameters correctly yet. Let's remedy that, and add the following code into **index.tsx**:
+```
+const graphQLClient = new ApolloClient({
+    uri: YOUR_HTTP_LINK,
+    cache: new InMemoryCache()
+});
+```
+
+This should leave **index.tsx** looking like this (NB the actual graphQL endpoint for GitHub is actually https://api.github.com/graphql):
+
+![picture 7](../images/2776c12c338f9e52ebc0d624af60dc47165ff4da9130bec5382c6f6ddc726304.png)  
+
+Now that the client has been provided to the rest of our code, we can now start using it to call the API.
+
+## **4** - Calling GraphQL
+To use the apollo client to query graphQL, we now need to call `useQuery`. Add the following snippet of code to your component:
+```
+    const {loading, error, data} = useQuery<Projects>(PROJECTS)
+```
+
+You can find an example of this being used in **FeedPage.tsx**:
+
+![picture 8](../images/2ef2f353ca0ca6464c1863515aa594d1394a64cdcd2a7f3e36233885d566d03d.png)  
+
+In the above image, the use of `useEffect(() => { ...SOME CODE...}, [data])` lets this component update it's state once the data that is provided by the graphQL query is finished fetching data!
+
+If you look into the generated code, in **queries.ts**, you will find the following code:
+
+![picture 9](../images/234fae65ef79b6e04561712da80c479eb2efe93956346be854c7de3b7d4423fa.png)  
+
+This is the PROJECTS query that is being called by us in our code, through `useQuery`!
+
 
 ## Summary
+The apollo client can be used to interact with graphQL libraries, without needing to write a lot of boiler-plate code that is extremely repetitive. This is achieved by using the client library to generate a lot of code, and using that code to help us use a small number of hooks to interact with graphQL.
 
-In this part, we looked at how to integrate with the GraphQl server using Apollo Client. It is important to know how to send request to the backend. The example of how to add project shows how to mutate data in our database using `useMutation` hook.
+I would highly recommend some further reading up on graphQL before you really get into using it. We have covered how to programmatically fire off a query to graphQL in this section, but there are other query types, as well as many other topics on graphQL! The following link is useful for further reading:
 
-[**<< Part #7 - Azure Development >>**](7-azure-development.md)
+- GraphQL Learning Documentation: https://graphql.org/learn/
+- Apollo Client Documentation: https://www.apollographql.com/docs/react/development-testing/static-typing/#gatsby-focus-wrapper
+
+[**<< Part #7 - Azure Deployment >>**](7-azure-development.md)
