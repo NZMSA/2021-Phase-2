@@ -28,7 +28,7 @@ Lets break down and analyse the example story and have a go at integrating our `
 
 In the `Button.stories.tsx` file you'll notice there a template set up;
 
-```javascript
+```typescript
 const Template = (args) => <Button {...args} />;
 ```
 
@@ -36,7 +36,7 @@ This makes use of storybook's args concept and allows us to alter the composing 
 
 There are 4 "states" that utilize this template binding - Primary, Secondary, Large and Small;
 
-```javascript
+```typescript
 export const Primary = Template.bind({});
 Primary.args = {
   primary: true,
@@ -72,7 +72,7 @@ Under the docs tab, we can add documention such as how to use the component, and
 
 Storybook picks up documentation straight from your component directly to storybook!
 
-```javascript
+```typescript
 interface ButtonProps {
   /**
    * Is this the principal call to action on the page?
@@ -140,7 +140,7 @@ What we've done here is created another entry in the `Example` directory in stor
 
 As you can see we've created a unique render of our Social Icon as Github Icon. Lets create some more unique render cases for our other scenarios
 
-```javascript
+```typescript
 export const MicrosoftIcon = Template.bind({});
 MicrosoftIcon.args = {
   name: "Microsoft logo",
@@ -177,7 +177,7 @@ Well done we've just integrated our component with Storybook! Play around with u
 
 Now for the finishing touches, lets add some documentation so people are able to know what each prop does and what function it serves.
 
-```javascript
+```typescript
 export interface SocialIconProps {
   /**
    * Name of the social icon

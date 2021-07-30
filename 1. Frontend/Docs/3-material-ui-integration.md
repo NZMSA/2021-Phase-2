@@ -11,7 +11,7 @@ As per the documentation run the following command:
 From the official docs, the usage is _very basic_ we are able to import pre-built components from the material-ui component library. Lets test this out, try and remove the code in `App.tsx`
 and replace it with the following:
 
-```javascript
+```typescript
 import React from "react";
 import { Button } from "@material-ui/core";
 import "./App.css";
@@ -43,7 +43,7 @@ You will need to run ` npm install @material-ui/icons` to install and use materi
 
 `Header.tsx`
 
-```javascript
+```typescript
 import React from "react";
 import MenuIcon from "@material-ui/icons/Menu";
 import { AppBar, IconButton, Toolbar } from "@material-ui/core";
@@ -78,7 +78,7 @@ Lets create some simple styling, a root class, a menuButton class and a title cl
 
 Add the following outside of the component
 
-```javascript
+```typescript
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -96,7 +96,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 Then call the function useStyles within the functional component, and populate the classNames of the components we want to associate with the styling.
 
-```javascript
+```typescript
 export default function Header() {
   const classes = useStyles();
 
@@ -138,7 +138,7 @@ Lets start with `SocialIcon.tsx`
 
 We'll create some props and have them called `SocialIconProps`, these will contain a `name`, a `url` (link when you click the social icons) and the `logo` itself (url / locally stored on assets etc.)
 
-```javascript
+```typescript
 import React from "react";
 import { IconButton } from "@material-ui/core";
 
@@ -163,7 +163,7 @@ Lets render the microsoft logo. For this part please download the `logos` folder
 
 Assets in this folder can then be used and imported like this:
 
-```javascript
+```typescript
 import microsoftLogo from "./logos/microsoft_logo.svg"
 import facebookLogo from "./logos/facebook_logo.svg"
 .
@@ -174,7 +174,7 @@ import githubLogo from "./logos/github_logo.svg"
 
 Lets go ahead and create our new `Footer` component. We are leveraging the Grid Component, for more details on the grid component and styling please refer [here](https://material-ui.com/api/grid/)
 
-```javascript
+```typescript
 import React from "react";
 
 import { createStyles, Grid, makeStyles, Theme } from "@material-ui/core";
@@ -238,7 +238,7 @@ We can now import the rest of our Social Icons such as facebook, discord etc usi
 
 Lets tidy things up with having our imports in one area i.e. a ` resources.tsx` file in the src file.
 
-```javascript
+```typescript
 import microsoftLogo from "./logos/microsoft_logo.svg";
 import facebookLogo from "./logos/facebook_logo.svg";
 import discordLogo from "./logos/discord_logo.svg";
@@ -285,7 +285,7 @@ And lets map through the array of Social media icons and render them - you'll ne
 
 ` Footer.tsx`
 
-```javascript
+```typescript
 import { SOCIAL_MEDIA } from "../../resources";
 .
 .
@@ -320,7 +320,7 @@ Firstly we'll add a [`Drawer`](https://material-ui.com/components/drawers/) comp
 
 `Header.tsx`
 
-```javascript
+```typescript
 export default function Header() {
     const [sideBar, setSideBar] = useState(false);
     const classes = useStyles();
@@ -353,7 +353,7 @@ Lets go ahead and create a simple Sidebar component that will be rendered when t
 
 `Sidebar.tsx`
 
-```javascript
+```typescript
 import React from "react";
 import {
   Divider,
@@ -418,6 +418,156 @@ Now assuming everything went OK so far, when we press the hamburger menu icon, w
 We will add routing and integration with links in section 4. But please follow along below to create other components too! Otherwise click [here](4-react-router-integration.md) for react-router integration.
 
 ![3-material-ui-integration/Untitled6.PNG](3-material-ui-integration/Untitled6.PNG)
+
+Lets proceed in making a simple submit component!
+
+### Submit Form Component
+
+Now we can write the code for Submit Form.
+
+1. We add a new Folder called `SubmitForm` in `stories` folder, then create a new file, name it `SubmitForm.tsx`.
+   ![3-material-ui-integration/submitFormFile.png](3-material-ui-integration/submitFormFile.png)
+
+2. Edit the `SubmitForm.tsx` file, we can write a skeleton for `SubmitForm` component, like the following:
+
+   ```typescript
+   import React, { useState } from "react";
+
+   export interface SubmitFormProps {}
+
+   export const SubmitForm: React.FC<SubmitFormProps> = () => {};
+   ```
+
+3. Then we filled in with the elements we need for submit form, here we are gonna use the `Material UI` library. For example,
+   we use `Grid` `Container` to format the form, `TextField` as the Input element. In this stage, we will also style the elements for a better look.
+
+As we have to keep and pass on the user input, `useState` is used and triggered by input `onChange` handler.
+
+```typescript
+import React, { useState } from "react";
+import { TextField, Typography, Grid, Container } from "@material-ui/core";
+import { makeStyles, Theme } from "@material-ui/core/styles";
+import { Button } from "../Button/Button";
+
+import "./submit-form.css";
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    "& .MuiFormHelperText-root": {
+      color: "white",
+    },
+  },
+}));
+export interface SubmitFormProps {}
+
+export const SubmitForm: React.FC<SubmitFormProps> = () => {
+  const classes = useStyles();
+  const year = "YEAR_2021";
+  const [projectName, setProjectName] = useState<string>("");
+  const [githubUrl, setGithubUrl] = useState<string>("");
+  const [description, setDescription] = useState("");
+  const [submit, setSubmit] = useState(false);
+
+  const [hasFocus, setHasFocus] = useState(false);
+  const handleSubmit = async () => {};
+
+  return (
+    <Container className="form_container">
+      <Typography variant="h4">Submit your project here!</Typography>
+      {submit ? (
+        <Grid>
+          Congratulations! Your project has been submitted successfully.
+        </Grid>
+      ) : null}
+      <Grid container spacing={4}>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            id="standard-basic"
+            label="Project Name"
+            fullWidth
+            error={hasFocus && projectName === ""}
+            value={projectName}
+            className={hasFocus && projectName === "" ? "" : classes.root}
+            helperText="Invalid Project Name"
+            onChange={(e) => setProjectName(e.target.value)}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            id="standard-basic"
+            label="Github URL"
+            fullWidth
+            error={hasFocus && (githubUrl === "" || !isGithubUrl(githubUrl))}
+            value={githubUrl}
+            onChange={(e) => setGithubUrl(e.target.value)}
+            className={
+              hasFocus && (githubUrl === "" || !isGithubUrl(githubUrl))
+                ? ""
+                : classes.root
+            }
+            helperText="Invalid URL"
+          />
+        </Grid>
+        <Grid item xs={12} sm={12}>
+          <TextField
+            id="outlined-multiline-static"
+            label="Description"
+            multiline
+            rows={5}
+            placeholder="Introduce your project..."
+            variant="outlined"
+            fullWidth
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </Grid>
+      </Grid>
+      <Button
+        className="form_button"
+        backgroundColor="limegreen"
+        label="Submit"
+        onClick={handleSubmit}
+        primary
+        size="medium"
+      />
+    </Container>
+  );
+};
+```
+
+If we import this `SubmitForm` component and use it in `App.tsx`, we can view our submit form by starting the app.
+
+![3-material-ui-integration/submitForm.png](3-material-ui-integration/submitForm.png)
+
+4.Add a url check function. At this step, we can use [regular expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions) to help with checking if the input url is a valid Github link.
+
+> Here is a website [RegExr: Learn, Build, & Test RegEx](https://regexr.com/) you can check if your regular expression working properly.
+
+The validation check code for Github URL can be like this:
+
+```typescript
+const isGithubUrl = (value: string) => {
+  const urlRegex =
+    /^(http[s]{0,1}:\/\/){0,1}(github.com\/)([a-zA-Z0-9\-~!@#$%^&*+?:_\/=<>\.]*)?$/i;
+  return urlRegex.test(value);
+};
+```
+
+Also modify the handleSubmit function to have a test.
+
+```
+const handleSubmit = async() => {
+    if (projectName !== "" && isGithubUrl(githubUrl)) {
+        console.log({"projectName": projectName, "githubUrl": githubUrl, "Description": description });
+    }else{
+        setHasFocus(true);
+    }
+};
+```
+
+We can change the browser to **Inspect** mode, and give it a go with the **Submit**, then you can see `Console` would
+log out the input you made.
+![3-material-ui-integration/submitFormInspect.png](3-material-ui-integration/submitFormInspect.png)
 
 ## Summary
 

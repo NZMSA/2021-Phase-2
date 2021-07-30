@@ -10,7 +10,7 @@ The router should live in the root element heirarchy so that your `<App/>` compo
 
 `index.tsx`
 
-```javascript
+```typescript
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
@@ -33,7 +33,7 @@ Lets code up a simple page which will show a title for the relevant page.
 
 `HomePage.tsx`
 
-```javascript
+```typescript
 import React from "react";
 import { Typography } from "@material-ui/core";
 
@@ -44,7 +44,7 @@ export const HomePage = () => {
 
 `SubmitPage.tsx`
 
-```javascript
+```typescript
 import React from "react";
 import { Typography } from "@material-ui/core";
 
@@ -57,7 +57,7 @@ Now lets add some router logic to ensure that these pages are rendered when the 
 
 `App.tsx`
 
-```javascript
+```typescript
 import React from 'react';
 .
 .
@@ -87,7 +87,7 @@ Lets now add these paths to our Sidebar to allow us to navigate to these paths.
 
 `Sidebar.tsx`
 
-```javascript
+```typescript
 .
 .
 .
