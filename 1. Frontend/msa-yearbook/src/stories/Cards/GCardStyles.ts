@@ -4,10 +4,12 @@ const makeGCardStyles = makeStyles(createStyles({
     card: {
         minWidth: '200px',
         maxWidth: '400px',
+        minHeight: '200px',
         width: '100%'
     },
     wrapper: {
-        width: '100%'
+        width: '100%',
+        minHeight: '200px'
     },
     divider: {
         width: '90%',

@@ -18,9 +18,9 @@ namespace MSAYearbook.GraphQL.Projects
         }
 
         [UseAppDbContext]
-        public Project GetProject(int id, [ScopedService] AppDbContext context)
+        public Project GetProject([GraphQLType(typeof(NonNullType<IdType>))] string id, [ScopedService] AppDbContext context)
         {
-            return context.Projects.Find(id);
+            return context.Projects.Find(int.Parse(id));
         }
     }
 }

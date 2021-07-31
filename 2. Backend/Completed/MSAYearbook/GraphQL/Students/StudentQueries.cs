@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Security.Claims;
 using HotChocolate;
 using HotChocolate.AspNetCore.Authorization;
@@ -20,9 +21,9 @@ namespace MSAYearbook.GraphQL.Students
         }
 
         [UseAppDbContext]
-        public Student GetStudent(int id, [ScopedService] AppDbContext context)
+        public Student GetStudent([GraphQLType(typeof(NonNullType<IdType>))] string id, [ScopedService] AppDbContext context)
         {
-            return context.Students.Find(id);
+            return context.Students.Find(int.Parse(id));
         }
 
         [UseAppDbContext]

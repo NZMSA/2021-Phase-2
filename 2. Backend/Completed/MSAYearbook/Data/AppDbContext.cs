@@ -7,9 +7,9 @@ namespace MSAYearbook.Data
     {
         public AppDbContext(DbContextOptions options) : base(options) { }
 
-        public DbSet<Project> Projects { get; set; }
-        public DbSet<Comment> Comments { get; set; }
-        public DbSet<Student> Students { get; set; }
+        public DbSet<Project> Projects { get; set; } = default!;
+        public DbSet<Comment> Comments { get; set; } = default!;
+        public DbSet<Student> Students { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
