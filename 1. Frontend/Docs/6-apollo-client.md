@@ -11,7 +11,7 @@ This will open up the following window at the bottom of VS Code:
 
 The client for apollo client can be installed using node package manager (npm). Start by calling:
 ```
-    npm install @apollo-client graphql
+    npm install apollo-client graphql
 ```
 
 This will install the apollo client, which we will use to interact with our graphQL back-end, and the graphql library that it requires to work.
